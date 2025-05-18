@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .card-dark {
+    @apply max-w-3xl mx-auto bg-gray-800 text-white shadow-lg rounded-lg p-6 border border-gray-700;
+  }
+}
+
