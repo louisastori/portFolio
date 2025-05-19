@@ -7,8 +7,8 @@
             <!-- Carte 1 -->
             <div class="bg-blue-100 dark:bg-blue-900 p-6 rounded-xl shadow-md flex flex-col justify-between">
                 <div>
-                    <h3 class="text-xl font-semibold text-blue-800 dark:text-white mb-2">Présentation</h3>
-                    <p class="text-sm text-blue-700 dark:text-blue-200 mb-4">Découvrez l’environnement informatique de l’organisation.</p>
+                    <h3 class="text-xl font-semibold text-blue-800 dark:text-white mb-2">Gérer le patrimoine informatique</h3>
+                    <p class="text-sm text-blue-700 dark:text-blue-200 mb-4">Gestion du patrimoine informatique et la sauvegarde</p>
                 </div>
                 <a href="{{ url('/patrimoineInformatique') }}" class="mt-auto inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Accéder</a>
             </div>
