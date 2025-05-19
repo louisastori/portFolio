@@ -14,7 +14,7 @@
          class="w-full h-auto rounded-md mb-4 border border-gray-600">
 
     <div class="text-gray-200 text-base">
-        Les flash sujets sont des petites réunions pour qu’une personne de l’équipe enseigne aux autres des outils ou des méthodes de travail.
+        Les flash sujet sont des petites réunions pour qu’une personne de l'équipe enseigne aux autres des outils ou des méthode de travail.
     </div>
 </div>
 

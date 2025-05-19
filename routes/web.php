@@ -26,13 +26,18 @@ Route::get('/', function () {
 ////////////////////////////////////////
 
 // Route pour la page "portfolio"
+/*
 Route::get('/portfolio', function () {
     return view('portFolio');
-});
+});*/
 // Route pour la page "presentation"
+/*
 Route::get('/presentation', function () {
     return view('presentation');
-});
+});*/
+
+
+
 // Route pour la page "CV"
 Route::get('/cv', function () {
     return view('cv');

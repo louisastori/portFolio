@@ -39,39 +39,12 @@
 </head>
 <body>
 
+
+
     @include('partials.navbar')
-    
-    <div class="container">
-        <h1>Louis Astori</h1>
-        <p>
-            Étudiant en deuxième année de BTS Services Informatiques aux Organisations (SIO), option Solutions Logicielles et Applications Métiers (SLAM). 
-            Passionné par le développement logiciel, l'informatique et la cybersécurité, je cherche à approfondir mes compétences dans la conception et la gestion de projets informatiques.
-        </p>
 
-        <h2>Compétences</h2>
-        <ul>
-            <li><strong>Programmation :</strong> MySQL, Python, C#, Java, Angular, HTML5.</li>
-            <li><strong>Systèmes d'exploitation :</strong> Windows, Linux.</li>
-            <li><strong>Cybersécurité :</strong> Protection des données personnelles, sécurisation de sites web.</li>
-            <li><strong>Administration réseau :</strong> Adressage IP, accès distant (SSH, telnet), câblage, commutateurs et routeurs.</li>
-            <li><strong>Outils collaboratifs :</strong> Trello, GitLab.</li>
-        </ul>
+    <div style="height: 50px;"></div>
+    <img src="{{ asset('img/cv.png') }}" alt="CV" class="image-encadree">
 
-        <h2>Projets et Réalisations</h2>
-        <ul>
-            <li>Programmation en Angular et Java dans un environnement professionnel.</li>
-            <li>Développement d'un site web dynamique avec gestion des tâches et des commits.</li>
-            <li>Installation et maintenance de réseaux : brassage, câblage et configuration de routeurs/switchs.</li>
-            <li>Participation à des projets de cybersécurité et mise en place de politiques RGPD.</li>
-            <li>Travail sur des projets collaboratifs en méthode Agile.</li>
-        </ul>
-
-        <h2>Contact</h2>
-        <div class="contact">
-            <p><strong>Adresse :</strong> 26 rue Gérard Philipe, 33140 Villenave d’Ornon</p>
-            <p><strong>Téléphone :</strong> 07 71 80 23 96</p>
-            <p><strong>Email :</strong> louis.astori@gmail.com</p>
-        </div>
-    </div>
 </body>
 </html>

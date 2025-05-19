@@ -1,74 +1,136 @@
 <body>
-        @include('partials.navbar')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    @include('partials.navbar')
 
-        <div style="height: 50px;"></div>
+    <div class="mt-16 space-y-16 max-w-3xl mx-auto px-4">
 
+        <div class="bg-black text-white rounded-lg shadow-md p-6">
+            <div class="text-2xl font-bold text-red-500 mb-4">M2L – Réservation de salles – Ticketing</div>
 
-        <div class="conteneur">
-            <div class="titre">M2L – Réservation de salles – Ticketing</div>
-    
-            <img src="img/m2lticketing" alt="Capture Trello du projet" class="image-encadree">
+            <img src="{{ asset('img/m2lticketing.png') }}" alt="Capture Trello du projet"
+                class="w-full h-auto rounded-md mb-4 border border-gray-600">
 
-            <div class="description">
-            Pour ce projet, nous avons fait une liste de tickets <strong>que nous nous sommes partagés</strong>, puis nous les avons cochés. Nous n’avons pas estimé le temps pour chaque ticket, et nous n’avons pas non plus mesuré le temps réalisé pour chaque ticket.
+            <div class="text-gray-200 text-base space-y-4">
+                <p>
+                    Dans le cadre de ce projet, nous avons travaillé sur un site web existant pour lequel une série
+                    d'améliorations fonctionnelles nous a été demandée. Ces demandes étaient formulées sous la forme
+                    d’une douzaine de user stories, c’est-à-dire des descriptions courtes et centrées sur l’utilisateur,
+                    exprimant un besoin ou une fonctionnalité à implémenter.
+                </p>
+                <p>
+                    Nous avons réparti ces user stories entre les membres de l’équipe, puis nous les avons traitées une
+                    par une. Une fois une user story terminée, nous la cochons pour indiquer son avancement.
+                </p>
+                <p>
+                    En revanche, nous n’avons pas estimé le temps prévu pour chaque user story, ni mesuré le temps
+                    réellement passé.
+                </p>
             </div>
         </div>
 
-        <div style="height: 50px;"></div>
+        <div class="bg-black text-white rounded-lg shadow-md p-6">
+            <div class="text-2xl font-bold text-red-500 mb-4">Site Web Dynamique</div>
 
+            <img src="{{ asset('img/siteDynamique.png') }}" alt="Board de gestion des tickets"
+                class="w-full h-auto rounded-md mb-4 border border-gray-600">
 
-        <div class="conteneur">
-            <div class="titre">Site Web Dynamique</div>
-
-            <img src="{{ asset('img/siteDynamique.png') }}" alt="Board de gestion des tickets" class="image-encadree">
-
-            <div class="description">
-            Pour cette AP qui consiste à créer un site Web Dynamique, nous avons créé des tickets. Nous avons mis en place une gestion du temps et une estimation.
+            <div class="text-gray-200 text-base space-y-4">
+                <p>
+                    Dans le cadre de cette AP, nous avions pour objectif de créer un site web dynamique permettant de
+                    fournir des informations sur les intervenants, leurs contrats, ainsi que d'autres fonctionnalités
+                    spécifiques demandées par le client.
+                </p>
+                <p>
+                    Le projet nous a été présenté sous la forme d'une liste d'exigences fonctionnelles, que nous avons
+                    reformulées sous forme de user stories.
+                </p>
+                <p>
+                    Nous avons ensuite transformé ces user stories en tickets de travail, que nous nous sommes
+                    répartis. Contrairement à un projet précédent, nous avons ici estimé et suivi le temps par ticket.
+                </p>
+                <p>
+                    Cela nous a permis d’évaluer notre avancement, d’ajuster notre organisation, et de mieux anticiper
+                    les difficultés.
+                </p>
             </div>
 
-            <img src="{{ asset('img/siteDynamique2.png') }}" alt="Historique des commits Git" class="image-encadree">
+            <img src="{{ asset('img/siteDynamique2.png') }}" alt="Historique des commits Git"
+                class="w-full h-auto rounded-md my-4 border border-gray-600">
 
-            <div class="description">
-            Sur cette AP, nous avons choisi de faire un commit général à la toute fin du projet. Après réflexion, ce choix n’était pas bon : nous aurions dû faire des commits et des merges plus régulièrement.
-            </div>
-        </div>
-
-        <div style="height: 50px;"></div>
-
-
-        <div class="conteneur">
-            <div class="titre">Fiche JIRA</div>
-
-            <img src="{{ asset('img/ficheJira.png') }}" alt="Board JIRA" class="image-encadree">
-
-            <div class="description">
-                Les fiches JIRA sont un type de ticketing avec une explication de la modification à produire, le nombre d’heures qu’on prévoit d’avoir besoin est fait pendant le grooming. Le grooming est une réunion qui est effectuée pendant chaque changement de période de sprint.
-            </div>
-
-            <img src="{{ asset('img/ficheJira2.png') }}" alt="Détail fiche JIRA" class="image-encadree">
-
-            <div class="description">
-            Dans chaque tickets, nous avons une liste d’information sur la tâche à effectuer.
+            <div class="text-gray-200 text-base">
+                Sur cette AP nous avons choisi de faire un commit général à la toute fin du projet. Après réflexion ce
+                choix n’était pas bon, nous aurions dû faire des commits et des merges plus régulièrement.
             </div>
         </div>
 
+        <div class="bg-black text-white rounded-lg shadow-md p-6">
+            <div class="text-2xl font-bold text-red-500 mb-4">Fiche JIRA</div>
 
-        <div style="height: 50px;"></div>
+            <img src="{{ asset('img/ficheJira.png') }}" alt="Board JIRA"
+                class="w-full h-auto rounded-md mb-4 border border-gray-600">
 
+            <div class="text-gray-200 text-base space-y-4">
+                <p>
+                    Durant mon stage, j’ai participé à un projet de développement encadré par une méthode agile. Pour
+                    organiser et suivre l’avancement du travail, l’équipe utilisait des fiches JIRA.
+                </p>
+                <p>
+                    Chaque fiche JIRA correspondait à une user story. Ces fiches comportaient une description claire,
+                    une estimation du temps, et étaient discutées lors des réunions de grooming.
+                </p>
+                <p>
+                    Cependant, ces réunions n’étaient pas toujours tenues à chaque sprint. Cela a pu entraîner une
+                    gestion du temps moins précise.
+                </p>
+            </div>
 
-        <div class="conteneur">
-            <div class="titre">Gestion des Anomalies</div>
+            <img src="{{ asset('img/ficheJira2.png') }}" alt="Détail fiche JIRA"
+                class="w-full h-auto rounded-md my-4 border border-gray-600">
 
-            <img src="{{ asset('img/tableauAnomalie.png') }}" alt="Tableau de gestion des anomalies" class="image-encadree">
-
-            <div class="description">
-            La gestion des anomalies est découpée en plusieurs parties. La colonne « Nouveau » sert à afficher les nouvelles anomalies remontées dans la journée. Chaque matin, le capitaine Anno passe en revue les nouvelles anomalies et les affecte à un développeur pour correction. Une fois modifiée, l’anomalie est validée par la testeuse de l’équipe, puis déplacée dans la colonne « Terminé ».
+            <div class="text-gray-200 text-base space-y-4">
+                <p>
+                    Dans chaque ticket JIRA, on retrouve une description fonctionnelle, des critères d’acceptation,
+                    priorités, et parfois des captures d’écran.
+                </p>
+                <p>
+                    Le Product Owner rédige les tickets, les prépare et les intègre avec toutes les informations
+                    nécessaires.
+                </p>
+                <p>
+                    Une bonne rédaction permet d’éviter les malentendus, de gagner en efficacité, et de mieux cadrer le
+                    travail du développeur.
+                </p>
+                <p>
+                    J’ai constaté que la qualité des tickets influençait directement la fluidité du développement.
+                </p>
             </div>
         </div>
 
+        <div class="bg-black text-white rounded-lg shadow-md p-6">
+            <div class="text-2xl font-bold text-red-500 mb-4">Gestion des Anomalies</div>
 
+            <img src="{{ asset('img/tableauAnomalie.png') }}" alt="Tableau de gestion des anomalies"
+                class="w-full h-auto rounded-md mb-4 border border-gray-600">
 
+            <div class="text-gray-200 text-base space-y-4">
+                <p>
+                    Pendant mon stage, j’ai participé à la gestion des anomalies. Chaque matin, les nouvelles anomalies
+                    étaient listées dans une section « Nouveau » du Kanban.
+                </p>
+                <p>
+                    Le capitaine Anno analysait et attribuait ensuite les anomalies aux développeurs.
+                </p>
+                <p>
+                    Une fois corrigées, elles passaient en test. Si la testeuse validait la correction, elles étaient
+                    marquées comme « Terminée ».
+                </p>
+                <p>
+                    L’équipe utilisait deux Kanban : un pour les fonctionnalités et un autre pour les anomalies. Cette
+                    séparation facilitait la gestion parallèle du développement et du support.
+                </p>
+            </div>
+        </div>
 
-
+    </div>
 </body>
