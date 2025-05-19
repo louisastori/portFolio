@@ -4,7 +4,8 @@
   "require": {
     "php": "^8.2",
     "laravel/framework": "11.0",
-    "laravel/sanctum": "^4.0"
+    "laravel/sanctum": "^4.0",
+    "spatie/laravel-export": "^1.2"
   },
   "require-dev": {
     "spatie/laravel-ignition": "^2.0"

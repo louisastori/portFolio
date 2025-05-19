@@ -1,0 +1,43 @@
+<body>
+    <link href="http://localhost/css/app.css" rel="stylesheet">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<link href="http://localhost/css/app.css" rel="stylesheet">
+
+<nav class="bg-black shadow fixed w-full top-0 z-50" x-data="{ open: false, subOpen: null }">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-center">
+            <div class="flex space-x-6 py-4 items-center">
+                <a href="http://localhost" class="text-white font-bold hover:text-gray-300">Accueil</a>
+                <!--<a href="http://localhost/presentation" class="text-white hover:text-gray-300">Présentation</a>-->
+                <a href="http://localhost/cv" class="text-white hover:text-gray-300">CV</a>
+                <!--<a href="http://localhost/portfolio" class="text-white hover:text-gray-300">Portfolio</a>-->
+                <a href="http://localhost/portFolioCompetence" class="text-white hover:text-gray-300">Par compétence</a>
+
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <div class="mt-16 max-w-3xl mx-auto px-4">
+
+        <div class="bg-black text-white rounded-lg shadow-md p-6">
+            <div class="text-2xl font-bold text-red-500 mb-4">
+                Déploiement du Batch et du PN à l'aide du pipeline Concourse
+            </div>
+
+            <img src="http://localhost/img/deploiement.png" alt="Pipeline Concourse"
+                class="w-full h-auto rounded-md mb-4 border border-gray-600">
+
+            <div class="text-gray-200 text-base mb-4">
+                Lors de mon stage, je n’ai vu que la partie déploiement sur pipeline, sans intervenir directement sur sa configuration. Un pipeline (ou CI/CD pipeline, pour Continuous Integration / Continuous Deployment) est un enchaînement automatisé d'étapes permettant de valider, tester, et déployer une application de manière fiable et reproductible.
+            </div>
+
+            <img src="http://localhost/img/deploiement2.png" alt="Détail du déploiement Pipeline"
+                class="w-full h-auto rounded-md border border-gray-600">
+        </div>
+
+    </div>
+</body>
