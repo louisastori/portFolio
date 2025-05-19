@@ -2,6 +2,18 @@
 
 return [
 
+    'base_url' => 'https://louisastori.github.io/portFolio', // important pour le crawling
+
+   // Remplacer les chemins dans les fichiers HTML générés
+    'replace_urls' => [
+        'http://localhost' => 'https://louisastori.github.io/portFolio',
+    ],
+
+    'replace_paths' => [
+        '/' => '/portFolio/', // <-- la clé ici
+    ],
+
+   
     /*
      * If true, the exporter will crawl through your site's pages to determine
      * the paths that need to be exported.
@@ -40,6 +52,12 @@ return [
      * the export.
      */
     'clean_before_export' => true,
+    // Utiliser un tableau de destinations au lieu d'un seul disque
+    'destinations' => [
+        FilesystemDestination::create()
+            ->disk('docs')
+            ->baseUrl('https://louisastori.github.io/portFolio'),
+    ],
 
     /*
      * If set, the site will be exported to this disk. Disks can be configured
@@ -47,7 +65,7 @@ return [
      *
      * If empty, your site will be exported to a `dist` folder.
      */
-    'disk' => null,
+     'disk' => 'docs',
 
     /*
      * Shell commands that should be run before the export starts when running
