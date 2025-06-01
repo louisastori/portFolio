@@ -3,6 +3,9 @@
 
     @include('partials.navbar')
 
+    <div style="margin-top: 50px;" class="max-w-3xl mx-auto px-4">
+
+
     <div class="mt-16 max-w-3xl mx-auto px-4">
 
         <div class="bg-black text-white rounded-lg shadow-md p-6">

@@ -53,11 +53,7 @@ return [
      */
     'clean_before_export' => true,
     // Utiliser un tableau de destinations au lieu d'un seul disque
-    'destinations' => [
-        FilesystemDestination::create()
-            ->disk('docs')
-            ->baseUrl('https://louisastori.github.io/portFolio'),
-    ],
+
 
     /*
      * If set, the site will be exported to this disk. Disks can be configured
