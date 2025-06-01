@@ -1322,7 +1322,7 @@ const hasStandardBrowserWebWorkerEnv = (() => {
   );
 })();
 
-const origin = hasBrowserEnv && window.location.href || 'https://louisastori.github.io';
+const origin = hasBrowserEnv && window.location.href || 'https://louisastori.github.io/portFolio';
 
 var utils = /*#__PURE__*/Object.freeze({
   __proto__: null,
