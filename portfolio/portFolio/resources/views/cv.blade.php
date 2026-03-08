@@ -71,12 +71,6 @@
             line-height: 1.05;
         }
 
-        .intro {
-            margin: 12px 0 0;
-            max-width: 60ch;
-            color: var(--muted);
-        }
-
         .actions {
             display: flex;
             gap: 12px;
@@ -125,12 +119,6 @@
             background: #f3f5f4;
         }
 
-        .helper {
-            margin: 14px 4px 0;
-            color: var(--muted);
-            font-size: 0.92rem;
-        }
-
         @media (max-width: 800px) {
             .hero {
                 flex-direction: column;
@@ -154,10 +142,6 @@
                 <div>
                     <p class="eyebrow">CV</p>
                     <h1>CV alternance Louis Astori</h1>
-                    <p class="intro">
-                        Version PDF accessible directement depuis le portfolio, avec ouverture dans le navigateur
-                        et telechargement en un clic.
-                    </p>
                 </div>
                 <div class="actions">
                     <button type="button" class="btn btn-primary" data-action="open-pdf">Ouvrir le PDF</button>
@@ -171,9 +155,6 @@
                     data-role="pdf-viewer"
                     title="CV Louis Astori"
                 ></iframe>
-                <p class="helper">
-                    Si l'aperçu PDF ne s'affiche pas sur ton appareil, utilise le bouton "Ouvrir le PDF".
-                </p>
             </div>
         </section>
     </main>
