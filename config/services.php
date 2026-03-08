@@ -30,4 +30,34 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'fitness_api' => [
+        'base_url' => env('FITNESS_API_BASE_URL'),
+        'token' => env('FITNESS_API_TOKEN'),
+        'timeout' => env('FITNESS_API_TIMEOUT', 10),
+        'limit' => env('FITNESS_API_LIMIT', 8),
+    ],
+
+    'nutrition_api' => [
+        'base_url' => env('SUPABASE_URL'),
+        'api_key' => env('SUPABASE_ANON_KEY'),
+        'table' => env('SUPABASE_MEALS_TABLE', 'meals'),
+        'timeout' => env('NUTRITION_API_TIMEOUT', 10),
+        'limit' => env('NUTRITION_API_LIMIT', 20),
+    ],
+
+    'garmin_crawler' => [
+        'exports_path' => env(
+            'GARMIN_CRAWLER_EXPORTS_PATH',
+            dirname(base_path(), 2) . DIRECTORY_SEPARATOR . 'garmin crawler' . DIRECTORY_SEPARATOR . 'exports'
+        ),
+    ],
+
+    'ollama' => [
+        'enabled' => env('OLLAMA_ENABLED', true),
+        'base_url' => env('OLLAMA_BASE_URL', 'http://127.0.0.1:11434'),
+        'model' => env('OLLAMA_MODEL', 'gemma3:4b'),
+        'timeout' => env('OLLAMA_TIMEOUT', 90),
+        'cache_ttl' => env('OLLAMA_CACHE_TTL', 1800),
+    ],
+
 ];

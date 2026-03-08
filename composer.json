@@ -8,7 +8,9 @@
     "spatie/laravel-export": "^1.2"
   },
   "require-dev": {
-    "spatie/laravel-ignition": "^2.0"
+    "spatie/laravel-ignition": "^2.0",
+    "phpunit/phpunit": "^11.5",
+    "nunomaduro/collision": "^8.5"
   },
   "autoload": {
     "psr-4": {
@@ -18,6 +20,11 @@
       "database/seeders",
       "database/factories"
     ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
   },
   "scripts": {
     "post-autoload-dump": [

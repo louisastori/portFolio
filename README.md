@@ -7,6 +7,71 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Performance Lab (Garmin + Strava + Nutrition)
+
+This project now includes a live portfolio dashboard at:
+
+- `/performance` (web page)
+- `/api/performance/live` (JSON snapshot endpoint)
+
+### Required environment variables
+
+```env
+FITNESS_API_BASE_URL=https://<your-worker-or-function-url>
+FITNESS_API_TOKEN=
+FITNESS_API_TIMEOUT=10
+FITNESS_API_LIMIT=8
+
+SUPABASE_URL=https://<your-project>.supabase.co
+SUPABASE_ANON_KEY=<your-anon-key>
+SUPABASE_MEALS_TABLE=meals
+NUTRITION_API_TIMEOUT=10
+NUTRITION_API_LIMIT=20
+```
+
+### What is displayed
+
+- Fitness metrics and activities from your Garmin/Strava bridge (`/api/overview`).
+- Nutrition metrics and recent meals from Supabase table `meals`.
+- Connection status and live warnings for missing/failed integrations.
+- Raw JSON snapshot to prove API integration quality during demos.
+
+## GitHub Pages + Backend Hosting
+
+Use this split architecture:
+
+- Frontend static portfolio on GitHub Pages (`dist/`).
+- Backend/API on Render or Railway (Laravel API or Node proxy).
+
+Workflows added in this repository:
+
+- `.github/workflows/deploy-pages.yml`: deploys `dist/` to GitHub Pages.
+- `.github/workflows/refresh-performance-json.yml`: fetches backend snapshot, updates `dist/data/performance-live.json`, and deploys GitHub Pages on a schedule.
+
+### GitHub setup
+
+1. In GitHub repository settings, enable Pages:
+   - Source: GitHub Actions.
+2. Add repository secrets:
+   - `BACKEND_SNAPSHOT_URL`: full backend endpoint (example: `https://your-api.onrender.com/api/performance/live`).
+   - `SNAPSHOT_AUTH_BEARER` (optional): bearer token if your backend endpoint is protected.
+3. Trigger workflow manually once:
+   - Actions -> `Refresh Performance JSON` -> `Run workflow`.
+
+### Schedule (12h vs 24h)
+
+By default, refresh runs every 12 hours:
+
+```yaml
+- cron: "0 */12 * * *"
+```
+
+If you prefer once every 24 hours, edit `.github/workflows/refresh-performance-json.yml` and replace with:
+
+```yaml
+- cron: "0 3 * * *"
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

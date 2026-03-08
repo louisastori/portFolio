@@ -7,12 +7,9 @@
         <div class="flex justify-center">
             <div class="flex space-x-6 py-4 items-center">
                 <a href="{{ url('/') }}" class="text-white font-bold hover:text-gray-300">Accueil</a>
-                <!--<a href="{{ url('/presentation') }}" class="{{ request()->is('presentation') ? 'text-red-500 font-semibold' : 'text-white hover:text-gray-300' }}">Présentation</a>-->
                 <a href="{{ url('/cv') }}" class="{{ request()->is('cv') ? 'text-red-500 font-semibold' : 'text-white hover:text-gray-300' }}">CV</a>
-                <!--<a href="{{ url('/portfolio') }}" class="{{ request()->is('portfolio') ? 'text-red-500 font-semibold' : 'text-white hover:text-gray-300' }}">Portfolio</a>-->
-                <a href="{{ url('/portFolioCompetence') }}" class="{{ request()->is('portFolioCompetence') ? 'text-red-500 font-semibold' : 'text-white hover:text-gray-300' }}">Par compétence</a>
-
-                
+                <a href="{{ url('/portFolioCompetence') }}" class="{{ request()->is('portFolioCompetence') ? 'text-red-500 font-semibold' : 'text-white hover:text-gray-300' }}">Par competence</a>
+                <a href="{{ url('/performance') }}" class="{{ request()->is('performance') ? 'text-red-500 font-semibold' : 'text-white hover:text-gray-300' }}">Performance</a>
             </div>
         </div>
     </div>
