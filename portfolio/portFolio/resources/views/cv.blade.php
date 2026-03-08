@@ -6,14 +6,14 @@
     <title>Louis Astori - CV</title>
     <style>
         :root {
-            --bg: #f5f1ea;
-            --panel: #ffffff;
-            --ink: #1d2a24;
-            --muted: #52645b;
-            --line: #d9e1da;
-            --accent: #c8551b;
-            --accent-dark: #8f3d13;
-            --shadow: 0 18px 40px rgba(29, 42, 36, 0.08);
+            --bg: #f2ede6;
+            --panel: #fffdf9;
+            --ink: #1f2925;
+            --muted: #5b6d65;
+            --line: #d7ddd6;
+            --accent: #bf5b2c;
+            --accent-dark: #94441f;
+            --shadow: 0 18px 42px rgba(20, 29, 25, 0.08);
         }
 
         * {
@@ -24,18 +24,25 @@
             margin: 0;
             min-height: 100vh;
             font-family: Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1.5;
             color: var(--ink);
             background:
-                radial-gradient(circle at top left, rgba(200, 85, 27, 0.12), transparent 30%),
-                radial-gradient(circle at top right, rgba(41, 111, 84, 0.12), transparent 32%),
+                radial-gradient(circle at top left, rgba(191, 91, 44, 0.12), transparent 28%),
+                radial-gradient(circle at top right, rgba(49, 111, 86, 0.1), transparent 30%),
                 var(--bg);
         }
 
-        .container {
-            max-width: 1100px;
+        .page-shell {
+            max-width: 1240px;
             margin: 0 auto;
             padding: 96px 20px 40px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 320px minmax(0, 1fr);
+            gap: 22px;
+            align-items: start;
         }
 
         .panel {
@@ -43,21 +50,16 @@
             border: 1px solid var(--line);
             border-radius: 24px;
             box-shadow: var(--shadow);
-            overflow: hidden;
         }
 
-        .hero {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            align-items: center;
-            padding: 28px;
-            border-bottom: 1px solid var(--line);
-            background: linear-gradient(135deg, rgba(200, 85, 27, 0.08), rgba(41, 111, 84, 0.08));
+        .summary {
+            padding: 24px;
+            position: sticky;
+            top: 92px;
         }
 
         .eyebrow {
-            margin: 0 0 8px;
+            margin: 0 0 10px;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             font-size: 0.78rem;
@@ -67,25 +69,34 @@
 
         h1 {
             margin: 0;
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-size: clamp(1.9rem, 4vw, 2.5rem);
             line-height: 1.05;
         }
 
-        .actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+        .meta {
+            margin-top: 14px;
+            color: var(--muted);
+        }
+
+        .meta strong {
+            color: var(--ink);
+        }
+
+        .action-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 24px;
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 16px;
-            border-radius: 999px;
-            text-decoration: none;
+            width: 100%;
+            border: 0;
+            border-radius: 14px;
+            padding: 13px 16px;
+            font-size: 0.96rem;
             font-weight: 700;
-            transition: transform 120ms ease, opacity 120ms ease, background 120ms ease;
+            cursor: pointer;
+            transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
         }
 
         .btn:hover {
@@ -102,86 +113,214 @@
         }
 
         .btn-secondary {
-            border: 1px solid var(--line);
+            background: #fff;
             color: var(--ink);
+            border: 1px solid var(--line);
+        }
+
+        .mini-card {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
             background: #fff;
         }
 
-        .viewer-shell {
-            padding: 20px;
+        .mini-card p {
+            margin: 0;
         }
 
-        .viewer {
-            width: 100%;
-            height: min(78vh, 1100px);
+        .mini-card p + p {
+            margin-top: 6px;
+        }
+
+        .preview-shell {
+            padding: 18px;
+        }
+
+        .preview-topbar {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 18px;
+            padding: 4px 2px 0;
+        }
+
+        .preview-title {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .preview-subtitle {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
             border: 1px solid var(--line);
-            border-radius: 18px;
-            background: #f3f5f4;
+            border-radius: 999px;
+            padding: 7px 11px;
+            background: #fff;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--muted);
+            white-space: nowrap;
         }
 
-        @media (max-width: 800px) {
-            .hero {
-                flex-direction: column;
-                align-items: flex-start;
+        .document-frame {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(244, 240, 234, 0.88)),
+                repeating-linear-gradient(
+                    -45deg,
+                    rgba(31, 41, 37, 0.02),
+                    rgba(31, 41, 37, 0.02) 10px,
+                    rgba(31, 41, 37, 0.04) 10px,
+                    rgba(31, 41, 37, 0.04) 20px
+                );
+        }
+
+        .document-button {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .document-sheet {
+            width: min(100%, 760px);
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow:
+                0 18px 35px rgba(0, 0, 0, 0.12),
+                0 0 0 1px rgba(18, 26, 22, 0.08);
+            overflow: hidden;
+            transition: transform 140ms ease, box-shadow 140ms ease;
+        }
+
+        .document-button:hover .document-sheet {
+            transform: translateY(-2px);
+            box-shadow:
+                0 22px 42px rgba(0, 0, 0, 0.14),
+                0 0 0 1px rgba(18, 26, 22, 0.08);
+        }
+
+        .document-sheet img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .document-caption {
+            margin: 14px 0 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        @media (max-width: 980px) {
+            .layout {
+                grid-template-columns: 1fr;
             }
 
-            .viewer {
-                height: 70vh;
+            .summary {
+                position: static;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-shell {
+                padding-top: 88px;
+            }
+
+            .summary,
+            .preview-shell {
+                padding: 18px;
+            }
+
+            .document-frame {
+                padding: 14px;
             }
         }
     </style>
 </head>
 <body>
     @php($cvUrl = asset('documents/cv-louis-astori-alternance.pdf'))
+    @php($cvPreview = asset('img/cv.png'))
 
     @include('partials.navbar')
 
-    <main class="container">
-        <section class="panel" data-cv-url="{{ $cvUrl }}">
-            <div class="hero">
-                <div>
-                    <p class="eyebrow">CV</p>
-                    <h1>CV alternance Louis Astori</h1>
-                </div>
-                <div class="actions">
-                    <button type="button" class="btn btn-primary" data-action="open-pdf">Ouvrir le PDF</button>
-                    <button type="button" class="btn btn-secondary" data-action="download-pdf">Telecharger</button>
-                </div>
-            </div>
+    <main class="page-shell" data-cv-url="{{ $cvUrl }}">
+        <div class="layout">
+            <aside class="panel summary">
+                <p class="eyebrow">CV</p>
+                <h1>Louis Astori</h1>
+                <p class="meta"><strong>Format :</strong> PDF</p>
+                <p class="meta"><strong>Objet :</strong> Alternance developpement logiciel</p>
 
-            <div class="viewer-shell">
-                <iframe
-                    class="viewer"
-                    data-role="pdf-viewer"
-                    title="CV Louis Astori"
-                ></iframe>
-            </div>
-        </section>
+                <div class="action-list">
+                    <button type="button" class="btn btn-primary" data-action="open-pdf">Ouvrir le CV</button>
+                    <button type="button" class="btn btn-secondary" data-action="download-pdf">Telecharger le PDF</button>
+                </div>
+
+                <div class="mini-card">
+                    <p><strong>Acces rapide</strong></p>
+                    <p>Preview grand format a droite.</p>
+                    <p>Un clic sur le document ouvre le PDF.</p>
+                </div>
+            </aside>
+
+            <section class="panel preview-shell">
+                <div class="preview-topbar">
+                    <div>
+                        <p class="preview-title">Apercu du CV</p>
+                        <p class="preview-subtitle">Presentation visuelle du document avant ouverture.</p>
+                    </div>
+                    <span class="chip">Document principal</span>
+                </div>
+
+                <div class="document-frame">
+                    <button type="button" class="document-button" data-action="open-pdf" aria-label="Ouvrir le CV en PDF">
+                        <div class="document-sheet">
+                            <img src="{{ $cvPreview }}" alt="Apercu du CV de Louis Astori">
+                        </div>
+                    </button>
+                    <p class="document-caption">Clique sur l'aperçu pour ouvrir le PDF.</p>
+                </div>
+            </section>
+        </div>
     </main>
 
     <script>
         (() => {
-            const panel = document.querySelector('[data-cv-url]');
-            const viewer = document.querySelector('[data-role="pdf-viewer"]');
-            const openButton = document.querySelector('[data-action="open-pdf"]');
+            const shell = document.querySelector('[data-cv-url]');
+            const openButtons = document.querySelectorAll('[data-action="open-pdf"]');
             const downloadButton = document.querySelector('[data-action="download-pdf"]');
 
-            if (!panel) {
+            if (!shell) {
                 return;
             }
 
-            const cvUrl = panel.dataset.cvUrl;
+            const cvUrl = shell.dataset.cvUrl;
 
-            if (viewer && cvUrl) {
-                viewer.src = cvUrl;
-            }
+            openButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    if (!cvUrl) {
+                        return;
+                    }
 
-            openButton?.addEventListener('click', () => {
-                if (!cvUrl) {
-                    return;
-                }
-
-                window.open(cvUrl, '_blank', 'noopener');
+                    window.open(cvUrl, '_blank', 'noopener');
+                });
             });
 
             downloadButton?.addEventListener('click', () => {
@@ -198,6 +337,5 @@
             });
         })();
     </script>
-
 </body>
 </html>
