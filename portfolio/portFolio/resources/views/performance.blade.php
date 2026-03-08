@@ -1259,7 +1259,8 @@
 
     <script>
         (() => {
-            const endpoint = @json(route('api.performance.live'));
+            const endpoint = @json(config('services.performance.snapshot_url') ?: route('api.performance.live'));
+            const bootstrapRemote = @json((bool) config('services.performance.bootstrap_remote', false));
             const initialSnapshot = @json($snapshot);
             const refreshButton = document.getElementById('refresh-live');
             const generatedAt = document.getElementById('generated-at');
@@ -2628,19 +2629,37 @@
                 rawSnapshot.textContent = JSON.stringify(payload, null, 2);
             };
 
+            const buildRefreshUrl = () => {
+                if (!endpoint) {
+                    return '';
+                }
+
+                if (/\.json(?:$|[?#])/i.test(endpoint)) {
+                    return endpoint;
+                }
+
+                const separator = endpoint.includes('?') ? '&' : '?';
+                return `${endpoint}${separator}live=1`;
+            };
+
+            const fetchSnapshot = async () => {
+                const response = await fetch(buildRefreshUrl(), {
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                return response.json();
+            };
+
             refreshButton?.addEventListener('click', async () => {
                 refreshButton.disabled = true;
                 refreshButton.textContent = 'Sync en cours...';
 
                 try {
-                    const response = await fetch(`${endpoint}?live=1`, {
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}`);
-                    }
-
-                    const payload = await response.json();
+                    const payload = await fetchSnapshot();
                     renderSnapshot(payload);
                 } catch (error) {
                     renderWarnings([`Live refresh failed: ${error.message}`]);
@@ -2651,7 +2670,19 @@
             });
 
             initializeTabs();
-            renderSnapshot(initialSnapshot);
+
+            if (bootstrapRemote && endpoint) {
+                fetchSnapshot()
+                    .then((payload) => {
+                        renderSnapshot(payload);
+                    })
+                    .catch((error) => {
+                        renderSnapshot(initialSnapshot);
+                        renderWarnings([`Remote snapshot bootstrap failed: ${error.message}`]);
+                    });
+            } else {
+                renderSnapshot(initialSnapshot);
+            }
         })();
     </script>
 </body>

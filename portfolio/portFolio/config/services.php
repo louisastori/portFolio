@@ -60,4 +60,9 @@ return [
         'cache_ttl' => env('OLLAMA_CACHE_TTL', 1800),
     ],
 
+    'performance' => [
+        'snapshot_url' => env('PERFORMANCE_SNAPSHOT_URL'),
+        'bootstrap_remote' => env('PERFORMANCE_BOOTSTRAP_REMOTE', false),
+    ],
+
 ];

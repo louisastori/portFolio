@@ -6,8 +6,10 @@ on:
       - master
       - main
     paths:
-      - "portfolio/portFolio/docs/**"
+      - "portfolio/portFolio/**"
       - ".github/workflows/deploy-pages.yml"
+  schedule:
+    - cron: "0 */12 * * *"
   workflow_dispatch:
 
 permissions:
@@ -28,6 +30,92 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          tools: composer:v2
+          coverage: none
+
+      - name: Install PHP dependencies
+        working-directory: portfolio/portFolio
+        run: composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Prepare export environment
+        working-directory: portfolio/portFolio
+        env:
+          FITNESS_API_BASE_URL: ${{ secrets.FITNESS_API_BASE_URL }}
+          FITNESS_API_TOKEN: ${{ secrets.FITNESS_API_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_MEALS_TABLE: ${{ secrets.SUPABASE_MEALS_TABLE }}
+        run: |
+          cp .env.example .env
+          {
+            echo "APP_ENV=production"
+            echo "APP_DEBUG=false"
+            echo "OLLAMA_ENABLED=false"
+            echo "PERFORMANCE_SNAPSHOT_URL=https://louisastori.github.io/portFolio/data/performance-live.json"
+            echo "PERFORMANCE_BOOTSTRAP_REMOTE=true"
+          } >> .env
+          if [ -n "${FITNESS_API_BASE_URL}" ]; then echo "FITNESS_API_BASE_URL=${FITNESS_API_BASE_URL}" >> .env; fi
+          if [ -n "${FITNESS_API_TOKEN}" ]; then echo "FITNESS_API_TOKEN=${FITNESS_API_TOKEN}" >> .env; fi
+          if [ -n "${SUPABASE_URL}" ]; then echo "SUPABASE_URL=${SUPABASE_URL}" >> .env; fi
+          if [ -n "${SUPABASE_ANON_KEY}" ]; then echo "SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}" >> .env; fi
+          if [ -n "${SUPABASE_MEALS_TABLE}" ]; then echo "SUPABASE_MEALS_TABLE=${SUPABASE_MEALS_TABLE}" >> .env; fi
+          php artisan key:generate --force
+
+      - name: Export static site
+        working-directory: portfolio/portFolio
+        run: php artisan export
+
+      - name: Rewrite localhost URLs for GitHub Pages
+        working-directory: portfolio/portFolio
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          docs = Path("docs")
+          replacements = {
+              "http://localhost": "https://louisastori.github.io/portFolio",
+              "http:\\/\\/localhost": "https:\\/\\/louisastori.github.io\\/portFolio",
+          }
+
+          for path in docs.rglob("*"):
+              if not path.is_file():
+                  continue
+              if path.suffix.lower() not in {".html", ".xml", ".txt", ".css", ".js", ".json"}:
+                  continue
+
+              content = path.read_text(encoding="utf-8")
+              updated = content
+              for old, new in replacements.items():
+                  updated = updated.replace(old, new)
+
+              if updated != content:
+                  path.write_text(updated, encoding="utf-8")
+          PY
+
+      - name: Add performance snapshot JSON
+        working-directory: portfolio/portFolio
+        env:
+          BACKEND_SNAPSHOT_URL: ${{ secrets.BACKEND_SNAPSHOT_URL }}
+          SNAPSHOT_AUTH_BEARER: ${{ secrets.SNAPSHOT_AUTH_BEARER }}
+        run: |
+          mkdir -p docs/data
+          php artisan performance:export-snapshot --output=docs/data/performance-live.json
+          if [ -n "${BACKEND_SNAPSHOT_URL}" ]; then
+            tmp_file="$(mktemp)"
+            if [ -n "${SNAPSHOT_AUTH_BEARER}" ]; then
+              curl -fsSL -H "Authorization: Bearer ${SNAPSHOT_AUTH_BEARER}" "${BACKEND_SNAPSHOT_URL}" > "${tmp_file}"
+            else
+              curl -fsSL "${BACKEND_SNAPSHOT_URL}" > "${tmp_file}"
+            fi
+            jq -e . "${tmp_file}" > /dev/null
+            jq -S . "${tmp_file}" > docs/data/performance-live.json
+          fi
+          touch docs/.nojekyll
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
