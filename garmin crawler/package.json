@@ -1,0 +1,17 @@
+{
+  "name": "garmin-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "crawler.js",
+  "scripts": {
+    "crawl": "node crawler.js",
+    "chrome:debug": "powershell -ExecutionPolicy Bypass -File .\\start-debug-chrome.ps1",
+    "test": "node --check crawler.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^24.38.0"
+  }
+}

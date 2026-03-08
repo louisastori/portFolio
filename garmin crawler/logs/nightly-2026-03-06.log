@@ -1,0 +1,30 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260306201838
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File c:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-crawler.ps1
+ID de processus : 48996
+PSVersion: 5.1.26100.7705
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7705
+BuildVersion: 10.0.26100.7705
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly crawler start: 2026-03-06T20:18:38
+Ensuring Chrome remote debugging session is available...
+
+Running Garmin crawler...
+
+Exporting portfolio performance snapshot...
+
+Nightly crawler completed: 2026-03-06T20:19:04
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260306201904
+**********************
