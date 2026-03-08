@@ -58,34 +58,9 @@
             top: 92px;
         }
 
-        .eyebrow {
-            margin: 0 0 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        h1 {
-            margin: 0;
-            font-size: clamp(1.9rem, 4vw, 2.5rem);
-            line-height: 1.05;
-        }
-
-        .meta {
-            margin-top: 14px;
-            color: var(--muted);
-        }
-
-        .meta strong {
-            color: var(--ink);
-        }
-
         .action-list {
             display: grid;
             gap: 10px;
-            margin-top: 24px;
         }
 
         .btn {
@@ -263,11 +238,6 @@
     <main class="page-shell" data-cv-url="{{ $cvUrl }}">
         <div class="layout">
             <aside class="panel summary">
-                <p class="eyebrow">CV</p>
-                <h1>Louis Astori</h1>
-                <p class="meta"><strong>Format :</strong> PDF</p>
-                <p class="meta"><strong>Objet :</strong> Alternance developpement logiciel</p>
-
                 <div class="action-list">
                     <button type="button" class="btn btn-primary" data-action="open-pdf">Ouvrir le CV</button>
                     <button type="button" class="btn btn-secondary" data-action="download-pdf">Telecharger le PDF</button>
