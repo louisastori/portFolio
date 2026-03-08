@@ -6,20 +6,31 @@
     <title>Performance Lab | Louis Astori</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        html {
+            color-scheme: dark;
+        }
+
         :root {
-            --bg: #f8f5ef;
-            --ink: #10241d;
-            --muted: #4b635a;
-            --card: #ffffff;
-            --line: #d7e0d9;
-            --accent: #eb5e28;
-            --accent-2: #1f8a70;
-            --danger: #b63f3f;
-            --connected: #1f8a70;
-            --disconnected: #b63f3f;
-            --shadow: 0 14px 30px rgba(16, 36, 29, 0.08);
+            --bg: #040814;
+            --bg-2: #081124;
+            --ink: #f5f7ff;
+            --muted: #96a4d6;
+            --card: rgba(9, 15, 38, 0.82);
+            --card-strong: rgba(13, 20, 49, 0.94);
+            --card-soft: rgba(255, 255, 255, 0.05);
+            --line: rgba(134, 152, 255, 0.18);
+            --grid-line: rgba(133, 151, 255, 0.14);
+            --accent: #ff4ecb;
+            --accent-2: #22d8ff;
+            --accent-3: #8a5dff;
+            --danger: #ff748f;
+            --connected: #50ffd2;
+            --disconnected: #ff8ca7;
+            --shadow: 0 24px 60px rgba(2, 6, 25, 0.48);
+            --glow-pink: 0 0 0 1px rgba(255, 78, 203, 0.18), 0 0 30px rgba(255, 78, 203, 0.14);
+            --glow-cyan: 0 0 0 1px rgba(34, 216, 255, 0.18), 0 0 28px rgba(34, 216, 255, 0.14);
         }
 
         * {
@@ -29,65 +40,119 @@
         body {
             margin: 0;
             min-height: 100vh;
+            position: relative;
             color: var(--ink);
             background:
-                radial-gradient(circle at 10% 20%, rgba(235, 94, 40, 0.15), transparent 45%),
-                radial-gradient(circle at 85% 15%, rgba(31, 138, 112, 0.16), transparent 40%),
+                radial-gradient(circle at 10% 8%, rgba(255, 78, 203, 0.24), transparent 28%),
+                radial-gradient(circle at 88% 12%, rgba(34, 216, 255, 0.18), transparent 26%),
+                radial-gradient(circle at 55% 88%, rgba(138, 93, 255, 0.18), transparent 30%),
+                linear-gradient(180deg, #060a18 0%, #09112b 48%, #050915 100%),
                 var(--bg);
-            font-family: "DM Sans", sans-serif;
+            font-family: "Space Grotesk", sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        body::before {
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 110px 110px;
+            mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.8), transparent 85%);
+            opacity: 0.35;
+        }
+
+        body::after {
+            background:
+                radial-gradient(circle at 15% 25%, rgba(255, 78, 203, 0.18), transparent 22%),
+                radial-gradient(circle at 82% 18%, rgba(34, 216, 255, 0.16), transparent 24%),
+                radial-gradient(circle at 50% 78%, rgba(138, 93, 255, 0.16), transparent 24%);
+            filter: blur(36px);
+            opacity: 0.9;
         }
 
         .page-shell {
             padding: 88px 18px 32px;
+            position: relative;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1260px;
             margin: 0 auto;
             display: grid;
             gap: 18px;
+            position: relative;
+            z-index: 1;
         }
 
         .panel {
             background: var(--card);
-            border-radius: 20px;
+            border-radius: 24px;
             border: 1px solid var(--line);
             box-shadow: var(--shadow);
             padding: 20px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+        }
+
+        .panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(140deg, rgba(255, 255, 255, 0.05), transparent 22%, transparent 72%, rgba(34, 216, 255, 0.04)),
+                linear-gradient(180deg, rgba(138, 93, 255, 0.05), transparent 28%);
+            pointer-events: none;
         }
 
         .tab-shell {
-            padding: 16px 20px;
+            padding: 14px;
+            background: linear-gradient(180deg, rgba(15, 22, 54, 0.94), rgba(10, 16, 39, 0.9));
         }
 
         .tab-bar {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
+            padding: 6px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(133, 151, 255, 0.12);
         }
 
         .tab-button {
             border: 1px solid var(--line);
-            background: #fbfffc;
-            color: var(--ink);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--muted);
             border-radius: 999px;
-            padding: 8px 14px;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 0.9rem;
+            padding: 10px 16px;
+            font-family: "Orbitron", sans-serif;
+            font-size: 0.82rem;
             font-weight: 700;
+            letter-spacing: 0.05em;
             cursor: pointer;
-            transition: transform 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
+            transition: transform 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease, box-shadow 120ms ease;
         }
 
         .tab-button:hover {
             transform: translateY(-1px);
-            border-color: rgba(31, 138, 112, 0.45);
+            border-color: rgba(34, 216, 255, 0.42);
+            color: var(--ink);
         }
 
         .tab-button.is-active {
-            background: var(--ink);
+            background: linear-gradient(135deg, rgba(255, 78, 203, 0.92), rgba(138, 93, 255, 0.92));
             color: #ffffff;
-            border-color: var(--ink);
+            border-color: transparent;
+            box-shadow: var(--glow-pink);
         }
 
         [data-tab-panel][hidden] {
@@ -99,6 +164,10 @@
             gap: 20px;
             grid-template-columns: 1.3fr 1fr;
             align-items: stretch;
+            background:
+                radial-gradient(circle at 12% 18%, rgba(255, 78, 203, 0.14), transparent 30%),
+                radial-gradient(circle at 82% 18%, rgba(34, 216, 255, 0.14), transparent 28%),
+                linear-gradient(145deg, rgba(10, 16, 42, 0.96), rgba(18, 26, 60, 0.9));
         }
 
         .hero-main {
@@ -113,11 +182,15 @@
             height: 58px;
             border-radius: 18px;
             border: 1px solid var(--line);
-            background: linear-gradient(160deg, rgba(31, 138, 112, 0.12), rgba(235, 94, 40, 0.18));
+            background:
+                radial-gradient(circle at 30% 25%, rgba(255, 78, 203, 0.32), transparent 42%),
+                radial-gradient(circle at 72% 78%, rgba(34, 216, 255, 0.28), transparent 42%),
+                rgba(255, 255, 255, 0.04);
             overflow: hidden;
             display: grid;
             place-items: center;
             flex-shrink: 0;
+            box-shadow: var(--glow-cyan);
         }
 
         .avatar-shell img {
@@ -127,9 +200,10 @@
         }
 
         .avatar-fallback {
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Orbitron", sans-serif;
             font-size: 1.15rem;
             font-weight: 700;
+            color: var(--accent-2);
         }
 
         .eyebrow {
@@ -137,18 +211,20 @@
             letter-spacing: 0.09em;
             font-size: 0.74rem;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--accent-2);
             margin: 0 0 8px;
         }
 
         h1, h2, h3 {
             margin: 0;
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Orbitron", sans-serif;
         }
 
         h1 {
             font-size: clamp(1.8rem, 3.2vw, 2.7rem);
             line-height: 1.05;
+            letter-spacing: 0.03em;
+            text-shadow: 0 0 28px rgba(255, 78, 203, 0.12);
         }
 
         .hero-text {
@@ -168,37 +244,47 @@
         .chip {
             font-size: 0.82rem;
             font-weight: 600;
-            padding: 6px 10px;
+            padding: 7px 11px;
             border-radius: 999px;
             border: 1px solid var(--line);
-            background: #fbfffc;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--ink);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
         }
 
         .refresh-block {
             display: grid;
             gap: 10px;
             align-content: start;
-            background: linear-gradient(160deg, rgba(31, 138, 112, 0.08), rgba(235, 94, 40, 0.12));
-            border-radius: 16px;
-            border: 1px solid var(--line);
-            padding: 16px;
+            background:
+                linear-gradient(160deg, rgba(255, 78, 203, 0.16), rgba(34, 216, 255, 0.1)),
+                rgba(8, 14, 34, 0.78);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 18px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
         }
 
         .btn {
             border: 0;
             cursor: pointer;
             color: #ffffff;
-            background: var(--ink);
-            border-radius: 12px;
-            padding: 10px 14px;
-            font-family: "Space Grotesk", sans-serif;
+            background: linear-gradient(135deg, rgba(255, 78, 203, 0.95), rgba(138, 93, 255, 0.92));
+            border-radius: 14px;
+            padding: 11px 15px;
+            font-family: "Orbitron", sans-serif;
             font-weight: 700;
-            font-size: 0.9rem;
-            transition: transform 120ms ease, opacity 120ms ease;
+            font-size: 0.84rem;
+            letter-spacing: 0.04em;
+            transition: transform 120ms ease, opacity 120ms ease, box-shadow 120ms ease;
+            box-shadow: var(--glow-pink);
         }
 
         .btn:hover {
             transform: translateY(-1px);
+            box-shadow:
+                0 0 0 1px rgba(255, 78, 203, 0.18),
+                0 0 34px rgba(255, 78, 203, 0.2);
         }
 
         .btn:disabled {
@@ -234,22 +320,27 @@
 
         .kpi {
             border: 1px solid var(--line);
-            border-radius: 14px;
-            padding: 12px;
-            background: #fcfffd;
+            border-radius: 18px;
+            padding: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(9, 16, 42, 0.88));
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
         }
 
         .kpi-label {
             color: var(--muted);
-            font-size: 0.84rem;
+            font-size: 0.78rem;
             margin: 0 0 7px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .kpi-value {
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Orbitron", sans-serif;
             font-size: 1.7rem;
             line-height: 1;
             margin: 0;
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(255, 78, 203, 0.14);
         }
 
         .kpi-unit {
@@ -258,8 +349,14 @@
             margin-left: 4px;
         }
 
+        .kpi:nth-child(2n) .kpi-value {
+            color: var(--accent-2);
+            text-shadow: 0 0 20px rgba(34, 216, 255, 0.14);
+        }
+
         .section-title {
             font-size: 1.2rem;
+            letter-spacing: 0.04em;
         }
 
         .timeline {
@@ -274,21 +371,22 @@
             align-items: center;
             gap: 12px;
             border: 1px solid var(--line);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 10px 12px;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.04);
             transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
             cursor: pointer;
         }
 
         .timeline-item:hover {
             transform: translateY(-1px);
-            border-color: rgba(31, 138, 112, 0.45);
+            border-color: rgba(34, 216, 255, 0.42);
+            box-shadow: var(--glow-cyan);
         }
 
         .timeline-item.is-active {
-            border-color: var(--accent-2);
-            box-shadow: 0 10px 22px rgba(31, 138, 112, 0.14);
+            border-color: rgba(255, 78, 203, 0.4);
+            box-shadow: var(--glow-pink);
         }
 
         .source {
@@ -303,13 +401,13 @@
         }
 
         .source-strava {
-            background: rgba(235, 94, 40, 0.15);
-            color: #a94920;
+            background: rgba(255, 78, 203, 0.16);
+            color: #ffc9ef;
         }
 
         .source-garmin {
-            background: rgba(31, 138, 112, 0.15);
-            color: #176854;
+            background: rgba(34, 216, 255, 0.14);
+            color: #baf4ff;
         }
 
         .item-name {
@@ -324,9 +422,10 @@
         }
 
         .item-distance {
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Orbitron", sans-serif;
             font-weight: 700;
             font-size: 1.05rem;
+            color: var(--accent-2);
         }
 
         .detail-list,
@@ -345,13 +444,15 @@
 
         .chart-card {
             border: 1px solid var(--line);
-            border-radius: 16px;
-            background: #fcfffd;
-            padding: 14px;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(7, 13, 34, 0.92));
+            padding: 16px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
         }
 
         .chart-card h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
         }
 
         .chart-meta {
@@ -364,7 +465,7 @@
 
         .chart-value {
             margin: 0;
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Orbitron", sans-serif;
             font-size: 1.45rem;
             line-height: 1;
         }
@@ -383,6 +484,7 @@
             width: 100%;
             height: 150px;
             display: block;
+            filter: drop-shadow(0 0 18px rgba(34, 216, 255, 0.12));
         }
 
         .chart-axis {
@@ -408,9 +510,11 @@
 
         .inspector-hero {
             border: 1px solid var(--line);
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 16px;
-            background: linear-gradient(160deg, rgba(31, 138, 112, 0.08), rgba(235, 94, 40, 0.1));
+            background:
+                linear-gradient(160deg, rgba(255, 78, 203, 0.14), rgba(34, 216, 255, 0.1)),
+                rgba(10, 16, 41, 0.9);
         }
 
         .inspector-meta {
@@ -428,9 +532,9 @@
 
         .inspector-card {
             border: 1px solid var(--line);
-            border-radius: 14px;
+            border-radius: 18px;
             padding: 12px;
-            background: #fcfffd;
+            background: rgba(255, 255, 255, 0.04);
         }
 
         .inspector-label {
@@ -441,9 +545,10 @@
 
         .inspector-value {
             margin: 0;
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Orbitron", sans-serif;
             font-weight: 700;
             font-size: 1.1rem;
+            color: var(--accent-2);
         }
 
         .inspector-list {
@@ -461,8 +566,8 @@
             gap: 12px;
             padding: 10px 12px;
             border: 1px solid var(--line);
-            border-radius: 12px;
-            background: #fff;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.035);
         }
 
         .inspector-line-label {
@@ -482,9 +587,9 @@
 
         .split-card {
             border: 1px solid var(--line);
-            border-radius: 14px;
+            border-radius: 16px;
             padding: 12px;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.04);
         }
 
         .split-head {
@@ -515,9 +620,9 @@
         .detail-card,
         .week-row {
             border: 1px solid var(--line);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 12px;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.04);
         }
 
         .detail-card.is-selectable {
@@ -527,12 +632,13 @@
 
         .detail-card.is-selectable:hover {
             transform: translateY(-1px);
-            border-color: rgba(31, 138, 112, 0.45);
+            border-color: rgba(34, 216, 255, 0.42);
+            box-shadow: var(--glow-cyan);
         }
 
         .detail-card.is-selectable.is-active {
-            border-color: var(--accent-2);
-            box-shadow: 0 10px 22px rgba(31, 138, 112, 0.14);
+            border-color: rgba(255, 78, 203, 0.4);
+            box-shadow: var(--glow-pink);
         }
 
         .detail-head {
@@ -567,7 +673,7 @@
             padding: 6px 10px;
             border-radius: 999px;
             border: 1px solid var(--line);
-            background: #fbfffc;
+            background: rgba(255, 255, 255, 0.05);
             font-size: 0.78rem;
         }
 
@@ -580,7 +686,7 @@
 
         .week-date {
             margin: 0;
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Orbitron", sans-serif;
             font-weight: 700;
         }
 
@@ -605,12 +711,13 @@
 
         .connection-card {
             border: 1px solid var(--line);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 10px 12px;
             display: flex;
             justify-content: space-between;
             gap: 12px;
             align-items: center;
+            background: rgba(255, 255, 255, 0.04);
         }
 
         .status {
@@ -646,12 +753,13 @@
 
         .meal {
             border: 1px solid var(--line);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 10px 12px;
             display: grid;
             grid-template-columns: 1fr auto;
             align-items: center;
             gap: 10px;
+            background: rgba(255, 255, 255, 0.04);
         }
 
         .meal-name {
@@ -666,36 +774,40 @@
         }
 
         .meal-calories {
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Orbitron", sans-serif;
             font-weight: 700;
             font-size: 1.05rem;
+            color: var(--accent);
         }
 
         .warning-box {
-            border: 1px solid rgba(182, 63, 63, 0.32);
-            background: rgba(182, 63, 63, 0.08);
-            border-radius: 12px;
-            padding: 12px 14px;
+            border: 1px solid rgba(255, 116, 143, 0.3);
+            background: linear-gradient(180deg, rgba(255, 116, 143, 0.12), rgba(10, 14, 33, 0.9));
+            border-radius: 18px;
+            padding: 14px 16px;
+            box-shadow: 0 0 0 1px rgba(255, 116, 143, 0.08), 0 12px 28px rgba(0, 0, 0, 0.24);
         }
 
         .warning-box h3 {
             color: var(--danger);
             margin: 0 0 8px;
             font-size: 1rem;
+            letter-spacing: 0.04em;
         }
 
         .warning-list {
             margin: 0;
             padding-left: 18px;
-            color: #7b3030;
+            color: #ffd3dc;
             line-height: 1.5;
         }
 
         .raw {
             margin: 0;
-            background: #0f1714;
-            color: #d4ffe9;
-            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(6, 10, 24, 0.96), rgba(11, 17, 41, 0.96));
+            color: #d8e6ff;
+            border: 1px solid var(--line);
+            border-radius: 18px;
             padding: 14px;
             max-height: 300px;
             overflow: auto;
@@ -783,11 +895,12 @@
                             @endif
                         </div>
                         <div>
-                            <p class="eyebrow">Portfolio Data-Driven</p>
-                            <h1>Performance Lab: sport + nutrition en un dashboard complet</h1>
+                            <p class="eyebrow">Performance Orbit</p>
+                            <h1>Un cockpit neon pour lire sport, recovery et nutrition d'un seul regard</h1>
                             <p class="hero-text">
-                                Cette page agrege Strava, Garmin, le crawler local et la nutrition pour montrer une approche produit complete:
-                                collecte API, export automatise, normalisation backend et visualisation front responsive.
+                                Cette interface croise Strava, Garmin, le crawler local et la nutrition dans une lecture plus
+                                cinematographique: volume, fatigue, sommeil, charge et signaux faibles remontent comme dans
+                                un vrai tableau de bord produit.
                             </p>
                             <div class="chip-row" id="hero-chips">
                                 <span class="chip">{{ $athlete['name'] ?? 'Athlete name unavailable' }}</span>
@@ -801,7 +914,7 @@
                     </div>
                 </div>
                 <div class="refresh-block">
-                    <h2 class="section-title">Live sync</h2>
+                    <h2 class="section-title">Flux live</h2>
                     <button id="refresh-live" class="btn" type="button">Rafraichir en live</button>
                     <p class="muted" id="generated-at">Snapshot: {{ $snapshot['generatedAt'] ?? 'n/a' }}</p>
                     <p class="muted" id="crawler-generated-at">Crawler: {{ data_get($garmin, 'generatedAt', 'n/a') }}</p>
@@ -809,7 +922,7 @@
                     <p class="muted" id="crawler-coverage">
                         Couverture Garmin: {{ data_get($garmin, 'coverage.startDate', 'n/a') }} -> {{ data_get($garmin, 'coverage.endDate', 'n/a') }}
                     </p>
-                    <p class="muted">Le mode live recharge le dernier export local du crawler Garmin, le snapshot de la page et la table `meals` Supabase.</p>
+                    <p class="muted">Le mode live recharge le dernier export Garmin local, le snapshot distant et la table `meals` pour garder ce cockpit synchronise.</p>
                 </div>
             </section>
 
@@ -1559,7 +1672,7 @@
                 const formatValue = typeof config.formatValue === 'function'
                     ? config.formatValue
                     : (value) => formatNumber(value);
-                const accent = config.accent || '#1f8a70';
+                const accent = config.accent || 'var(--accent-2)';
                 const latestPoint = filteredPoints[filteredPoints.length - 1];
                 const peakValue = Math.max(...values);
                 const coords = filteredPoints.map((point, index) => {
@@ -1579,7 +1692,7 @@
                 const area = `${coords[0].x},${height - padding} ${polyline} ${coords[coords.length - 1].x},${height - padding}`;
                 const guides = [0.25, 0.5, 0.75].map((ratio) => {
                     const y = padding + (height - padding * 2) * ratio;
-                    return `<line x1="${padding}" y1="${y}" x2="${width - padding}" y2="${y}" stroke="rgba(16, 36, 29, 0.08)" stroke-dasharray="4 4" />`;
+                    return `<line x1="${padding}" y1="${y}" x2="${width - padding}" y2="${y}" stroke="var(--grid-line)" stroke-dasharray="4 4" />`;
                 }).join('');
 
                 return `
@@ -1841,7 +1954,7 @@
                         value: Number(day.steps || 0),
                     })),
                     {
-                        accent: '#1f8a70',
+                        accent: 'var(--accent-2)',
                         formatValue: (value) => `${formatNumber(value)} pas`,
                         latestLabel: 'Dernier jour',
                         peakLabel: 'Max semaine',
@@ -1855,7 +1968,7 @@
                         value: Number(day.activeCalories || 0),
                     })),
                     {
-                        accent: '#eb5e28',
+                        accent: 'var(--accent)',
                         formatValue: (value) => `${formatNumber(value)} kcal`,
                         latestLabel: 'Dernier jour',
                         peakLabel: 'Pic calories',
@@ -1869,7 +1982,7 @@
                         value: Number(night.hours || 0),
                     })),
                     {
-                        accent: '#1f8a70',
+                        accent: 'var(--accent-2)',
                         formatValue: (value) => `${formatNumber(value)} h`,
                         latestLabel: 'Derniere nuit',
                         peakLabel: 'Plus longue',
@@ -1883,7 +1996,7 @@
                         value: Number(night.score || 0),
                     })),
                     {
-                        accent: '#eb5e28',
+                        accent: 'var(--accent-3)',
                         formatValue: (value) => `${formatNumber(value)} /100`,
                         latestLabel: 'Dernier score',
                         peakLabel: 'Meilleur score',
@@ -1897,7 +2010,7 @@
                         value: Number(activity.distanceKm || 0),
                     })),
                     {
-                        accent: '#eb5e28',
+                        accent: 'var(--accent)',
                         formatValue: (value) => `${formatNumber(value)} km`,
                         latestLabel: 'Derniere activite',
                         peakLabel: 'Plus longue',
@@ -1911,7 +2024,7 @@
                         value: Number(activity.trainingLoad || 0),
                     })),
                     {
-                        accent: '#10241d',
+                        accent: 'var(--accent-3)',
                         formatValue: (value) => `${formatNumber(value)} load`,
                         latestLabel: 'Derniere charge',
                         peakLabel: 'Charge max',
@@ -2083,7 +2196,7 @@
                             value: Number(night.avgOvernightHrv ?? Number.NaN),
                         })),
                     {
-                        accent: '#10241d',
+                        accent: 'var(--accent-3)',
                         formatValue: (value) => `${formatNumber(value)} ms`,
                         latestLabel: 'Derniere nuit',
                         peakLabel: 'HRV max',
@@ -2099,7 +2212,7 @@
                         }))
                         : [],
                     {
-                        accent: '#eb5e28',
+                        accent: 'var(--accent)',
                         formatValue: (value) => `${formatSignedMetricValue(value, 'deg C')}`,
                         latestLabel: 'Derniere nuit',
                         peakLabel: 'Max recent',
@@ -2115,7 +2228,7 @@
                         }))
                         : [],
                     {
-                        accent: '#1f8a70',
+                        accent: 'var(--accent-2)',
                         formatValue: (value) => `${formatNumber(value)} spm`,
                         latestLabel: 'Derniere sortie',
                         peakLabel: 'Cadence max',
@@ -2131,7 +2244,7 @@
                         }))
                         : [],
                     {
-                        accent: '#10241d',
+                        accent: 'var(--accent-3)',
                         formatValue: (value) => `${formatNumber(value)} ms`,
                         latestLabel: 'Derniere sortie',
                         peakLabel: 'Max recent',
