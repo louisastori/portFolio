@@ -40,7 +40,7 @@
 
         .layout {
             display: grid;
-            grid-template-columns: 320px minmax(0, 1fr);
+            grid-template-columns: 240px minmax(0, 1fr);
             gap: 22px;
             align-items: start;
         }
@@ -91,22 +91,6 @@
             background: #fff;
             color: var(--ink);
             border: 1px solid var(--line);
-        }
-
-        .mini-card {
-            margin-top: 18px;
-            padding: 14px 16px;
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            background: #fff;
-        }
-
-        .mini-card p {
-            margin: 0;
-        }
-
-        .mini-card p + p {
-            margin-top: 6px;
         }
 
         .preview-shell {
@@ -172,7 +156,7 @@
         }
 
         .document-sheet {
-            width: min(100%, 760px);
+            width: min(100%, 880px);
             margin: 0 auto;
             background: #fff;
             border-radius: 8px;
@@ -241,12 +225,6 @@
                 <div class="action-list">
                     <button type="button" class="btn btn-primary" data-action="open-pdf">Ouvrir le CV</button>
                     <button type="button" class="btn btn-secondary" data-action="download-pdf">Telecharger le PDF</button>
-                </div>
-
-                <div class="mini-card">
-                    <p><strong>Acces rapide</strong></p>
-                    <p>Preview grand format a droite.</p>
-                    <p>Un clic sur le document ouvre le PDF.</p>
                 </div>
             </aside>
 
