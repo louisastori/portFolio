@@ -97,38 +97,10 @@
             padding: 18px;
         }
 
-        .preview-topbar {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            align-items: center;
-            margin-bottom: 18px;
-            padding: 4px 2px 0;
-        }
-
         .preview-title {
-            margin: 0;
+            margin: 0 0 18px;
             font-size: 1rem;
             font-weight: 700;
-        }
-
-        .preview-subtitle {
-            margin: 4px 0 0;
-            color: var(--muted);
-            font-size: 0.92rem;
-        }
-
-        .chip {
-            display: inline-flex;
-            align-items: center;
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            padding: 7px 11px;
-            background: #fff;
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: var(--muted);
-            white-space: nowrap;
         }
 
         .document-frame {
@@ -229,13 +201,7 @@
             </aside>
 
             <section class="panel preview-shell">
-                <div class="preview-topbar">
-                    <div>
-                        <p class="preview-title">Apercu du CV</p>
-                        <p class="preview-subtitle">Presentation visuelle du document avant ouverture.</p>
-                    </div>
-                    <span class="chip">Document principal</span>
-                </div>
+                <p class="preview-title">Apercu du CV</p>
 
                 <div class="document-frame">
                     <button type="button" class="document-button" data-action="open-pdf" aria-label="Ouvrir le CV en PDF">
