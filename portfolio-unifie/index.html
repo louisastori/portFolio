@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louis Astori | Developpeur en alternance</title>
+    <meta name="description" content="Portfolio de Louis Astori, developpeur en alternance. Competences, experiences, projets, preuves BTS et CV.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Manrope", "sans-serif"],
+                        display: ["Space Grotesk", "sans-serif"],
+                    },
+                    colors: {
+                        ink: "#07111f",
+                        panel: "#0e1b2f",
+                        accent: "#22d3ee",
+                        warm: "#f59e0b",
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.18), transparent 24rem), radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.12), transparent 18rem), linear-gradient(180deg, #0b1728 0%, #07111f 50%, #050c16 100%); color: #f8fafc; }
+        .glass { background: rgba(10, 18, 32, 0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(148, 163, 184, 0.16); }
+        .card { background: linear-gradient(180deg, rgba(15, 27, 46, 0.95), rgba(10, 19, 33, 0.95)); border: 1px solid rgba(148, 163, 184, 0.16); transition: transform 0.3s ease, border-color 0.3s ease; }
+        .card:hover { transform: translateY(-6px); border-color: rgba(34, 211, 238, 0.4); }
+        .line { height: 1px; flex: 1; background: linear-gradient(90deg, rgba(34, 211, 238, 0.35), rgba(148, 163, 184, 0)); }
+        .timeline-line::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: linear-gradient(180deg, rgba(34, 211, 238, 0.4), rgba(148, 163, 184, 0.15)); transform: translateX(-50%); }
+        .timeline-dot { width: 1rem; height: 1rem; background: #22d3ee; border: 3px solid #07111f; border-radius: 9999px; position: absolute; left: 50%; transform: translateX(-50%); top: 1.4rem; box-shadow: 0 0 0 8px rgba(34, 211, 238, 0.08); }
+        .proof-media { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
+        .gsap-reveal { opacity: 0; visibility: hidden; }
+        @media (max-width: 768px) { .timeline-line::before, .timeline-dot { left: 1.25rem; } }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-slate-950 overflow-x-hidden">
+    <header class="fixed top-0 left-0 w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#hero" class="text-2xl font-display font-bold tracking-tight text-white">Louis<span class="text-accent">.</span>Astori</a>
+                <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium">
+                    <a href="#about" class="text-slate-300 hover:text-accent transition-colors">A propos</a>
+                    <a href="#skills" class="text-slate-300 hover:text-accent transition-colors">Competences</a>
+                    <a href="#experience" class="text-slate-300 hover:text-accent transition-colors">Experiences</a>
+                    <a href="#proof" class="text-slate-300 hover:text-accent transition-colors">Preuves BTS</a>
+                    <a href="#resume" class="text-slate-300 hover:text-accent transition-colors">CV</a>
+                    <a href="#portfolio" class="text-slate-300 hover:text-accent transition-colors">Projets</a>
+                    <a href="sport.html" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-accent transition-colors">Sport+</a>
+                    <a href="#contact" class="text-slate-300 hover:text-accent transition-colors">Contact</a>
+                </nav>
+                <button id="mobile-menu-btn" class="xl:hidden text-slate-300 hover:text-white focus:outline-none" aria-label="Ouvrir le menu">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden xl:hidden glass border-t border-slate-800/70">
+            <div class="px-4 py-3 space-y-1">
+                <a href="#about" class="mobile-link block px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60">A propos</a>
+                <a href="#skills" class="mobile-link block px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60">Competences</a>
+                <a href="#experience" class="mobile-link block px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60">Experiences</a>
+                <a href="#proof" class="mobile-link block px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60">Preuves BTS</a>
+                <a href="#resume" class="mobile-link block px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60">CV</a>
+                <a href="#portfolio" class="mobile-link block px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60">Projets</a>
+                <a href="sport.html" target="_blank" rel="noopener noreferrer" class="mobile-link block px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60">Sport+</a>
+                <a href="#contact" class="mobile-link block px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-20">
+                <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
+                    <div class="max-w-3xl">
+                        <p class="hero-elem text-accent font-semibold tracking-[0.22em] uppercase text-xs sm:text-sm mb-5" style="opacity: 0;">Louis Astori</p>
+                        <h1 class="hero-elem font-display text-5xl md:text-7xl font-bold text-white leading-none tracking-tight mb-4" style="opacity: 0;">
+                            Developpeur en alternance, passionne de sport et d'informatique.
+                        </h1>
+                        <p class="hero-elem text-lg md:text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl" style="opacity: 0;">
+                            Issu d'un BTS SIO SLAM, je poursuis mon parcours avec la meme logique : apprendre vite, travailler proprement
+                            et contribuer a des solutions utiles. Mes experiences chez France Travail m'ont permis d'intervenir sur Angular,
+                            Java et Tapestry dans un cadre produit exigeant.
+                        </p>
+                        <div class="hero-elem flex flex-col sm:flex-row gap-4 mb-8" style="opacity: 0;">
+                            <a href="#about" class="px-7 py-3.5 rounded-xl bg-accent text-slate-950 font-semibold hover:bg-cyan-200 transition-all duration-300 text-center">
+                                Decouvrir mon parcours
+                            </a>
+                            <a href="#resume" class="px-7 py-3.5 rounded-xl border border-accent/60 text-accent font-semibold hover:bg-accent/10 transition-all duration-300 text-center">
+                                Ouvrir mon CV
+                            </a>
+                        </div>
+                        <div class="hero-elem flex flex-wrap gap-3 text-sm text-slate-300" style="opacity: 0;">
+                            <span class="px-3 py-2 rounded-full bg-slate-900/70 border border-slate-800">BTS SIO SLAM</span>
+                            <span class="px-3 py-2 rounded-full bg-slate-900/70 border border-slate-800">France Travail</span>
+                            <span class="px-3 py-2 rounded-full bg-slate-900/70 border border-slate-800">Angular / Java / Tapestry</span>
+                            <span class="px-3 py-2 rounded-full bg-slate-900/70 border border-slate-800">Alternance rentree 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-elem" style="opacity: 0;">
+                        <div class="card rounded-3xl p-8 relative overflow-hidden">
+                            <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent via-cyan-100/90 to-warm"></div>
+                            <div class="flex items-center justify-between mb-8">
+                                <div>
+                                    <p class="text-slate-400 text-sm uppercase tracking-[0.18em] mb-2">Focus 2026</p>
+                                    <h2 class="font-display text-3xl font-bold text-white">Mon profil</h2>
+                                </div>
+                                <span class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center text-xl">
+                                    <i class="fas fa-layer-group"></i>
+                                </span>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="rounded-2xl bg-slate-950/55 border border-slate-800 p-4">
+                                    <p class="text-sm text-slate-400 mb-1">Formation</p>
+                                    <p class="text-white font-semibold">BTS SIO SLAM obtenu, poursuite en Bachelor sciences informatiques et numeriques puis en Mastere developpement Full Stack.</p>
+                                </div>
+                                <div class="rounded-2xl bg-slate-950/55 border border-slate-800 p-4">
+                                    <p class="text-sm text-slate-400 mb-1">Experience</p>
+                                    <p class="text-white font-semibold">Deux passages a France Travail sur des sujets web, produit et authentification.</p>
+                                </div>
+                                <div class="rounded-2xl bg-slate-950/55 border border-slate-800 p-4">
+                                    <p class="text-sm text-slate-400 mb-1">Objectif</p>
+                                    <p class="text-white font-semibold">Trouver une alternance pour la rentree 2026 et continuer a progresser sur des applications utiles, propres et fiables.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-24 bg-slate-950/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="gsap-reveal mb-14">
+                    <div class="flex items-center gap-5">
+                        <span class="font-display text-accent text-xl">01.</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">A propos et formation</h2>
+                        <div class="line hidden md:block"></div>
+                    </div>
+                </div>
+                <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10">
+                    <div class="gsap-reveal space-y-6">
+                        <p class="text-slate-300 text-lg leading-relaxed">
+                            Mon parcours combine developpement, culture produit et discipline sportive. J'aime les environnements ou l'on mesure ce qui est fait,
+                            ou l'on s'ameliore en continu et ou l'on garde une logique claire entre besoin, implementation et livraison.
+                        </p>
+                        <p class="text-slate-300 text-lg leading-relaxed">
+                            Je recherche une alternance en developpement pour la rentree 2026, avec un rythme de deux semaines en entreprise
+                            pour deux semaines en ecole. Mon objectif est d'apporter un soutien concret sur le developpement, la correction de bugs
+                            et l'amelioration continue des projets.
+                        </p>
+                        <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                            <div class="card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i class="fas fa-bicycle text-accent text-lg"></i>
+                                    <h3 class="font-semibold text-white">Rigueur sportive</h3>
+                                </div>
+                                <p class="text-slate-400 text-sm leading-relaxed">Discipline, endurance et progression mesurable que je transpose dans ma maniere de travailler.</p>
+                            </div>
+                            <div class="card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i class="fas fa-code-branch text-accent text-lg"></i>
+                                    <h3 class="font-semibold text-white">Culture produit</h3>
+                                </div>
+                                <p class="text-slate-400 text-sm leading-relaxed">User stories, tickets, instrumentation et qualite logicielle pour livrer de maniere plus fiable.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-5">
+                        <article class="gsap-reveal card rounded-2xl p-6 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-accent text-slate-950 text-xs font-bold px-3 py-1 rounded-bl-xl">Rentree 2026</div>
+                            <div class="text-accent font-semibold text-sm tracking-[0.18em] uppercase mb-2">2026 - 2027</div>
+                            <h3 class="font-display text-2xl text-white font-bold mb-1">Bachelor sciences informatiques et numeriques</h3>
+                            <p class="text-slate-400">Ecole Superieure d'Ingenieurs Leonard de Vinci</p>
+                            <p class="text-slate-500 text-sm mt-2">Parcours vise pour poursuivre en alternance apres le BTS.</p>
+                        </article>
+                        <article class="gsap-reveal card rounded-2xl p-6 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-warm text-slate-950 text-xs font-bold px-3 py-1 rounded-bl-xl">Suite visee</div>
+                            <div class="text-accent font-semibold text-sm tracking-[0.18em] uppercase mb-2">2027 - 2029</div>
+                            <h3 class="font-display text-2xl text-white font-bold mb-1">Mastere developpement Full Stack</h3>
+                            <p class="text-slate-400">Ecole Sup de Vinci</p>
+                            <p class="text-slate-500 text-sm mt-2">Continuation prevue du parcours apres le bachelor.</p>
+                        </article>
+                        <article class="gsap-reveal card rounded-2xl p-6 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-accent text-slate-950 text-xs font-bold px-3 py-1 rounded-bl-xl">Obtenu</div>
+                            <div class="text-accent font-semibold text-sm tracking-[0.18em] uppercase mb-2">2023 - 2025</div>
+                            <h3 class="font-display text-2xl text-white font-bold mb-1">BTS SIO option SLAM</h3>
+                            <p class="text-slate-400">Lycee Gustave Eiffel</p>
+                            <p class="text-slate-500 text-sm mt-2">Solutions logicielles et applications metiers.</p>
+                        </article>
+                        <article class="gsap-reveal card rounded-2xl p-6 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-warm text-slate-950 text-xs font-bold px-3 py-1 rounded-bl-xl">Obtenu</div>
+                            <div class="text-accent font-semibold text-sm tracking-[0.18em] uppercase mb-2">2020 - 2023</div>
+                            <h3 class="font-display text-2xl text-white font-bold mb-1">Bac Pro SN option RISC</h3>
+                            <p class="text-slate-400">Lycee Alfred Kastler</p>
+                            <p class="text-slate-500 text-sm mt-2">Reseaux informatiques et systemes communicants.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="skills" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="gsap-reveal mb-14">
+                    <div class="flex items-center gap-5">
+                        <span class="font-display text-accent text-xl">02.</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Competences techniques</h2>
+                        <div class="line hidden md:block"></div>
+                    </div>
+                    <p class="text-slate-400 mt-4 max-w-3xl">
+                        Les briques techniques et methodologiques que je veux rendre lisibles rapidement, sans perdre la profondeur des preuves BTS.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <article class="gsap-reveal card rounded-2xl p-6">
+                        <div class="flex items-center gap-4 mb-6"><div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent text-xl"><i class="fas fa-code"></i></div><h3 class="font-display text-xl font-bold text-white">Developpement</h3></div>
+                        <div class="flex flex-wrap gap-2 text-sm">
+                            <span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Angular</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Java</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Tapestry</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">HTML5</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">CSS</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">MySQL</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Python</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">C#</span>
+                        </div>
+                    </article>
+                    <article class="gsap-reveal card rounded-2xl p-6">
+                        <div class="flex items-center gap-4 mb-6"><div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent text-xl"><i class="fas fa-toolbox"></i></div><h3 class="font-display text-xl font-bold text-white">Outils et methodes</h3></div>
+                        <div class="flex flex-wrap gap-2 text-sm">
+                            <span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">GitLab</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">GitHub</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Jira</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Trello</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Agile</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">SAFe</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Apache</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Android Studio</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Docker</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Jenkins</span>
+                        </div>
+                    </article>
+                    <article class="gsap-reveal card rounded-2xl p-6">
+                        <div class="flex items-center gap-4 mb-6"><div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent text-xl"><i class="fas fa-server"></i></div><h3 class="font-display text-xl font-bold text-white">Systemes et reseaux</h3></div>
+                        <div class="flex flex-wrap gap-2 text-sm">
+                            <span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Windows</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Linux</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">SSH</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Telnet</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Adressage IP</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Routeurs</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Commutateurs</span>
+                        </div>
+                    </article>
+                    <article class="gsap-reveal card rounded-2xl p-6">
+                        <div class="flex items-center gap-4 mb-6"><div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent text-xl"><i class="fas fa-shield-halved"></i></div><h3 class="font-display text-xl font-bold text-white">Transverses</h3></div>
+                        <div class="flex flex-wrap gap-2 text-sm">
+                            <span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Communication</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Travail d'equipe</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Cybersecurite</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">RGPD</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Instrumentation</span><span class="px-3 py-1.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300">Veille</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-24">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="gsap-reveal mb-14">
+                    <div class="flex items-center gap-5">
+                        <span class="font-display text-accent text-xl">03.</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Experiences professionnelles</h2>
+                        <div class="line hidden md:block"></div>
+                    </div>
+                </div>
+                <div class="relative timeline-line pt-4 pb-12">
+                    <article class="gsap-reveal relative flex flex-col md:flex-row items-center mb-16 md:mb-20">
+                        <div class="timeline-dot"></div>
+                        <div class="pl-10 md:pl-0 md:w-1/2 md:pr-12 md:text-right w-full">
+                            <div class="text-accent text-sm tracking-[0.18em] uppercase mb-1">Janvier - Mars 2025</div>
+                            <h3 class="font-display text-2xl text-white font-bold">DSI France Travail</h3>
+                            <p class="text-slate-400 mb-4">Equipe Opportunite des offres</p>
+                            <div class="card rounded-2xl p-5 text-left">
+                                <p class="text-slate-300 text-sm leading-relaxed mb-3">Developpement Angular et Tapestry sur la recherche d'offres, dans un environnement produit structure.</p>
+                                <div class="flex flex-wrap gap-2 text-xs"><span class="px-2 py-1 rounded bg-accent/10 text-accent">Angular</span><span class="px-2 py-1 rounded bg-accent/10 text-accent">Tapestry</span><span class="px-2 py-1 rounded bg-accent/10 text-accent">Produit</span></div>
+                            </div>
+                        </div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                    </article>
+                    <article class="gsap-reveal relative flex flex-col md:flex-row items-center mb-16 md:mb-20">
+                        <div class="timeline-dot"></div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                        <div class="pl-10 md:pl-12 md:w-1/2 w-full">
+                            <div class="text-accent text-sm tracking-[0.18em] uppercase mb-1">Mai - Juin 2024</div>
+                            <h3 class="font-display text-2xl text-white font-bold">DSI France Travail</h3>
+                            <p class="text-slate-400 mb-4">Equipe Authentification</p>
+                            <div class="card rounded-2xl p-5">
+                                <p class="text-slate-300 text-sm leading-relaxed mb-3">Developpement Angular et Java avec batchs sur les sujets d'authentification et de livraison technique.</p>
+                                <div class="flex flex-wrap gap-2 text-xs"><span class="px-2 py-1 rounded bg-accent/10 text-accent">Angular</span><span class="px-2 py-1 rounded bg-accent/10 text-accent">Java</span><span class="px-2 py-1 rounded bg-accent/10 text-accent">Batch</span></div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="gsap-reveal relative flex flex-col md:flex-row items-center mb-16 md:mb-20">
+                        <div class="timeline-dot"></div>
+                        <div class="pl-10 md:pl-0 md:w-1/2 md:pr-12 md:text-right w-full">
+                            <div class="text-accent text-sm tracking-[0.18em] uppercase mb-1">Novembre - Decembre 2022</div>
+                            <h3 class="font-display text-2xl text-white font-bold">CAUM</h3>
+                            <p class="text-slate-400 mb-4">Stagiaire reseaux</p>
+                            <div class="card rounded-2xl p-5 text-left"><p class="text-slate-300 text-sm leading-relaxed">Installation de fibres optiques et interventions liees aux reseaux.</p></div>
+                        </div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                    </article>
+                    <article class="gsap-reveal relative flex flex-col md:flex-row items-center mb-16 md:mb-20">
+                        <div class="timeline-dot"></div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                        <div class="pl-10 md:pl-12 md:w-1/2 w-full">
+                            <div class="text-accent text-sm tracking-[0.18em] uppercase mb-1">Fevrier - Mars 2022</div>
+                            <h3 class="font-display text-2xl text-white font-bold">Nod Systems</h3>
+                            <p class="text-slate-400 mb-4">Stagiaire IT</p>
+                            <div class="card rounded-2xl p-5"><p class="text-slate-300 text-sm leading-relaxed">Installation de switch, routeur, Wi-Fi et tablettes Android dans un centre de formation.</p></div>
+                        </div>
+                    </article>
+                    <article class="gsap-reveal relative flex flex-col md:flex-row items-center mb-16 md:mb-20">
+                        <div class="timeline-dot"></div>
+                        <div class="pl-10 md:pl-0 md:w-1/2 md:pr-12 md:text-right w-full">
+                            <div class="text-accent text-sm tracking-[0.18em] uppercase mb-1">Novembre - Decembre 2021</div>
+                            <h3 class="font-display text-2xl text-white font-bold">DSI Pole Emploi</h3>
+                            <p class="text-slate-400 mb-4">Stagiaire infrastructure</p>
+                            <div class="card rounded-2xl p-5 text-left"><p class="text-slate-300 text-sm leading-relaxed">Brassage reseau des agences et depannage des postes informatiques.</p></div>
+                        </div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                    </article>
+                    <article class="gsap-reveal relative flex flex-col md:flex-row items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                        <div class="pl-10 md:pl-12 md:w-1/2 w-full">
+                            <div class="text-accent text-sm tracking-[0.18em] uppercase mb-1">Mai - Juillet 2021</div>
+                            <h3 class="font-display text-2xl text-white font-bold">DSI Pole Emploi</h3>
+                            <p class="text-slate-400 mb-4">Stagiaire infrastructure</p>
+                            <div class="card rounded-2xl p-5"><p class="text-slate-300 text-sm leading-relaxed">Remasterisation de postes informatiques et preparation du materiel.</p></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="proof" class="py-24 bg-slate-950/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="gsap-reveal mb-14">
+                    <div class="flex items-center gap-5">
+                        <span class="font-display text-accent text-xl">04.</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Mises en pratique et realisations</h2>
+                        <div class="line hidden md:block"></div>
+                    </div>
+                    <p class="text-slate-400 mt-4 max-w-4xl">
+                        Je montre ici des exemples concrets de travail, avec des situations, des outils et des methodes que j'ai vraiment utilises.
+                    </p>
+                </div>
+                <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <article class="gsap-reveal card rounded-3xl overflow-hidden"><img src="assets/img/mergeRequest.png" alt="Processus de Merge Request" class="proof-media"><div class="p-6"><span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent mb-4">Patrimoine informatique</span><h3 class="font-display text-2xl font-bold text-white mb-3">Gerer le patrimoine</h3><p class="text-slate-400 text-sm leading-relaxed">Branche, Merge Request, relecture et historique propre pour securiser l'integration des changements.</p></div></article>
+                    <article class="gsap-reveal card rounded-3xl overflow-hidden"><img src="assets/img/tableauAnomalie.png" alt="Tableau de gestion des anomalies" class="proof-media"><div class="p-6"><span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent mb-4">Gestion d'anomalies</span><h3 class="font-display text-2xl font-bold text-white mb-3">Suivre, corriger, tester</h3><p class="text-slate-400 text-sm leading-relaxed">Ticketing, Kanban, affectation, correction puis validation : un cycle clair pour traiter les anomalies.</p></div></article>
+                    <article class="gsap-reveal card rounded-3xl overflow-hidden"><img src="assets/img/observatoire.jpg" alt="Capture d'observatoire" class="proof-media"><div class="p-6"><span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent mb-4">Presence en ligne</span><h3 class="font-display text-2xl font-bold text-white mb-3">Observer l'usage reel</h3><p class="text-slate-400 text-sm leading-relaxed">Comprendre comment les donnees d'usage remontent et comment elles servent a piloter l'amelioration produit.</p></div></article>
+                    <article class="gsap-reveal card rounded-3xl overflow-hidden"><img src="assets/img/travailleEnModeProjet.png" alt="Travail en mode projet" class="proof-media"><div class="p-6"><span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent mb-4">Mode projet</span><h3 class="font-display text-2xl font-bold text-white mb-3">Agile et user stories</h3><p class="text-slate-400 text-sm leading-relaxed">Decouverte d'un fonctionnement Agile a grande echelle avec decoupage en features, user stories et sprints.</p></div></article>
+                    <article class="gsap-reveal card rounded-3xl overflow-hidden"><img src="assets/img/deploiement.png" alt="Pipeline de deploiement" class="proof-media"><div class="p-6"><span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent mb-4">Disponibilite des services</span><h3 class="font-display text-2xl font-bold text-white mb-3">Deployer de maniere fiable</h3><p class="text-slate-400 text-sm leading-relaxed">Lecture d'un pipeline Concourse pour comprendre la chaine de validation et de deploiement d'un batch.</p></div></article>
+                    <article class="gsap-reveal card rounded-3xl overflow-hidden"><img src="assets/img/flashSujet.jpg" alt="Flash sujet Confluence" class="proof-media"><div class="p-6"><span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent mb-4">Developpement professionnel</span><h3 class="font-display text-2xl font-bold text-white mb-3">Veille et progression</h3><p class="text-slate-400 text-sm leading-relaxed">Flash sujets, partage d'outils et veille documentaire pour faire progresser la pratique au-dela des tickets du quotidien.</p></div></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="resume" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="gsap-reveal mb-14">
+                    <div class="flex items-center gap-5">
+                        <span class="font-display text-accent text-xl">05.</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">CV a jour</h2>
+                        <div class="line hidden md:block"></div>
+                    </div>
+                </div>
+                <div class="grid lg:grid-cols-[0.92fr_1.08fr] gap-8 items-center">
+                    <div class="gsap-reveal card rounded-3xl p-8">
+                        <p class="text-sm uppercase tracking-[0.18em] text-accent mb-4">Mon CV</p>
+                        <h3 class="font-display text-3xl font-bold text-white mb-5">Version a jour pour la rentree 2026</h3>
+                        <p class="text-slate-400 leading-relaxed mb-6">
+                            Cette version reprend mon CV le plus recent avec mon objectif d'alternance, mon parcours de formation, mes experiences en entreprise et mes competences techniques.
+                        </p>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-start gap-3"><i class="fas fa-circle-check text-accent mt-1"></i><p class="text-slate-300 text-sm">Recherche d'alternance pour la rentree 2026.</p></div>
+                            <div class="flex items-start gap-3"><i class="fas fa-circle-check text-accent mt-1"></i><p class="text-slate-300 text-sm">Rythme annonce : deux semaines en entreprise pour deux semaines en ecole.</p></div>
+                            <div class="flex items-start gap-3"><i class="fas fa-circle-check text-accent mt-1"></i><p class="text-slate-300 text-sm">Bordeaux, Perigueux, Strasbourg, permis B et A2, avec version PDF complete.</p></div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="assets/docs/cv-louis-astori-2026.pdf" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-accent text-slate-950 font-semibold text-center hover:bg-cyan-200 transition-colors">Ouvrir le CV PDF</a>
+                            <a href="mailto:louis.astori@gmail.com" class="px-6 py-3 rounded-xl border border-slate-700 text-slate-200 font-semibold text-center hover:border-accent hover:text-white transition-colors">Me contacter</a>
+                        </div>
+                    </div>
+                    <div class="gsap-reveal">
+                        <div class="block rounded-[2rem] overflow-hidden border border-slate-800 bg-slate-950/40 p-4 hover:border-accent/40 transition-colors">
+                            <div class="rounded-[1.5rem] overflow-hidden border border-slate-800 bg-white h-[720px]">
+                                <object data="assets/docs/cv-louis-astori-2026.pdf#view=FitH" type="application/pdf" class="w-full h-full">
+                                    <div class="h-full flex flex-col items-center justify-center gap-4 px-8 text-center bg-slate-950 text-slate-200">
+                                        <p class="font-display text-3xl text-white font-bold">Apercu PDF indisponible ici</p>
+                                        <p class="text-slate-400">Ouvre directement le document pour consulter la version complete et a jour du CV.</p>
+                                        <a href="assets/docs/cv-louis-astori-2026.pdf" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-accent text-slate-950 font-semibold">Ouvrir le CV</a>
+                                    </div>
+                                </object>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="py-24 bg-slate-950/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="gsap-reveal mb-14">
+                    <div class="flex items-center gap-5">
+                        <span class="font-display text-accent text-xl">06.</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Projets et code</h2>
+                        <div class="line hidden md:block"></div>
+                    </div>
+                    <p class="text-slate-400 mt-4 max-w-3xl">
+                        Les depots GitHub restent affiches dynamiquement pour garder le portfolio vivant, pendant que le reste du site montre le contexte et les preuves.
+                    </p>
+                </div>
+                <div id="github-projects" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 relative min-h-[280px]">
+                    <div id="projects-loader" class="absolute inset-0 flex items-center justify-center">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-accent"></div>
+                    </div>
+                </div>
+                <div class="mt-10 text-center gsap-reveal">
+                    <a href="https://github.com/louisastori" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-700 text-slate-300 hover:text-white hover:border-accent hover:bg-accent/5 transition-all duration-300">
+                        Voir tout sur GitHub <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="sport" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="gsap-reveal mb-14">
+                    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+                        <div>
+                            <div class="flex items-center gap-5">
+                                <span class="font-display text-accent text-xl">07.</span>
+                                <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Performance sportive</h2>
+                                <div class="line hidden md:block"></div>
+                            </div>
+                            <p class="text-slate-400 mt-4 max-w-4xl">
+                                Je garde ici un apercu rapide de mon volume, de ma recup et de mes dernieres seances. Le detail complet s'ouvre dans un onglet dedie avec sommeil, activites, charges et historique.
+                            </p>
+                            <p id="sport-generated-at" class="text-slate-500 text-sm mt-3"></p>
+                        </div>
+                        <a href="sport.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-accent text-slate-950 font-semibold hover:bg-cyan-200 transition-colors whitespace-nowrap">
+                            Ouvrir le dashboard sport
+                            <i class="fas fa-arrow-up-right-from-square text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid xl:grid-cols-[1.2fr_0.8fr] gap-6">
+                    <div id="sport-metrics" class="grid sm:grid-cols-2 gap-6">
+                        <article class="card rounded-3xl p-6"><p class="text-slate-500 text-sm">Chargement Garmin...</p></article>
+                    </div>
+                    <div id="sport-highlight" class="card rounded-3xl p-8">
+                        <p class="text-slate-500 text-sm">Les indicateurs sportifs seront affiches ici.</p>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <div class="card rounded-3xl p-8">
+                        <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                            <div>
+                                <p class="text-slate-400 text-sm uppercase tracking-[0.16em] mb-2">Dernieres seances</p>
+                                <h3 class="font-display text-2xl text-white font-bold">Recent Garmin</h3>
+                            </div>
+                            <p class="text-slate-500 text-sm">Le detail complet est disponible dans l'onglet sport.</p>
+                        </div>
+                        <div id="sport-recent-activities" class="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
+                            <article class="rounded-2xl border border-slate-800 bg-slate-950/40 p-5">
+                                <p class="text-slate-500 text-sm">Chargement...</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="border-t border-slate-800 bg-[#050c16] pt-16 pb-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center gsap-reveal">
+            <p class="text-sm uppercase tracking-[0.22em] text-accent mb-4">08. Contact</p>
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-6">Parlons-en</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto mb-10 text-lg">
+                Je suis disponible pour echanger autour d'une opportunite, d'un projet ou simplement pour prendre contact.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mb-10">
+                <a href="mailto:louis.astori@gmail.com" class="px-6 py-3 rounded-xl bg-accent text-slate-950 font-semibold hover:bg-cyan-200 transition-colors">louis.astori@gmail.com</a>
+                <a href="tel:0771802396" class="px-6 py-3 rounded-xl border border-slate-700 text-slate-200 font-semibold hover:border-accent hover:text-white transition-colors">07 71 80 23 96</a>
+            </div>
+            <div class="flex items-center justify-center gap-6 mb-10">
+                <a href="https://github.com/louisastori" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-slate-800 bg-panel flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent transition-all"><i class="fab fa-github text-xl"></i></a>
+                <a href="https://linkedin.com/in/louis-astori" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-slate-800 bg-panel flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent transition-all"><i class="fab fa-linkedin-in text-xl"></i></a>
+            </div>
+            <p class="text-slate-500 text-sm">Louis Astori, 2026.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/data/garmin-summary.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

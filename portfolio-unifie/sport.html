@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louis Astori | Dashboard sport</title>
+    <meta name="description" content="Dashboard sport de Louis Astori : activites Garmin, volume, records, sommeil, recuperation et bien-etre journalier.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Manrope", "sans-serif"],
+                        display: ["Space Grotesk", "sans-serif"],
+                    },
+                    colors: {
+                        ink: "#07111f",
+                        panel: "#0e1b2f",
+                        accent: "#22d3ee",
+                        warm: "#f59e0b",
+                        mint: "#34d399",
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --page-border: rgba(148, 163, 184, 0.14);
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 8% 10%, rgba(34, 211, 238, 0.18), transparent 22rem),
+                radial-gradient(circle at 88% 12%, rgba(245, 158, 11, 0.14), transparent 18rem),
+                radial-gradient(circle at 50% 70%, rgba(52, 211, 153, 0.1), transparent 24rem),
+                linear-gradient(180deg, #07111f 0%, #081423 42%, #050c16 100%);
+            color: #f8fafc;
+        }
+
+        .glass {
+            background: rgba(10, 18, 32, 0.72);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--page-border);
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(15, 27, 46, 0.96), rgba(9, 18, 31, 0.96));
+            border: 1px solid var(--page-border);
+        }
+
+        .line {
+            height: 1px;
+            flex: 1;
+            background: linear-gradient(90deg, rgba(34, 211, 238, 0.4), rgba(148, 163, 184, 0));
+        }
+
+        .grid-backdrop {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grid-backdrop::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+            background-size: 28px 28px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 95%);
+            pointer-events: none;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 0.55rem;
+            border-radius: 9999px;
+            background: rgba(15, 23, 42, 0.9);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #22d3ee 0%, #34d399 100%);
+        }
+
+        .week-bar {
+            min-height: 12rem;
+            display: flex;
+            align-items: end;
+        }
+
+        .week-bar-fill {
+            width: 100%;
+            border-radius: 1rem 1rem 0.5rem 0.5rem;
+            background: linear-gradient(180deg, rgba(34, 211, 238, 0.95), rgba(14, 165, 233, 0.28));
+            border: 1px solid rgba(34, 211, 238, 0.28);
+            box-shadow: 0 18px 40px rgba(6, 182, 212, 0.16);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-slate-950 overflow-x-hidden">
+    <header class="sticky top-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-20 flex items-center justify-between gap-6">
+                <a href="index.html#hero" class="text-2xl font-display font-bold tracking-tight text-white">Louis<span class="text-accent">.</span>Astori</a>
+                <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                    <a href="#overview" class="text-slate-300 hover:text-accent transition-colors">Vue globale</a>
+                    <a href="#training" class="text-slate-300 hover:text-accent transition-colors">Charge</a>
+                    <a href="#sleep" class="text-slate-300 hover:text-accent transition-colors">Sommeil</a>
+                    <a href="#wellness" class="text-slate-300 hover:text-accent transition-colors">Bien-etre</a>
+                    <a href="#activities" class="text-slate-300 hover:text-accent transition-colors">Activites</a>
+                </nav>
+                <a href="index.html#sport" class="inline-flex items-center gap-3 px-4 py-2.5 rounded-xl border border-slate-700 text-slate-200 hover:border-accent hover:text-white transition-colors">
+                    Retour portfolio
+                    <i class="fas fa-arrow-left text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="pt-20 pb-14">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-[1.12fr_0.88fr] gap-8 items-start">
+                    <div class="max-w-3xl">
+                        <p class="text-accent font-semibold tracking-[0.22em] uppercase text-xs sm:text-sm mb-5">Sport detail</p>
+                        <h1 class="font-display text-5xl md:text-7xl font-bold text-white leading-none tracking-tight mb-5">
+                            Tableau de bord sport, sommeil et recuperation.
+                        </h1>
+                        <p class="text-lg md:text-xl text-slate-300 leading-relaxed mb-8">
+                            Cette page rassemble les donnees issues de mon crawler Garmin : volume d'entrainement, records, charge, sommeil, body battery, stress, activites recentes et historique journalier.
+                        </p>
+                        <div id="hero-badges" class="flex flex-wrap gap-3 text-sm text-slate-300 mb-8">
+                            <span class="px-3 py-2 rounded-full bg-slate-900/70 border border-slate-800">Chargement Garmin...</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#activities" class="px-7 py-3.5 rounded-xl bg-accent text-slate-950 font-semibold hover:bg-cyan-200 transition-colors text-center">
+                                Voir les activites
+                            </a>
+                            <a href="#sleep" class="px-7 py-3.5 rounded-xl border border-accent/60 text-accent font-semibold hover:bg-accent/10 transition-colors text-center">
+                                Voir le sommeil
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-[2rem] p-8 grid-backdrop">
+                        <div class="relative z-10">
+                            <div class="flex items-center justify-between gap-4 mb-7">
+                                <div>
+                                    <p class="text-slate-400 text-sm uppercase tracking-[0.18em] mb-2">Snapshot</p>
+                                    <h2 class="font-display text-3xl text-white font-bold">Lecture rapide</h2>
+                                </div>
+                                <span class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center text-xl">
+                                    <i class="fas fa-chart-line"></i>
+                                </span>
+                            </div>
+                            <div id="hero-snapshot" class="space-y-4">
+                                <div class="rounded-2xl bg-slate-950/55 border border-slate-800 p-4">
+                                    <p class="text-sm text-slate-400 mb-1">Chargement</p>
+                                    <p class="text-white font-semibold">Lecture des exports Garmin en cours.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="overview" class="py-14">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12">
+                    <div class="flex items-center gap-5">
+                        <span class="font-display text-accent text-xl">01.</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Vue globale</h2>
+                        <div class="line hidden md:block"></div>
+                    </div>
+                    <p class="text-slate-400 mt-4 max-w-4xl">
+                        Le bloc d'ensemble pour comprendre d'un coup d'oeil le volume recent, la forme generale et la nature des donnees recuperees.
+                    </p>
+                </div>
+                <div id="overview-metrics" class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <article class="card rounded-3xl p-6"><p class="text-slate-500 text-sm">Chargement...</p></article>
+                </div>
+                <div class="grid xl:grid-cols-[0.9fr_1.1fr] gap-6 mt-6">
+                    <div id="overview-source" class="card rounded-3xl p-8">
+                        <p class="text-slate-500 text-sm">Chargement des sources...</p>
+                    </div>
+                    <div id="overview-highlights" class="card rounded-3xl p-8">
+                        <p class="text-slate-500 text-sm">Chargement des points saillants...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="training" class="py-14 bg-slate-950/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12">
+                    <div class="flex items-center gap-5">
+                        <span class="font-display text-accent text-xl">02.</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Charge et progression</h2>
+                        <div class="line hidden md:block"></div>
+                    </div>
+                    <p class="text-slate-400 mt-4 max-w-4xl">
+                        Records, sorties longues, pic de charge et evolution par semaine pour suivre ce qui monte, ce qui tient et ce qui fatigue.
+                    </p>
+                </div>
+                <div id="training-records" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
+                    <article class="card rounded-3xl p-6"><p class="text-slate-500 text-sm">Chargement...</p></article>
+                </div>
+                <div class="grid xl:grid-cols-[1.15fr_0.85fr] gap-6">
+                    <div id="training-weekly" class="card rounded-3xl p-8">
+                        <p class="text-slate-500 text-sm">Chargement du volume hebdomadaire...</p>
+                    </div>
+                    <div id="training-breakdown" class="card rounded-3xl p-8">
+                        <p class="text-slate-500 text-sm">Chargement de la repartition...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sleep" class="py-14">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12">
+                    <div class="flex items-center gap-5">
+                        <span class="font-display text-accent text-xl">03.</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Sommeil et recuperation</h2>
+                        <div class="line hidden md:block"></div>
+                    </div>
+                    <p class="text-slate-400 mt-4 max-w-4xl">
+                        Vue dediee au sommeil, a la qualite de la nuit, a la variabilite cardiaque et a la recharge energetique.
+                    </p>
+                </div>
+                <div id="sleep-metrics" class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+                    <article class="card rounded-3xl p-6"><p class="text-slate-500 text-sm">Chargement...</p></article>
+                </div>
+                <div id="sleep-nights" class="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <article class="card rounded-3xl p-6"><p class="text-slate-500 text-sm">Chargement des nuits...</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="wellness" class="py-14 bg-slate-950/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12">
+                    <div class="flex items-center gap-5">
+                        <span class="font-display text-accent text-xl">04.</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Bien-etre journalier</h2>
+                        <div class="line hidden md:block"></div>
+                    </div>
+                    <p class="text-slate-400 mt-4 max-w-4xl">
+                        Chaque jour recent avec les indicateurs utiles : pas, sommeil, body battery, stress, calories actives, FC de repos, SpO2 et minutes d'intensite.
+                    </p>
+                </div>
+                <div id="wellness-history" class="grid xl:grid-cols-2 gap-6">
+                    <article class="card rounded-3xl p-6"><p class="text-slate-500 text-sm">Chargement de l'historique...</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities" class="py-14">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12">
+                    <div class="flex items-center gap-5">
+                        <span class="font-display text-accent text-xl">05.</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Dernieres activites</h2>
+                        <div class="line hidden md:block"></div>
+                    </div>
+                    <p class="text-slate-400 mt-4 max-w-4xl">
+                        La partie la plus fine : nom de la seance, type, date, duree, distance, rythme ou vitesse, cardio, puissance, charge, calories, pas et denivele.
+                    </p>
+                </div>
+                <div id="activities-list" class="grid xl:grid-cols-2 gap-6">
+                    <article class="card rounded-3xl p-6"><p class="text-slate-500 text-sm">Chargement des activites...</p></article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-[#050c16] py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div>
+                <p class="text-accent text-sm uppercase tracking-[0.18em] mb-2">Sport dashboard</p>
+                <h2 class="font-display text-3xl font-bold text-white mb-2">Retour au portfolio principal quand tu veux.</h2>
+                <p class="text-slate-400">Cette page est alimentee par les exports Garmin presents dans le projet.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="index.html#sport" class="px-6 py-3 rounded-xl bg-accent text-slate-950 font-semibold hover:bg-cyan-200 transition-colors text-center">Retour portfolio</a>
+                <a href="mailto:louis.astori@gmail.com" class="px-6 py-3 rounded-xl border border-slate-700 text-slate-200 font-semibold hover:border-accent hover:text-white transition-colors text-center">Me contacter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/data/garmin-summary.js"></script>
+    <script src="sport.js"></script>
+</body>
+</html>
