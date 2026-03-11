@@ -1,0 +1,9 @@
+node_modules
+.expo
+.expo-shared
+android
+ios
+.git
+.gitignore
+npm-debug.log*
+smartlife-proxy/node_modules

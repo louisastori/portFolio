@@ -1,0 +1,54 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260312000002
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-crawler.ps1
+ID de processus : 49004
+PSVersion: 5.1.26100.7705
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7705
+BuildVersion: 10.0.26100.7705
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly crawler start: 2026-03-12T00:00:02
+Ensuring Chrome remote debugging session is available...
+Chrome DevTools pret sur le port 9222.
+{
+   "Browser": "Chrome/145.0.7632.160",
+   "Protocol-Version": "1.3",
+   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safa
+ri/537.36",
+   "V8-Version": "14.5.201.17",
+   "WebKit-Version": "537.36 (@662e0d7961bd91ebe77fe6c52f369e45647af51c)",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/browser/3b330013-2fe1-4848-bdb1-f6a47c4c6af4"
+}
+
+Le profil Chrome dedie a l'automatisation est: C:\Users\louis\AppData\Local\Google\Chrome\User Data GarminCrawler
+Connecte-toi a Garmin dans cette fenetre si necessaire. Ce profil sera reutilise aux prochains lancements.
+Running Garmin crawler...
+Fetching activity detail 21610870813...
+Fetching activity detail 21590937666...
+Fetching activity detail 21559989599...
+Fetching activity detail 21559095745...
+Fetching daily data for 2026-03-04...
+Fetching daily data for 2026-03-05...
+Fetching daily data for 2026-03-06...
+Fetching daily data for 2026-03-07...
+Fetching daily data for 2026-03-08...
+Fetching daily data for 2026-03-09...
+Fetching daily data for 2026-03-10...
+Fetching daily data for 2026-03-11...
+Export complete: C:\Users\louis\Desktop\buildProject\garmin crawler\exports\2026-03-11T23-00-07-690Z
+Exporting portfolio performance snapshot...
+
+Nightly crawler completed: 2026-03-12T00:01:30
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260312000130
+**********************
