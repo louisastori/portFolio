@@ -3,8 +3,8 @@ const path = require("node:path");
 
 const workspaceDir = path.resolve(__dirname, "..", "..");
 const exportsDir = path.join(workspaceDir, "garmin crawler", "exports");
-const outputFile = path.join(workspaceDir, "portfolio-unifie", "assets", "data", "garmin-summary.json");
-const outputScriptFile = path.join(workspaceDir, "portfolio-unifie", "assets", "data", "garmin-summary.js");
+const outputFile = path.join(workspaceDir, "portfolio", "assets", "data", "garmin-summary.json");
+const outputScriptFile = path.join(workspaceDir, "portfolio", "assets", "data", "garmin-summary.js");
 
 const typeLabels = {
     running: "Course",
