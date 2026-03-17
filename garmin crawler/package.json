@@ -5,13 +5,14 @@
   "main": "crawler.js",
   "scripts": {
     "crawl": "node crawler.js",
-    "chrome:debug": "powershell -ExecutionPolicy Bypass -File .\\start-debug-chrome.ps1",
+    "login": "node crawler.js --prepare-login --skip-activity-details --activity-limit 1",
+    "chrome:debug": "node crawler.js --prepare-login --skip-activity-details --activity-limit 1",
     "test": "node --check crawler.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "^24.38.0"
+    "playwright": "^1.55.1"
   }
 }

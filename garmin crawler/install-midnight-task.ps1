@@ -19,4 +19,4 @@ $principal = New-ScheduledTaskPrincipal -UserId $currentUser -LogonType Interact
 Register-ScheduledTask -TaskName $TaskName -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
 
 Write-Host "Scheduled task '$TaskName' registered for $(Get-Date $RunAt -Format 'HH:mm') under $currentUser."
-Write-Host "This task runs only while the user session is logged in, which is required for the Chrome automation profile."
+Write-Host "This task runs only while the user session is logged in, which is required for the persistent Garmin browser profile."

@@ -1,12 +1,15 @@
 const fs = require('node:fs/promises');
+const os = require('node:os');
 const path = require('node:path');
-const puppeteer = require('puppeteer');
+const { chromium } = require('playwright');
 
 const GARMIN_ORIGIN = 'https://connect.garmin.com';
 const GARMIN_MODERN_URL = `${GARMIN_ORIGIN}/modern/`;
-const DEFAULT_BROWSER_URL = process.env.CHROME_DEBUG_URL || 'http://127.0.0.1:9222';
 const DEFAULT_ACTIVITY_LIMIT = 20;
 const DEFAULT_LOOKBACK_DAYS = 7;
+const DEFAULT_LOGIN_TIMEOUT_MS = 300000;
+const DEFAULT_HEADLESS = /^(1|true|yes)$/i.test(process.env.GARMIN_HEADLESS || '');
+const DEFAULT_PROFILE_DIR = process.env.GARMIN_PROFILE_DIR || getDefaultProfileDir();
 
 function printHelp() {
   console.log(`
@@ -14,26 +17,32 @@ Usage:
   node crawler.js [options]
 
 Options:
-  --browser-url <url>         Chrome DevTools endpoint base URL (default: ${DEFAULT_BROWSER_URL})
   --start-date <YYYY-MM-DD>   Start date for daily exports (default: today - ${DEFAULT_LOOKBACK_DAYS} days)
   --end-date <YYYY-MM-DD>     End date for daily exports (default: today)
   --activity-limit <number>   Number of activities to fetch (default: ${DEFAULT_ACTIVITY_LIMIT})
   --skip-activity-details     Skip per-activity detail fetches
+  --prepare-login             Open Garmin, wait for a valid session, then exit without exporting data
+  --profile-dir <path>        Persistent browser profile dir (default: ${DEFAULT_PROFILE_DIR})
+  --browser-executable <path> Chrome/Chromium executable path (default: installed Chrome via Playwright)
+  --headless                  Run browser in headless mode
   --output-dir <path>         Output folder (default: ./exports/<timestamp>)
   --help                      Show this help
 
 Typical flow:
-  1. Run: npm run chrome:debug
-  2. If Garmin is not already authenticated in the automation profile, sign in once in the opened Chrome window.
+  1. Run: npm run login
+  2. Sign in once in the opened browser if Garmin asks for authentication.
   3. Run: npm run crawl
 `);
 }
 
 function parseArgs(argv) {
   const args = {
-    browserUrl: DEFAULT_BROWSER_URL,
     activityLimit: DEFAULT_ACTIVITY_LIMIT,
     skipActivityDetails: false,
+    prepareLogin: false,
+    headless: DEFAULT_HEADLESS,
+    profileDir: DEFAULT_PROFILE_DIR,
+    browserExecutable: process.env.GARMIN_BROWSER_EXECUTABLE || '',
     outputDir: null,
   };
 
@@ -50,16 +59,22 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (token === '--prepare-login') {
+      args.prepareLogin = true;
+      continue;
+    }
+
+    if (token === '--headless') {
+      args.headless = true;
+      continue;
+    }
+
     const nextValue = argv[index + 1];
     if (!nextValue || nextValue.startsWith('--')) {
       throw new Error(`Missing value for ${token}`);
     }
 
     switch (token) {
-      case '--browser-url':
-        args.browserUrl = nextValue;
-        index += 1;
-        break;
       case '--start-date':
         args.startDate = normalizeIsoDate(nextValue, '--start-date');
         index += 1;
@@ -70,6 +85,14 @@ function parseArgs(argv) {
         break;
       case '--activity-limit':
         args.activityLimit = normalizePositiveInt(nextValue, '--activity-limit');
+        index += 1;
+        break;
+      case '--profile-dir':
+        args.profileDir = path.resolve(nextValue);
+        index += 1;
+        break;
+      case '--browser-executable':
+        args.browserExecutable = path.resolve(nextValue);
         index += 1;
         break;
       case '--output-dir':
@@ -142,7 +165,10 @@ function buildOutputDir(requestedOutputDir) {
   }
 
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-  return path.resolve(process.cwd(), 'exports', timestamp);
+  const baseOutputDir = process.env.GARMIN_CRAWLER_EXPORTS_PATH
+    ? path.resolve(process.env.GARMIN_CRAWLER_EXPORTS_PATH)
+    : path.resolve(process.cwd(), 'exports');
+  return path.join(baseOutputDir, timestamp);
 }
 
 function buildCandidateUrls(servicePath) {
@@ -167,51 +193,57 @@ function formatAttemptSummary(attempts) {
     .join(' | ');
 }
 
-async function ensureChromeDebugEndpoint(browserUrl) {
-  const healthUrl = `${browserUrl.replace(/\/$/, '')}/json/version`;
-  let response;
+function getDefaultProfileDir() {
+  if (process.platform === 'win32') {
+    const localAppData = process.env.LOCALAPPDATA || path.join(os.homedir(), 'AppData', 'Local');
+    return path.join(localAppData, 'Google', 'Chrome', 'User Data GarminCrawler');
+  }
+
+  if (process.platform === 'darwin') {
+    return path.join(os.homedir(), 'Library', 'Application Support', 'GarminCrawler');
+  }
+
+  return path.join(process.env.XDG_CONFIG_HOME || path.join(os.homedir(), '.config'), 'garmin-crawler');
+}
+
+async function launchBrowserContext({ profileDir, browserExecutable, headless }) {
+  await fs.mkdir(profileDir, { recursive: true });
+
+  const launchOptions = {
+    channel: browserExecutable ? undefined : 'chrome',
+    executablePath: browserExecutable || undefined,
+    headless,
+    viewport: null,
+    locale: 'fr-FR',
+    args: [
+      '--start-maximized',
+      '--no-first-run',
+      '--no-default-browser-check',
+      '--disable-default-apps',
+      '--disable-blink-features=AutomationControlled',
+    ],
+  };
 
   try {
-    response = await fetch(healthUrl);
+    return await chromium.launchPersistentContext(profileDir, launchOptions);
   } catch (error) {
     throw new Error([
-      `Chrome DevTools n'est pas joignable sur ${browserUrl}.`,
-      'Lance `npm run chrome:debug` pour demarrer le profil Chrome dedie a l\'automatisation.',
-      'Ensuite relance `npm run crawl`.',
+      `Impossible de lancer le navigateur persistant Playwright avec le profil ${profileDir}.`,
+      browserExecutable
+        ? `Executable demande: ${browserExecutable}`
+        : 'Chrome installe via Playwright channel "chrome".',
+      'Ferme toute fenetre qui utilise deja ce profil GarminCrawler puis relance la commande.',
       `Cause originale: ${error.message}`,
     ].join('\n'));
   }
-
-  if (!response.ok) {
-    throw new Error(`Chrome DevTools a repondu ${response.status} sur ${healthUrl}`);
-  }
-
-  return response.json();
 }
 
-async function connectToChrome(browserUrl) {
-  await ensureChromeDebugEndpoint(browserUrl);
-
-  try {
-    return await puppeteer.connect({
-      browserURL: browserUrl,
-      defaultViewport: null,
-    });
-  } catch (error) {
-    throw new Error([
-      `Connexion a Chrome impossible via ${browserUrl}.`,
-      'Verifie que Chrome a ete lance avec un port de remote debugging actif.',
-      `Cause originale: ${error.message}`,
-    ].join('\n'));
-  }
-}
-
-async function ensureGarminPage(browser) {
-  const pages = await browser.pages();
+async function ensureGarminPage(context) {
+  const pages = context.pages();
   let page = pages.find((candidate) => candidate.url().includes('connect.garmin.com'));
 
   if (!page) {
-    page = await browser.newPage();
+    page = pages[0] || await context.newPage();
   }
 
   await page.bringToFront();
@@ -326,7 +358,7 @@ async function fetchSocialProfile(page) {
   };
 }
 
-async function waitForAuthenticatedProfile(page, timeoutMs = 300000) {
+async function waitForAuthenticatedProfile(page, timeoutMs = DEFAULT_LOGIN_TIMEOUT_MS) {
   const deadline = Date.now() + timeoutMs;
   let lastError = 'Unknown Garmin authentication error';
   let hintShown = false;
@@ -416,15 +448,21 @@ async function main() {
   }
 
   const outputDir = buildOutputDir(args.outputDir);
-  await fs.mkdir(outputDir, { recursive: true });
+  if (!args.prepareLogin) {
+    await fs.mkdir(outputDir, { recursive: true });
+  }
 
-  let browser;
+  let context;
   try {
-    console.log(`Connecting to Chrome on ${args.browserUrl}...`);
-    browser = await connectToChrome(args.browserUrl);
+    console.log(`Launching Playwright browser with persistent profile ${args.profileDir}...`);
+    context = await launchBrowserContext({
+      profileDir: args.profileDir,
+      browserExecutable: args.browserExecutable,
+      headless: args.headless,
+    });
 
     console.log('Opening Garmin Connect...');
-    const page = await ensureGarminPage(browser);
+    const page = await ensureGarminPage(context);
 
     console.log('Checking Garmin authentication...');
     const profile = await waitForAuthenticatedProfile(page);
@@ -439,6 +477,11 @@ async function main() {
     }
 
     console.log(`Authenticated as ${displayName}.`);
+
+    if (args.prepareLogin) {
+      console.log('Garmin login is ready and the persistent cookies are saved in the browser profile.');
+      return;
+    }
 
     console.log(`Fetching the latest ${args.activityLimit} activities...`);
     const activities = await fetchActivities(page, args.activityLimit);
@@ -477,7 +520,10 @@ async function main() {
 
     const metadata = {
       generatedAt: new Date().toISOString(),
-      browserUrl: args.browserUrl,
+      browserEngine: 'playwright',
+      browserExecutable: args.browserExecutable || null,
+      browserHeadless: args.headless,
+      profileDir: args.profileDir,
       outputDir,
       displayName,
       startDate: args.startDate,
@@ -501,8 +547,8 @@ async function main() {
 
     console.log(`Export complete: ${outputDir}`);
   } finally {
-    if (browser) {
-      await browser.disconnect();
+    if (context) {
+      await context.close();
     }
   }
 }

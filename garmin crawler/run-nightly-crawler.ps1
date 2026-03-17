@@ -1,5 +1,4 @@
 param(
-  [int]$Port = 9222,
   [string]$NpmCommand = "npm.cmd",
   [string]$PhpCommand = "php"
 )
@@ -18,14 +17,7 @@ Start-Transcript -Path $logPath -Append | Out-Null
 try {
   Write-Host "Nightly crawler start: $(Get-Date -Format s)"
 
-  $env:CHROME_DEBUG_URL = "http://127.0.0.1:$Port"
   $env:GARMIN_CRAWLER_EXPORTS_PATH = Join-Path $crawlerDir "exports"
-
-  Write-Host "Ensuring Chrome remote debugging session is available..."
-  & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $crawlerDir "start-debug-chrome.ps1") -Port $Port
-  if ($LASTEXITCODE -ne 0) {
-    throw "Chrome debug startup failed with exit code $LASTEXITCODE."
-  }
 
   Push-Location $crawlerDir
   try {
