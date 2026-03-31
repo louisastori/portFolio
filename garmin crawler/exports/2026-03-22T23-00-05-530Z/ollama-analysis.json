@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-03-22T23-00-05-530Z",
+  "generatedAt": "2026-03-22T23:15:40.044Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4742,
+  "analysisText": "Compte-rendu de forme – Analyse Garmin – 2026-03-23\n\nVotre activité récente présente un profil intéressant avec des fluctuations notables. La charge globale est conséquente, atteignant 7226 unités, principalement due à une charge hebdomadaire importante, notamment un samedi particulièrement chargé avec 10 activités et 399.4 km. L'activité prédominante est le cyclisme sur route, représentant 76% de vos activités.\n\nVotre sommeil est un point à surveiller. Malgré une tendance générale à des durées moyennes autour de 6 heures et 7, vous avez des nuits avec des durées significativement plus courtes (2h le 2026-03-21) et des scores de qualité variable, oscillant entre 30 et 77.  L'analyse des nuits révèle des problèmes récurrents de sommeil non-profond, des réveils fréquents, et un stress nocturne présent.  Le temps de coucher est également un facteur à considérer, avec des moments de coucher tardifs.\n\nLa récupération est globalement correcte, mais la variabilité est élevée.  Votre FC de repos est stable autour de 51, ce qui est positif.  Cependant, vos niveaux d'activité sont élevés, ce qui pourrait impacter vos temps de récupération.  Il est important d'adapter votre charge en fonction de vos sensations et de privilégier des périodes de repos plus longues.\n\nLes points forts de votre activité résident dans votre endurance cycliste, notamment sur route, avec des vitesses maximales élevées.  Votre VO2max est bien établi.  Cependant, il est important de diversifier vos activités pour solliciter d'autres groupes musculaires et éviter la surcharge.\n\nDes alertes sont présentes concernant le sommeil et le stress.  Il est recommandé de mettre en place des routines de coucher régulières et de favoriser un environnement propice au sommeil.  Une attention particulière doit être portée à la gestion du stress, notamment en période d'activité intense.  L'analyse des données suggère un lien entre le stress et la qualité de votre sommeil.",
+  "coachSignals": {
+    "alert": "Fatigue élevée détectée, surveillez votre niveau d'énergie.",
+    "advice": "Privilégiez une séance de récupération active, comme une marche légère.",
+    "tomorrowWorkout": "Envisagez une course à pied de 60-75 minutes pour maintenir votre forme.",
+    "fatigueRisk": "high",
+    "focus": "recovery"
+  },
+  "totalDuration": 18660086800,
+  "loadDuration": 12436068600,
+  "evalCount": 454,
+  "evalDuration": 5015147500
+}

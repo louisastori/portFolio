@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProjetHome | Automatisations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/site.css?v=20260331-multipage" />
+    <script defer src="/site.js?v=20260331-multipage"></script>
+  </head>
+  <body data-page="automatisations">
+    <div id="nightOverlay" class="night-overlay" hidden>
+      <div class="night-overlay-card"><p class="night-overlay-kicker">ProjetHome</p><h2 id="nightOverlayTitle" class="night-overlay-title">Rest Mode</h2><p id="nightOverlayCopy" class="night-overlay-copy">Touchez pour revenir au hub.</p></div>
+    </div>
+    <div class="page-frame">
+      <aside class="side-rail">
+        <div class="brand-block"><div class="brand-mark">PH</div><div><div class="brand-name">Night Atelier</div><div class="brand-note">tablet hub</div></div></div>
+        <nav class="rail-nav" aria-label="Pages">
+          <a class="nav-link" href="/" data-nav="home"><span class="nav-link-label">Home</span></a>
+          <a class="nav-link" href="/maison.html" data-nav="maison"><span class="nav-link-label">Maison</span></a>
+          <a class="nav-link" href="/sport.html" data-nav="sport"><span class="nav-link-label">Sport</span></a>
+          <a class="nav-link" href="/assistant.html" data-nav="assistant"><span class="nav-link-label">AI</span></a>
+          <a class="nav-link" href="/automatisations.html" data-nav="automatisations"><span class="nav-link-label">Flow</span></a>
+          <a class="nav-link" href="/chambre.html" data-nav="chambre"><span class="nav-link-label">Sleep</span></a>
+        </nav>
+        <div class="rail-footer"><div class="rail-pill">Evening flow</div><a class="support-link" href="/chambre.html">sleep protocol</a></div>
+      </aside>
+
+      <div class="app-shell">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Rest mode active</p>
+            <h1>Create the perfect rhythm for your evening rest.</h1>
+            <p class="topbar-lead">Les routines, preferences locales et apercus nuit ont leur propre page et ne parasitent plus la lecture maison ou sport.</p>
+          </div>
+          <div class="topbar-actions">
+            <div class="topbar-button-row"><button class="ghost-button" type="button" data-action="refresh">Refresh live</button><a class="ghost-button" href="/chambre.html">Open sleep page</a></div>
+            <div id="syncStatus" class="sync-pill">Hub stable</div>
+            <div class="clock-stack"><strong class="clock-time" data-frame="clock">--:--</strong><span class="clock-date" data-frame="date">--</span></div>
+          </div>
+        </header>
+
+        <div id="globalBanner" class="global-banner" hidden></div>
+
+        <main class="page-content">
+          <section class="hero-grid">
+            <article class="feature-panel warm-panel">
+              <p class="eyebrow">Night routine</p>
+              <h2 class="display-title">Perfect <span>rhythm.</span></h2>
+              <p id="automationLead" class="soft-copy">Le plan de nuit se construit depuis le soleil, la dette de sommeil et les scenes locales.</p>
+              <div id="automationSummary" class="summary-grid"></div>
+            </article>
+            <aside class="feature-panel">
+              <p class="eyebrow">Routine summary</p>
+              <div id="automationSide" class="stack-grid"></div>
+            </aside>
+          </section>
+
+          <section class="section-split">
+            <section class="section-block">
+              <div class="section-heading"><div><p class="eyebrow">Trigger and actions</p><h2>Night routine</h2></div></div>
+              <div id="automationTimeline" class="stack-grid"></div>
+              <div class="button-row" style="margin-top:14px">
+                <button id="automationStartCalm" class="primary-button" type="button">Launch calm scene</button>
+                <button id="automationPreviewNight" class="ghost-button" type="button">Preview blackout</button>
+              </div>
+            </section>
+            <section class="section-block">
+              <div class="section-heading"><div><p class="eyebrow">Templates</p><h2>Night presets</h2></div></div>
+              <div id="automationTemplates" class="stack-grid"></div>
+            </section>
+          </section>
+
+          <section class="section-block">
+            <div class="section-heading"><div><p class="eyebrow">Preferences</p><h2>Local switches</h2></div></div>
+            <form id="automationPreferences" class="preferences-grid">
+              <label class="pref-card"><div class="pref-row"><div><p class="pref-kicker">Rest mode</p><p class="pref-note">Lecture calme et priorites du soir.</p></div><input id="prefRestMode" type="checkbox" /></div></label>
+              <label class="pref-card"><div class="pref-row"><div><p class="pref-kicker">Silent mode</p><p class="pref-note">Reduit les interruptions et signaux sonores.</p></div><input id="prefSilentMode" type="checkbox" /></div></label>
+              <label class="pref-card"><div class="pref-row"><div><p class="pref-kicker">Readable mode</p><p class="pref-note">Augmente la taille et simplifie les compositions.</p></div><input id="prefReadableMode" type="checkbox" /></div></label>
+              <label class="pref-card"><div class="pref-row"><div><p class="pref-kicker">Auto speak</p><p class="pref-note">Lit les reponses assistant sur la tablette.</p></div><input id="prefAutoSpeak" type="checkbox" /></div></label>
+            </form>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

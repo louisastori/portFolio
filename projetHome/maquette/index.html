@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProjetHome - Maquette</title>
+    <meta
+      name="description"
+      content="Maquette statique HTML/CSS pour le dashboard ProjetHome."
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="ambient ambient-left" aria-hidden="true"></div>
+      <div class="ambient ambient-right" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <a class="brand" href="#hero">
+          <span class="brand-mark">PH</span>
+          <span class="brand-copy">
+            <strong>ProjetHome</strong>
+            <small>maquette dashboard maison</small>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="Navigation">
+          <a href="#vision">Vision</a>
+          <a href="#maison">Maison</a>
+          <a href="#sport">Sport</a>
+          <a href="#assistant">Assistant</a>
+        </nav>
+
+        <a class="topbar-action" href="#prototype">Voir le concept</a>
+      </header>
+
+      <main>
+        <section id="hero" class="hero-grid">
+          <article class="hero-copy glass-card">
+            <p class="eyebrow">Hub de vie personnelle</p>
+            <h1>Une interface unique pour piloter la maison, le sport et les routines.</h1>
+            <p class="hero-text">
+              Cette maquette imagine ProjetHome comme un cockpit mural: lecture rapide,
+              automatisations visibles, et priorites de la journee en un regard.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#prototype">Explorer la maquette</a>
+              <a class="button button-secondary" href="#maison">Voir les espaces</a>
+            </div>
+
+            <div class="signal-row">
+              <article class="signal-pill">
+                <span class="signal-label">Mode</span>
+                <strong>Tablette murale</strong>
+              </article>
+              <article class="signal-pill">
+                <span class="signal-label">Usage</span>
+                <strong>Maison + forme + IA</strong>
+              </article>
+              <article class="signal-pill">
+                <span class="signal-label">Style</span>
+                <strong>Sobre, lisible, vivant</strong>
+              </article>
+            </div>
+          </article>
+
+          <aside id="prototype" class="hero-preview glass-card">
+            <div class="preview-window">
+              <div class="preview-header">
+                <span class="preview-dot dot-coral"></span>
+                <span class="preview-dot dot-sand"></span>
+                <span class="preview-dot dot-mint"></span>
+                <p class="preview-title">Apercu du dashboard</p>
+              </div>
+
+              <div class="preview-grid">
+                <section class="preview-panel preview-panel-accent">
+                  <p class="preview-kicker">Aujourd hui</p>
+                  <h2>Maison stable, charge sportive moderee, soiree automatisee a 22:30.</h2>
+                  <div class="preview-chip-row">
+                    <span class="preview-chip">air 21 C</span>
+                    <span class="preview-chip">sommeil 82</span>
+                    <span class="preview-chip">3 routines actives</span>
+                  </div>
+                </section>
+
+                <section class="preview-panel">
+                  <p class="preview-kicker">Pieces</p>
+                  <div class="mini-room-list">
+                    <article>
+                      <span>Salon</span>
+                      <strong>72%</strong>
+                    </article>
+                    <article>
+                      <span>Chambre</span>
+                      <strong>veille douce</strong>
+                    </article>
+                    <article>
+                      <span>Bureau</span>
+                      <strong>focus</strong>
+                    </article>
+                  </div>
+                </section>
+
+                <section class="preview-panel">
+                  <p class="preview-kicker">Recuperation</p>
+                  <div class="mini-bars" aria-hidden="true">
+                    <span style="height: 48%"></span>
+                    <span style="height: 75%"></span>
+                    <span style="height: 58%"></span>
+                    <span style="height: 88%"></span>
+                    <span style="height: 67%"></span>
+                    <span style="height: 52%"></span>
+                    <span style="height: 81%"></span>
+                  </div>
+                </section>
+
+                <section class="preview-panel preview-assistant">
+                  <p class="preview-kicker">Assistant local</p>
+                  <div class="assistant-snippet user">Etat rapide de ma forme et du soir ?</div>
+                  <div class="assistant-snippet bot">
+                    Forme correcte. Coupe les ecrans a 22:00 et baisse les lumieres en chambre.
+                  </div>
+                </section>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section id="vision" class="metrics-row">
+          <article class="metric-card glass-card">
+            <p class="metric-label">Lecture instantanee</p>
+            <p class="metric-value">4 zones</p>
+            <p class="metric-note">Maison, sport, routines, assistant sans changer d ecran.</p>
+          </article>
+          <article class="metric-card glass-card">
+            <p class="metric-label">Automatisations</p>
+            <p class="metric-value">12 scenes</p>
+            <p class="metric-note">Lever, focus, sport, relaxation, coucher et modes exception.</p>
+          </article>
+          <article class="metric-card glass-card">
+            <p class="metric-label">Rythme sportif</p>
+            <p class="metric-value">7 jours</p>
+            <p class="metric-note">Charge, sommeil, energie et alertes compactees en une bande.</p>
+          </article>
+          <article class="metric-card glass-card">
+            <p class="metric-label">Voix locale</p>
+            <p class="metric-value">1 flux</p>
+            <p class="metric-note">Assistant present pour le brief, la maison et la prise de notes.</p>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <article class="feature-card feature-card-large glass-card">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Scenario du jour</p>
+                <h2>Le dashboard ne montre pas tout. Il montre ce qui compte maintenant.</h2>
+              </div>
+              <span class="section-badge">Vue principale</span>
+            </div>
+
+            <div class="timeline">
+              <article class="timeline-item">
+                <span class="timeline-hour">07:00</span>
+                <div class="timeline-copy">
+                  <h3>Routine reveil</h3>
+                  <p>Lumieres progressives, meteo rapide, temperature et objectif principal du jour.</p>
+                </div>
+              </article>
+              <article class="timeline-item">
+                <span class="timeline-hour">12:30</span>
+                <div class="timeline-copy">
+                  <h3>Point milieu</h3>
+                  <p>Etat sportif, repas saisis, niveau d energie et rappel d hydratation.</p>
+                </div>
+              </article>
+              <article class="timeline-item">
+                <span class="timeline-hour">18:45</span>
+                <div class="timeline-copy">
+                  <h3>Bloc maison</h3>
+                  <p>Scenes du soir, pieces allumees, rappel sportif et preparation du coucher.</p>
+                </div>
+              </article>
+              <article class="timeline-item">
+                <span class="timeline-hour">22:30</span>
+                <div class="timeline-copy">
+                  <h3>Descente nocturne</h3>
+                  <p>Veille noire, voix off, chambre froide et assistant silencieux sauf urgence.</p>
+                </div>
+              </article>
+            </div>
+          </article>
+
+          <article class="feature-card glass-card">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Etat maison</p>
+                <h2>Pouls du foyer</h2>
+              </div>
+              <span class="section-badge badge-mint">Stable</span>
+            </div>
+
+            <div class="status-stack">
+              <article class="status-line">
+                <span>Consommation live</span>
+                <strong>1.8 kWh</strong>
+              </article>
+              <article class="status-line">
+                <span>Air interieur</span>
+                <strong>Bonne qualite</strong>
+              </article>
+              <article class="status-line">
+                <span>Routines actives</span>
+                <strong>Focus, sport, coucher</strong>
+              </article>
+            </div>
+
+            <div class="gauge-block">
+              <div class="gauge-head">
+                <span>Confort global</span>
+                <strong>84%</strong>
+              </div>
+              <div class="gauge-track">
+                <span class="gauge-fill" style="width: 84%"></span>
+              </div>
+            </div>
+
+            <div class="status-footnote">
+              Le design privilegie des indicateurs lisibles a distance, adaptes a une tablette fixe.
+            </div>
+          </article>
+        </section>
+
+        <section id="maison" class="showcase glass-card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Maison</p>
+              <h2>Cartes de pieces et scenes immediates</h2>
+            </div>
+            <span class="section-badge">Controle local</span>
+          </div>
+
+          <div class="showcase-grid">
+            <div class="room-grid">
+              <article class="room-card room-card-salon">
+                <div class="room-head">
+                  <div>
+                    <p class="room-name">Salon</p>
+                    <p class="room-meta">Ambiance principale</p>
+                  </div>
+                  <span class="room-state">Actif</span>
+                </div>
+                <p class="room-value">72%</p>
+                <div class="meter">
+                  <span style="width: 72%"></span>
+                </div>
+                <div class="chip-list">
+                  <span>lampes douces</span>
+                  <span>presence detectee</span>
+                  <span>scene lecture</span>
+                </div>
+              </article>
+
+              <article class="room-card room-card-chambre">
+                <div class="room-head">
+                  <div>
+                    <p class="room-name">Chambre</p>
+                    <p class="room-meta">Sommeil et coucher</p>
+                  </div>
+                  <span class="room-state room-state-soft">Veille</span>
+                </div>
+                <p class="room-value">24%</p>
+                <div class="meter">
+                  <span style="width: 24%"></span>
+                </div>
+                <div class="chip-list">
+                  <span>lumiere chaude</span>
+                  <span>temperature cible</span>
+                  <span>blackout pret</span>
+                </div>
+              </article>
+
+              <article class="room-card room-card-bureau">
+                <div class="room-head">
+                  <div>
+                    <p class="room-name">Bureau</p>
+                    <p class="room-meta">Travail et focus</p>
+                  </div>
+                  <span class="room-state">Focus</span>
+                </div>
+                <p class="room-value">58%</p>
+                <div class="meter">
+                  <span style="width: 58%"></span>
+                </div>
+                <div class="chip-list">
+                  <span>ecran principal</span>
+                  <span>air neutre</span>
+                  <span>son discret</span>
+                </div>
+              </article>
+
+              <article class="room-card room-card-cuisine">
+                <div class="room-head">
+                  <div>
+                    <p class="room-name">Cuisine</p>
+                    <p class="room-meta">Nutrition et rythme</p>
+                  </div>
+                  <span class="room-state room-state-soft">Pause</span>
+                </div>
+                <p class="room-value">41%</p>
+                <div class="meter">
+                  <span style="width: 41%"></span>
+                </div>
+                <div class="chip-list">
+                  <span>prep repas</span>
+                  <span>lumiere neutre</span>
+                  <span>rappel eau</span>
+                </div>
+              </article>
+            </div>
+
+            <aside class="scene-card">
+              <p class="eyebrow">Scenes directes</p>
+              <h3>Actions a un toucher</h3>
+
+              <div class="scene-list">
+                <article>
+                  <strong>Reveil doux</strong>
+                  <span>Lumiere progressive, voix basse, infos essentielles.</span>
+                </article>
+                <article>
+                  <strong>Bloc sport</strong>
+                  <span>Annonce de seance, eclairage bureau, musique ou minuteur.</span>
+                </article>
+                <article>
+                  <strong>Soiree calme</strong>
+                  <span>Salon chaud, notifications coupees, chambre preparee.</span>
+                </article>
+                <article>
+                  <strong>Nuit totale</strong>
+                  <span>Ecran noir, son coupe, reveil uniquement au toucher.</span>
+                </article>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section id="sport" class="dual-grid">
+          <article class="sport-card glass-card">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Sport et recuperation</p>
+                <h2>Une bande compacte pour suivre forme, charge et sommeil.</h2>
+              </div>
+              <span class="section-badge badge-warm">Priorite forme</span>
+            </div>
+
+            <div class="sport-summary">
+              <div>
+                <p class="sport-number">82</p>
+                <p class="sport-caption">score sommeil</p>
+              </div>
+              <div>
+                <p class="sport-number">5h40</p>
+                <p class="sport-caption">charge utile semaine</p>
+              </div>
+              <div>
+                <p class="sport-number">+14%</p>
+                <p class="sport-caption">recuperation vs hier</p>
+              </div>
+            </div>
+
+            <div class="bar-chart" aria-label="Charge sur 7 jours">
+              <article class="bar-column">
+                <span class="bar-label">L</span>
+                <span class="bar-rail"><span style="height: 38%"></span></span>
+              </article>
+              <article class="bar-column">
+                <span class="bar-label">M</span>
+                <span class="bar-rail"><span style="height: 66%"></span></span>
+              </article>
+              <article class="bar-column">
+                <span class="bar-label">M</span>
+                <span class="bar-rail"><span style="height: 54%"></span></span>
+              </article>
+              <article class="bar-column">
+                <span class="bar-label">J</span>
+                <span class="bar-rail"><span style="height: 88%"></span></span>
+              </article>
+              <article class="bar-column">
+                <span class="bar-label">V</span>
+                <span class="bar-rail"><span style="height: 62%"></span></span>
+              </article>
+              <article class="bar-column">
+                <span class="bar-label">S</span>
+                <span class="bar-rail"><span style="height: 46%"></span></span>
+              </article>
+              <article class="bar-column">
+                <span class="bar-label">D</span>
+                <span class="bar-rail"><span style="height: 74%"></span></span>
+              </article>
+            </div>
+          </article>
+
+          <article class="insight-card glass-card">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Conseil UI</p>
+                <h2>Limiter les details au premier niveau</h2>
+              </div>
+            </div>
+
+            <div class="insight-list">
+              <article>
+                <strong>Premier regard</strong>
+                <p>3 chiffres, 1 tendance, 1 recommandation. Pas plus.</p>
+              </article>
+              <article>
+                <strong>Second niveau</strong>
+                <p>Graphiques et historique seulement au clic ou dans une vue dediee.</p>
+              </article>
+              <article>
+                <strong>Etat du soir</strong>
+                <p>La maquette anticipe le coucher avec une logique plus preventive que reactive.</p>
+              </article>
+            </div>
+          </article>
+        </section>
+
+        <section id="assistant" class="assistant-grid">
+          <article class="assistant-card glass-card">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Assistant local</p>
+                <h2>Un brief utile, pas un chatbot envahissant</h2>
+              </div>
+              <span class="section-badge badge-mint">Ollama / local</span>
+            </div>
+
+            <div class="assistant-log">
+              <article class="bubble bubble-user">
+                <span>Utilisateur</span>
+                <p>Resume ma journee et ce que je dois preparer pour ce soir.</p>
+              </article>
+              <article class="bubble bubble-bot">
+                <span>Assistant</span>
+                <p>
+                  Energie correcte. Une seule alerte: coupe les ecrans plus tot et garde la
+                  chambre a temperature basse avant 22:30.
+                </p>
+              </article>
+            </div>
+
+            <div class="prompt-row">
+              <span>Forme du jour</span>
+              <span>Seance demain</span>
+              <span>Etat sommeil</span>
+              <span>Mode coucher</span>
+            </div>
+          </article>
+
+          <article class="assistant-side glass-card">
+            <p class="eyebrow">Principes de maquette</p>
+            <h3>Ce concept met l accent sur:</h3>
+            <ul class="principles">
+              <li>une lecture a distance depuis une tablette fixe</li>
+              <li>des blocs assez gros pour rester utilisables rapidement</li>
+              <li>une separation claire entre maison, forme et assistant</li>
+              <li>des surfaces premium sans surcharge visuelle</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="closing-card glass-card">
+          <p class="eyebrow">Direction proposee</p>
+          <h2>ProjetHome comme tableau de bord personnel, pas comme simple panneau technique.</h2>
+          <p>
+            La maquette peut maintenant servir de base pour une integration web reelle ou pour
+            extraire des composants vers l interface existante.
+          </p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

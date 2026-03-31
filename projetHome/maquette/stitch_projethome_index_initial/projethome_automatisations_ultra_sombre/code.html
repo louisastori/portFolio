@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0a0a0a",
+              "on-primary": "#fef9f1",
+              "secondary": "#d97706", /* Amber 600 */
+              "on-secondary": "#ffffff",
+              "surface": "#050505",
+              "on-surface": "#e5e7eb",
+              "surface-container": "#121212",
+              "surface-container-high": "#1a1a1a",
+              "surface-container-low": "#0d0d0d",
+              "outline": "#404040",
+              "outline-variant": "#262626",
+              "primary-container": "#451a03", /* Dark Amber */
+              "on-primary-container": "#fbbf24",
+              "secondary-container": "#291305",
+              "on-secondary-container": "#f59e0b",
+              "tertiary-container": "#171717",
+              "on-tertiary-container": "#d4d4d4"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+      .active-glow {
+        box-shadow: 0 0 40px rgba(217, 119, 6, 0.15);
+      }
+      body {
+        background-color: #000000;
+      }
+    </style>
+</head>
+<body class="bg-black font-body text-gray-300 min-h-screen">
+<!-- Sidebar Navigation (Mandatory Shared Component - SideNavBar) -->
+<nav class="fixed left-0 top-0 h-full flex flex-col items-center py-10 z-50 w-24 bg-neutral-950 dark:bg-black shadow-[1px_0_0_rgba(255,255,255,0.05)]">
+<div class="mb-10 text-orange-900/50">
+<span class="material-symbols-outlined text-3xl">nights_stay</span>
+</div>
+<div class="flex flex-col gap-8 items-center flex-grow">
+<!-- Sleep (Active) -->
+<a class="flex flex-col items-center justify-center text-orange-600 bg-orange-950/20 rounded-full p-4 transition-all duration-300 active:scale-90" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">bedtime</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest">Sleep</span>
+</a>
+<!-- Security -->
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">shield</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest">Security</span>
+</a>
+<!-- Climate -->
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">thermostat</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest">Climate</span>
+</a>
+<!-- Lounge -->
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">weekend</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest">Lounge</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-6">
+<button class="text-neutral-800 hover:text-orange-600 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center border border-neutral-800">
+<span class="material-symbols-outlined text-neutral-600 text-sm">person</span>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="ml-24 min-h-screen relative flex flex-col">
+<!-- Top App Bar (TopAppBar) -->
+<header class="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-xl flex justify-between items-center px-8 py-6 bg-gradient-to-b from-neutral-900/20 to-transparent">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-orange-900 dark:text-orange-700 text-3xl">bolt</span>
+<h2 class="text-xl font-['Noto_Serif'] font-light tracking-tight text-neutral-400 dark:text-neutral-500">Night Atelier</h2>
+</div>
+<div class="flex items-center gap-6 mr-24">
+<div class="flex items-center gap-3 px-4 py-2 bg-orange-950/30 rounded-full text-orange-500 border border-orange-900/30">
+<span class="text-[10px] font-bold uppercase tracking-widest">Rest Mode Active</span>
+<button class="w-10 h-5 bg-orange-900/50 rounded-full relative flex items-center px-1">
+<div class="w-3 h-3 bg-orange-400 rounded-full translate-x-5"></div>
+</button>
+</div>
+<div class="flex gap-4">
+<button class="text-neutral-600 dark:text-neutral-700 hover:text-orange-800 transition-colors duration-300 active:scale-95">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="text-neutral-600 dark:text-neutral-700 hover:text-orange-800 transition-colors duration-300 active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="px-8 pt-32 pb-12 flex-grow max-w-7xl mx-auto w-full">
+<div class="mb-16">
+<p class="font-headline text-5xl text-neutral-100 leading-tight max-w-2xl">
+                Create the <span class="italic text-orange-600">perfect rhythm</span> for your evening rest.
+            </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Visual Builder Logic -->
+<div class="lg:col-span-8 space-y-8 relative">
+<!-- Vertical Connector Line -->
+<div class="absolute left-10 top-20 bottom-20 w-px bg-neutral-800/30 -z-10"></div>
+<!-- TRIGGER SECTION -->
+<section class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="w-20 text-[10px] font-bold uppercase tracking-widest text-neutral-500">Trigger</span>
+<div class="h-px flex-grow bg-neutral-800/20"></div>
+</div>
+<div class="flex gap-6">
+<div class="w-20 flex justify-center">
+<div class="w-12 h-12 rounded-full bg-orange-900 text-orange-100 flex items-center justify-center shadow-2xl">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+</div>
+<div class="flex-grow glass-card border border-neutral-800/30 rounded-xl p-8 transition-transform hover:scale-[1.01] active-glow border-orange-900/20">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline text-2xl text-neutral-100">At 10:00 PM</h3>
+<button class="text-neutral-600 hover:text-orange-600 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<p class="text-neutral-400 font-medium">Every evening</p>
+<div class="mt-6 flex gap-3">
+<span class="px-4 py-2 bg-neutral-900 rounded-lg text-xs font-semibold text-neutral-400">Nightly</span>
+<span class="px-4 py-2 bg-neutral-900 rounded-lg text-xs font-semibold text-orange-600/80">Active</span>
+</div>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-20 flex justify-center items-center">
+<div class="w-8 h-8 rounded-full border-2 border-dashed border-neutral-800 flex items-center justify-center text-neutral-700 hover:border-orange-900 hover:text-orange-900 cursor-pointer transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+</div>
+</div>
+<button class="flex items-center gap-3 px-6 py-4 rounded-xl border border-dashed border-neutral-800 text-neutral-500 hover:bg-neutral-900/50 transition-colors group">
+<span class="material-symbols-outlined group-hover:rotate-90 transition-transform">add_circle</span>
+<span class="font-label text-xs font-bold uppercase tracking-wider">Add Alternative Trigger</span>
+</button>
+</div>
+</section>
+<!-- ACTION SECTION -->
+<section class="space-y-6 pt-8">
+<div class="flex items-center gap-4">
+<span class="w-20 text-[10px] font-bold uppercase tracking-widest text-neutral-500">Actions</span>
+<div class="h-px flex-grow bg-neutral-800/20"></div>
+</div>
+<!-- Action 1 -->
+<div class="flex gap-6">
+<div class="w-20 flex justify-center">
+<div class="w-12 h-12 rounded-full bg-orange-950/40 text-orange-600 border border-orange-900/30 flex items-center justify-center">
+<span class="material-symbols-outlined">nightlight</span>
+</div>
+</div>
+<div class="flex-grow glass-card border border-neutral-800/30 rounded-xl p-8 transition-transform hover:scale-[1.01]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline text-2xl text-neutral-100">Dim all lights</h3>
+<p class="text-neutral-500 mt-1">Set to 10% brightness, Amber hue</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-neutral-700 hover:text-orange-600"><span class="material-symbols-outlined">drag_indicator</span></button>
+<button class="p-2 text-neutral-700 hover:text-orange-800"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Action 2 -->
+<div class="flex gap-6">
+<div class="w-20 flex justify-center">
+<div class="w-12 h-12 rounded-full bg-neutral-900 text-neutral-400 flex items-center justify-center">
+<span class="material-symbols-outlined">air</span>
+</div>
+</div>
+<div class="flex-grow glass-card border border-neutral-800/30 rounded-xl p-8 transition-transform hover:scale-[1.01]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline text-2xl text-neutral-100">White Noise</h3>
+<p class="text-neutral-500 mt-1">Bedroom speaker: "Rain Forest" at 10%</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-neutral-700 hover:text-orange-600"><span class="material-symbols-outlined">drag_indicator</span></button>
+<button class="p-2 text-neutral-700 hover:text-orange-800"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Add Step Button -->
+<div class="flex gap-6 pt-4">
+<div class="w-20"></div>
+<button class="flex items-center justify-center gap-3 px-10 py-6 rounded-xl bg-orange-950/20 border border-orange-900/50 text-orange-500 hover:bg-orange-900/30 transition-all scale-100 hover:scale-105 active:scale-95 group">
+<span class="material-symbols-outlined font-bold group-hover:rotate-180 transition-transform">add</span>
+<span class="font-label font-bold uppercase tracking-widest">Add Next Action</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Sidebar Contextual Info -->
+<div class="lg:col-span-4 space-y-8">
+<!-- Preview Card -->
+<div class="bg-neutral-950 rounded-xl p-8 border border-neutral-800/50">
+<h4 class="font-headline text-xl text-neutral-200 mb-6">Routine Summary</h4>
+<div class="space-y-6">
+<div class="flex gap-4 p-4 bg-neutral-900/50 rounded-lg border border-neutral-800/30">
+<div class="p-3 bg-orange-950/30 text-orange-500 rounded-lg">
+<span class="material-symbols-outlined">bedtime</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Sleep Quality</p>
+<p class="font-headline text-lg text-neutral-200">+12% Deep Sleep</p>
+</div>
+</div>
+<div class="flex gap-4 p-4 bg-neutral-900/50 rounded-lg border border-neutral-800/30">
+<div class="p-3 bg-neutral-800/30 text-neutral-400 rounded-lg">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Savings</p>
+<p class="font-headline text-lg text-neutral-200">2.4kWh / week</p>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-neutral-800/30">
+<p class="text-xs text-neutral-500 leading-relaxed italic">
+                            "Rest Mode" uses warm spectrum lighting to minimize melatonin suppression before sleep.
+                        </p>
+</div>
+</div>
+<!-- Recommended Automations -->
+<div class="space-y-4">
+<h4 class="font-label text-[10px] font-bold uppercase tracking-widest text-neutral-600 px-2">Night Templates</h4>
+<div class="group relative overflow-hidden rounded-xl h-40 cursor-pointer border border-neutral-800/50">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 grayscale-[0.5]" data-alt="Modern minimal bedroom with morning sunlight streaming through sheer curtains onto a bed with linen sheets" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKJ5OnNdkeubJGYjMX81r_HNaRSU1MZjhpDEfW8ZzQp0lvnOarQF3GdN1RVCSdhgyuqyeN6L8HX7zzYQEaqYrueh_b4ljsRYRrTbj9SoNzJayaT8WgpuP6-qaaTd3mdGPhVa21ImUYxHCTF0NJyceH8KYi7Qw7hiX31YxOSzIlZYwz4V3T_n1ksWho2p7S4wrbShJ4CUmCZQDVqXQrbmIxuP64dWoESGyF744dtsngjI9bfjfQkvYvVmKbQftU0pqkmkwpE6glTGcv"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex flex-col justify-end p-6">
+<span class="text-[9px] font-bold uppercase tracking-widest text-orange-600 mb-1">Relaxation</span>
+<p class="font-headline text-lg text-neutral-100">Midnight Reading</p>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl h-40 cursor-pointer border border-neutral-800/50">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 grayscale-[0.5]" data-alt="Interior view of a smart home entryway at night with warm subtle lighting highlighting a wooden door and clean lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_hV3SDbiecMPkLkfsPuTIeLzQ5oShtMHqt_6SHhkn-o_w5qAQDVnnl0a_VDYGp_X9RkKNHX516E1NPczbjV6qvyktNINozg0XdsmJkwmiuDbU8K2owzgOGkFLhT42kK26iXbvdOtlwV8HSCym2fP2tfSnjnp39a86aJPkWfYoRTwScwucwzJOeCWUNGY0HYyMVkQCJaig_a3JSck5Hm3-ThcQ3ko8S0GYZ_IoLXtzlc9N3-MxulpGy4EaUSG9CfTtz2N5mgbZKXrI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex flex-col justify-end p-6">
+<span class="text-[9px] font-bold uppercase tracking-widest text-orange-600 mb-1">Security</span>
+<p class="font-headline text-lg text-neutral-100">Silent Guard</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Floating Bar (Mobile Navigation Fallback) -->
+<nav class="md:hidden fixed bottom-6 left-6 right-6 h-16 glass-card rounded-full border border-neutral-800/50 flex items-center justify-around px-8 shadow-2xl z-50">
+<button class="text-neutral-700"><span class="material-symbols-outlined">bedtime</span></button>
+<button class="text-neutral-700"><span class="material-symbols-outlined">shield</span></button>
+<div class="bg-orange-900 text-orange-100 p-4 rounded-full -mt-10 shadow-2xl border-4 border-black">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<button class="text-neutral-700"><span class="material-symbols-outlined">thermostat</span></button>
+<button class="text-neutral-700"><span class="material-symbols-outlined">settings</span></button>
+</nav>
+</body></html>

@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-03-19T23-11-05-578Z",
+  "generatedAt": "2026-03-19T23:16:14.990Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4749,
+  "analysisText": "Votre bilan sportif présente un tableau contrasté. La charge globale est significative, avec un total de 891.8 km et 56.1 heures d'activité sur les dernières semaines. Cependant, la charge récente, autour de 1105, indique un niveau d'activité soutenu, particulièrement le lundi.\n\nLe sommeil reste un point à améliorer. Malgré une durée moyenne de 6.8 heures, les scores de qualité du sommeil sont variables et souvent faibles, avec des périodes d'éveil nocturnes fréquentes. La HRV (fréquence cardiaque variant) est également à surveiller, avec des valeurs récentes autour de 76, ce qui suggère un stress potentiel.  L'insight \"NEGATIVE_STRESSFUL_DAY\" de la nuit du 15 mars est un signal d'alerte à ne pas ignorer.\n\nVotre activité est majoritairement axée sur la course à pied sur tapis roulant, mais vous avez également réalisé des sorties en road biking.  Les lieux de vos sorties, notamment Villenave-d'Ornon, témoignent d'une familiarité avec votre environnement.  La sortie du 19 mars, avec une course tranquille de 7.1 km, illustre bien votre capacité à maintenir un rythme régulier.\n\nIl est important de noter que votre VO2max est de 57, et votre meilleure allure sur 10 km est de 6:14/km.  Votre puissance maximale est de 531W, ce qui indique une bonne capacité de production de force.  Cependant, il serait bénéfique de diversifier vos entraînements pour optimiser votre performance globale.  L'activité sur tapis roulant est un bon point de départ, mais il serait intéressant d'intégrer davantage de sorties en extérieur, notamment en road biking, pour travailler votre endurance et votre capacité à gérer les variations de terrain.",
+  "coachSignals": {
+    "alert": "Fatigue potentielle due à une activité intense et à un sommeil irrégulier.",
+    "advice": "Privilégiez une séance de récupération active courte et douce pour favoriser la récupération musculaire.",
+    "tomorrowWorkout": "Envisagez une course tranquille de 60-75 minutes pour maintenir la forme et préparer la journée.",
+    "fatigueRisk": "moderate",
+    "focus": "Fatigue"
+  },
+  "totalDuration": 55848537600,
+  "loadDuration": 50684815400,
+  "evalCount": 401,
+  "evalDuration": 4129667900
+}

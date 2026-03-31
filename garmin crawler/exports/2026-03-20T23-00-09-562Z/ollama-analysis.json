@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-03-20T23-00-09-562Z",
+  "generatedAt": "2026-03-20T23:19:51.470Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4742,
+  "analysisText": "Votre bilan révèle une activité physique régulière, avec une charge accumulée significative ces dernières semaines. Les 54 activités enregistrées, couvrant 891.8 km, témoignent d'un engagement constant. La charge récente, à 6820, indique une intensité soutenue, particulièrement notable le lundi avec 11 activités et 106 km.\n\nLe sommeil est un point à surveiller. Les scores moyens autour de 57, avec une durée moyenne de 5 heures, suggèrent un besoin accru de repos. Les nuits récentes sont marquées par des interruptions fréquentes, des périodes de sommeil profond limitées et une HRV (fréquence cardiaque variabele) fluctuante, ce qui pourrait indiquer un stress ou une perturbation.  Le besoin de sommeil de 8.9 heures est clairement non satisfait.\n\nMalgré ces difficultés, votre corps démontre une bonne capacité de récupération, visible notamment par une FC repos stable autour de 51 et un body battery positif lors de nombreux relevés.  Les données de performance, avec un VO2max de 57 et des vitesses maximales impressionnantes, confirment un potentiel athlétique élevé.  Cependant, l'amélioration de la qualité et de la durée de votre sommeil pourrait optimiser vos performances et votre bien-être général.\n\nL'activité prédominante reste l'entraînement en salle, avec 33 activités sur tapis roulant, ce qui pourrait être diversifié avec davantage de sorties en extérieur.  Le lundi est votre jour le plus chargé, ce qui mérite d'être analysé pour identifier les facteurs contribuant à cette intensité.  Il est important de maintenir une attention particulière à la gestion du stress, car il semble être un facteur contribuant aux perturbations du sommeil.  En résumé, votre niveau d'activité est bon, mais des ajustements en matière de sommeil et de diversification des entraînements pourraient vous aider à atteindre votre plein potentiel.",
+  "coachSignals": {
+    "alert": "Fatigue élevée détectée après une nuit de sommeil perturbée.",
+    "advice": "Privilégiez une séance de course à faible intensité pour récupérer.",
+    "tomorrowWorkout": "Envisagez une course tranquille de 60-75 minutes pour maintenir la forme.",
+    "fatigueRisk": "high",
+    "focus": "stress"
+  },
+  "totalDuration": 184547566400,
+  "loadDuration": 37887850900,
+  "evalCount": 406,
+  "evalDuration": 38302019000
+}

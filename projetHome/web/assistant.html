@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProjetHome | Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/site.css?v=20260331-multipage" />
+    <script defer src="/site.js?v=20260331-multipage"></script>
+  </head>
+  <body data-page="assistant">
+    <div id="nightOverlay" class="night-overlay" hidden>
+      <div class="night-overlay-card"><p class="night-overlay-kicker">ProjetHome</p><h2 id="nightOverlayTitle" class="night-overlay-title">Rest Mode</h2><p id="nightOverlayCopy" class="night-overlay-copy">Touchez pour revenir au hub.</p></div>
+    </div>
+    <div class="page-frame">
+      <aside class="side-rail">
+        <div class="brand-block"><div class="brand-mark">PH</div><div><div class="brand-name">Night Atelier</div><div class="brand-note">tablet hub</div></div></div>
+        <nav class="rail-nav" aria-label="Pages">
+          <a class="nav-link" href="/" data-nav="home"><span class="nav-link-label">Home</span></a>
+          <a class="nav-link" href="/maison.html" data-nav="maison"><span class="nav-link-label">Maison</span></a>
+          <a class="nav-link" href="/sport.html" data-nav="sport"><span class="nav-link-label">Sport</span></a>
+          <a class="nav-link" href="/assistant.html" data-nav="assistant"><span class="nav-link-label">AI</span></a>
+          <a class="nav-link" href="/automatisations.html" data-nav="automatisations"><span class="nav-link-label">Flow</span></a>
+          <a class="nav-link" href="/chambre.html" data-nav="chambre"><span class="nav-link-label">Sleep</span></a>
+        </nav>
+        <div class="rail-footer"><div class="rail-pill">Local AI</div><a class="support-link" href="/sport.html">sport context</a></div>
+      </aside>
+
+      <div class="app-shell">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Assistant local</p>
+            <h1>How can I help you?</h1>
+            <p class="topbar-lead">Le chat n est plus enfoui dans une section du dashboard: il devient une page propre, lisible, et orientee action.</p>
+          </div>
+          <div class="topbar-actions">
+            <div class="topbar-button-row"><button class="ghost-button" type="button" data-action="refresh">Refresh live</button><a class="ghost-button" href="/maison.html">Maison</a></div>
+            <div id="syncStatus" class="sync-pill">Hub stable</div>
+            <div class="clock-stack"><strong class="clock-time" data-frame="clock">--:--</strong><span class="clock-date" data-frame="date">--</span></div>
+          </div>
+        </header>
+
+        <div id="globalBanner" class="global-banner" hidden></div>
+
+        <main class="page-content">
+          <section class="section-block">
+            <div class="assistant-stage">
+              <div class="assistant-head">
+                <div>
+                  <p class="eyebrow">Assistant</p>
+                  <h2>How can I help you?</h2>
+                  <p id="assistantLead" class="soft-copy">Ultra-dark mode active. Minimal distractions for the evening flow.</p>
+                </div>
+                <div class="button-row">
+                  <button id="assistantAutoSpeakToggle" class="ghost-button" type="button">Voice OFF</button>
+                  <button id="assistantResetButton" class="ghost-button" type="button">Clear thread</button>
+                </div>
+              </div>
+
+              <div id="assistantSummary" class="summary-grid"></div>
+              <div id="assistantQuickPrompts" class="prompt-row"></div>
+              <div id="assistantMessages" class="assistant-log"></div>
+
+              <form id="assistantForm" class="assistant-form">
+                <textarea id="assistantInput" class="assistant-input" rows="4" placeholder="Pose une question sur le sport, le sommeil, la maison ou la routine du soir."></textarea>
+                <div class="button-row">
+                  <button class="primary-button" type="submit">Envoyer</button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <div class="section-heading"><div><p class="eyebrow">Context</p><h2>What the model sees</h2></div></div>
+            <div id="assistantContext" class="stack-grid"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

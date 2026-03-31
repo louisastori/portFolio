@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Night Atelier | AI Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&amp;family=Manrope:wght@400;500;600;700&amp;family=Sora:wght@400;600;700&amp;family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#2d6d63",
+              "tertiary": "#330e00",
+              "secondary-fixed": "#afefe2",
+              "primary-container": "#1f3040",
+              "surface-variant": "#262626",
+              "surface-container-high": "#1a1a1a",
+              "on-primary-fixed": "#0b1d2c",
+              "inverse-surface": "#fef9f1",
+              "on-tertiary-fixed": "#360f00",
+              "on-primary-fixed-variant": "#384859",
+              "surface-container-highest": "#262626",
+              "secondary": "#fbbf24",
+              "on-secondary": "#1d1c17",
+              "on-surface": "#d4d4d4",
+              "tertiary-fixed-dim": "#ffb596",
+              "primary": "#0a0a0a",
+              "on-error": "#ffffff",
+              "surface-container": "#171717",
+              "error-container": "#ffdad6",
+              "surface-bright": "#1a1a1a",
+              "primary-fixed": "#d2e4fa",
+              "surface-container-low": "#121212",
+              "tertiary-container": "#551c00",
+              "on-background": "#e5e5e5",
+              "error": "#ba1a1a",
+              "surface-dim": "#0a0a0a",
+              "on-tertiary-fixed-variant": "#79310b",
+              "surface": "#0a0a0a",
+              "primary-fixed-dim": "#b7c8dd",
+              "background": "#000000",
+              "on-primary": "#d4d4d4",
+              "surface-container-lowest": "#050505",
+              "outline": "#404040",
+              "inverse-on-surface": "#1d1c17",
+              "on-secondary-fixed": "#00201c",
+              "secondary-fixed-dim": "#93d3c6",
+              "on-surface-variant": "#a3a3a3",
+              "on-tertiary-container": "#dc7d52",
+              "on-primary-container": "#8698ab",
+              "on-secondary-fixed-variant": "#045047",
+              "on-error-container": "#93000a",
+              "inverse-primary": "#b7c8dd",
+              "tertiary-fixed": "#ffdbcd"
+            },
+            fontFamily: {
+              "headline": ["Fraunces", "serif"],
+              "body": ["Manrope", "sans-serif"],
+              "label": ["Manrope", "sans-serif"],
+              "sora": ["Sora", "sans-serif"],
+              "noto": ["Noto Serif", "serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(38, 38, 38, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #000000;
+            color: #d4d4d4;
+        }
+    </style>
+</head>
+<body class="overflow-hidden flex h-screen w-screen dark">
+<!-- SideNavBar Component (Shared Anchor) -->
+<aside class="fixed left-0 top-0 h-full w-24 bg-neutral-950 dark:bg-black flex flex-col items-center py-10 z-50">
+<div class="mb-12">
+<span class="material-symbols-outlined text-orange-900 dark:text-orange-900 text-3xl" data-icon="nights_stay">nights_stay</span>
+</div>
+<nav class="flex flex-col gap-8 flex-1">
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 rounded-2xl transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="bedtime">bedtime</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest mt-1">Sleep</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 rounded-2xl transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="shield">shield</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest mt-1">Security</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 rounded-2xl transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="thermostat">thermostat</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest mt-1">Climate</span>
+</a>
+<a class="flex flex-col items-center justify-center text-orange-600 bg-orange-950/20 rounded-full p-4 transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="weekend">weekend</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest mt-1">Lounge</span>
+</a>
+</nav>
+<div class="mt-auto">
+<button class="text-neutral-700 hover:text-orange-800 transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-24 h-full flex flex-col relative bg-black">
+<!-- TopAppBar Component (Shared Anchor) -->
+<header class="fixed top-0 w-[calc(100%-6rem)] flex justify-between items-center px-8 py-6 z-40 bg-neutral-950/80 backdrop-blur-xl bg-gradient-to-b from-neutral-900/20 to-transparent">
+<div class="flex items-center gap-4">
+<h1 class="font-['Noto_Serif'] font-light tracking-tight text-xl text-neutral-400 dark:text-neutral-500">Night Atelier</h1>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-neutral-600 dark:text-neutral-700 hover:text-orange-800 transition-colors duration-300 scale-95 active:scale-90 duration-200">
+<span class="material-symbols-outlined text-2xl" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="text-neutral-600 dark:text-neutral-700 hover:text-orange-800 transition-colors duration-300 scale-95 active:scale-90 duration-200">
+<span class="material-symbols-outlined text-2xl" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Chat Area -->
+<section class="flex-1 px-12 overflow-y-auto space-y-12 pt-32 pb-48">
+<!-- Assistant Intro -->
+<div class="max-w-3xl mx-auto text-center py-8">
+<h2 class="font-noto text-4xl font-light text-orange-700 mb-4">How can I help you?</h2>
+<p class="font-body text-lg text-neutral-500 max-w-xl mx-auto">Ultra-dark mode active. Minimal distractions for your evening flow.</p>
+</div>
+<!-- User Message Bubble -->
+<div class="flex flex-col items-end gap-3 max-w-4xl ml-auto">
+<span class="font-label font-bold text-[10px] tracking-[0.2em] text-neutral-600 uppercase px-4">User</span>
+<div class="glass-card p-6 rounded-2xl rounded-tr-none border border-neutral-800/50 max-w-2xl">
+<p class="font-body text-xl leading-relaxed text-neutral-300">
+                    Can you dim the living room lights to 30% and set a timer for 15 minutes? I'm starting a focus session.
+                </p>
+</div>
+</div>
+<!-- Assistant Message Bubble -->
+<div class="flex flex-col items-start gap-3 max-w-4xl mr-auto">
+<div class="flex items-center gap-2 px-4">
+<span class="material-symbols-outlined text-orange-800 text-sm" data-icon="assistant" style="font-variation-settings: 'FILL' 1;">assistant</span>
+<span class="font-label font-bold text-[10px] tracking-[0.2em] text-orange-900 uppercase">Assistant</span>
+</div>
+<div class="bg-neutral-900 border border-neutral-800 p-6 rounded-2xl rounded-tl-none shadow-2xl max-w-2xl relative overflow-hidden">
+<!-- Subtle Amber Highlight -->
+<div class="absolute top-0 left-0 w-1 h-full bg-orange-900/50"></div>
+<p class="font-body text-xl leading-relaxed text-neutral-300">
+                    Of course. Dimming living room to 30% now. I've also set your "Focus Timer" for 15 minutes. 
+                    <span class="block mt-4 text-orange-800/80 italic font-noto">Enjoy your session, Julian.</span>
+</p>
+</div>
+</div>
+<!-- User Message Bubble 2 -->
+<div class="flex flex-col items-end gap-3 max-w-4xl ml-auto">
+<span class="font-label font-bold text-[10px] tracking-[0.2em] text-neutral-600 uppercase px-4">User</span>
+<div class="glass-card p-6 rounded-2xl rounded-tr-none border border-neutral-800/50 max-w-2xl">
+<p class="font-body text-xl leading-relaxed text-neutral-300">
+                    What's the weather like for my afternoon walk?
+                </p>
+</div>
+</div>
+</section>
+<!-- Bottom Actions -->
+<section class="absolute bottom-0 left-0 right-0 p-12 bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none">
+<div class="max-w-4xl mx-auto space-y-6 pointer-events-auto">
+<!-- Prompt Chips -->
+<div class="flex flex-wrap justify-center gap-3">
+<button class="bg-neutral-900/80 hover:bg-neutral-800 text-neutral-400 font-noto text-sm px-6 py-3 rounded-full border border-neutral-800 transition-all active:scale-95">
+                    "Morning Coffee Routine"
+                </button>
+<button class="bg-neutral-900/80 hover:bg-neutral-800 text-neutral-400 font-noto text-sm px-6 py-3 rounded-full border border-neutral-800 transition-all active:scale-95">
+                    "Summarize my day"
+                </button>
+<button class="bg-neutral-900/80 hover:bg-neutral-800 text-neutral-400 font-noto text-sm px-6 py-3 rounded-full border border-neutral-800 transition-all active:scale-95">
+                    "Security Status"
+                </button>
+</div>
+<!-- Main Input Bar -->
+<div class="flex items-center gap-3 bg-neutral-900/90 backdrop-blur-md rounded-full p-2 shadow-2xl border border-neutral-800">
+<button class="w-12 h-12 rounded-full flex items-center justify-center text-neutral-500 hover:bg-neutral-800 transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-lg font-body text-neutral-200 placeholder:text-neutral-700 px-2" placeholder="Speak or type a command..." type="text"/>
+<button class="w-12 h-12 bg-orange-950/40 text-orange-600 rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Decorative Dark Elements -->
+<div class="absolute -right-20 top-1/4 w-96 h-96 bg-orange-900/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<div class="absolute left-1/4 bottom-1/4 w-[500px] h-[500px] bg-neutral-900/20 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+</main>
+</body></html>

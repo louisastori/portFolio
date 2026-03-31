@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProjetHome | Sport</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/site.css?v=20260331-multipage" />
+    <script defer src="/site.js?v=20260331-multipage"></script>
+  </head>
+  <body data-page="sport">
+    <div id="nightOverlay" class="night-overlay" hidden>
+      <div class="night-overlay-card"><p class="night-overlay-kicker">ProjetHome</p><h2 id="nightOverlayTitle" class="night-overlay-title">Rest Mode</h2><p id="nightOverlayCopy" class="night-overlay-copy">Touchez pour revenir au hub.</p></div>
+    </div>
+    <div class="page-frame">
+      <aside class="side-rail">
+        <div class="brand-block"><div class="brand-mark">PH</div><div><div class="brand-name">Night Atelier</div><div class="brand-note">tablet hub</div></div></div>
+        <nav class="rail-nav" aria-label="Pages">
+          <a class="nav-link" href="/" data-nav="home"><span class="nav-link-label">Home</span></a>
+          <a class="nav-link" href="/maison.html" data-nav="maison"><span class="nav-link-label">Maison</span></a>
+          <a class="nav-link" href="/sport.html" data-nav="sport"><span class="nav-link-label">Sport</span></a>
+          <a class="nav-link" href="/assistant.html" data-nav="assistant"><span class="nav-link-label">AI</span></a>
+          <a class="nav-link" href="/automatisations.html" data-nav="automatisations"><span class="nav-link-label">Flow</span></a>
+          <a class="nav-link" href="/chambre.html" data-nav="chambre"><span class="nav-link-label">Sleep</span></a>
+        </nav>
+        <div class="rail-footer"><div class="rail-pill">Performance</div><a class="support-link" href="/assistant.html">coach local</a></div>
+      </aside>
+
+      <div class="app-shell">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Performance analytics</p>
+            <h1>Historique Sportif</h1>
+            <p class="topbar-lead">Le bloc sport quitte le dashboard unique et prend une place claire, sans bruit de navigation ni cartes concurrentes.</p>
+          </div>
+          <div class="topbar-actions">
+            <div class="topbar-button-row"><button class="ghost-button" type="button" data-action="refresh">Refresh live</button><a class="ghost-button" href="/assistant.html">Parler au coach</a></div>
+            <div id="syncStatus" class="sync-pill">Hub stable</div>
+            <div class="clock-stack"><strong class="clock-time" data-frame="clock">--:--</strong><span class="clock-date" data-frame="date">--</span></div>
+          </div>
+        </header>
+
+        <div id="globalBanner" class="global-banner" hidden></div>
+
+        <main class="page-content">
+          <section class="hero-grid">
+            <article class="feature-panel warm-panel">
+              <p class="eyebrow">Recovery first</p>
+              <h2 class="display-title">Training <span>clarity.</span></h2>
+              <p class="soft-copy">Une seule page pour la recuperation, la charge, les records et les activites recentes.</p>
+              <div id="sportHeroStats" class="metric-row"></div>
+            </article>
+            <aside class="feature-panel">
+              <p class="eyebrow">Coach signals</p>
+              <div id="sportCoachSignal" class="stack-grid"></div>
+            </aside>
+          </section>
+
+          <section class="section-split">
+            <section class="section-block">
+              <div class="section-heading"><div><p class="eyebrow">Recovery curve</p><h2>Score de recuperation</h2></div></div>
+              <div id="sportTrendChart" class="chart-panel"></div>
+            </section>
+            <section class="section-block">
+              <div class="section-heading"><div><p class="eyebrow">Calendar</p><h2>Activite recente</h2></div></div>
+              <div id="sportCalendar" class="calendar-grid"></div>
+            </section>
+          </section>
+
+          <section class="section-split">
+            <section class="section-block"><div class="section-heading"><div><p class="eyebrow">Key wins</p><h2>Rythmes forts</h2></div></div><div id="sportAchievements" class="stack-grid"></div></section>
+            <section class="section-block"><div class="section-heading"><div><p class="eyebrow">Records</p><h2>Personal bests</h2></div></div><div id="sportRecords" class="stack-grid"></div></section>
+          </section>
+
+          <section class="section-block"><div id="sportMetrics" class="summary-grid"></div></section>
+          <section class="section-block"><div class="section-heading"><div><p class="eyebrow">Recent activities</p><h2>Sessions and places</h2></div></div><div id="sportActivities" class="activity-grid"></div></section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

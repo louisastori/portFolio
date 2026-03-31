@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-03-21T23-00-07-134Z",
+  "generatedAt": "2026-03-21T23:16:16.300Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4762,
+  "analysisText": "Compte-rendu de forme – Analyse Garmin – 2026-03-22\n\nVotre charge récente est notable, avec un total de 7136 unités sur les 28 derniers jours, incluant une semaine particulièrement active avec 1354 unités. L’activité la plus chargée a eu lieu le samedi avec 10 sorties et 399.4 km, soulignant une tendance à l’augmentation de la charge sur certains jours.  L’activité principale reste l’entraînement en extérieur, représentant 40% de vos activités, avec une forte concentration sur le cyclisme sur route.\n\nLe sommeil reste un point à surveiller. Les scores moyens sont en baisse ces derniers jours, autour de 53, et la durée moyenne est de seulement 5.3 heures.  Les nuits du 17, 18 et 19 ont été marquées par des interruptions fréquentes, des périodes de sommeil profond limitées et un stress nocturne présent.  La nécessité d'un temps de sommeil plus long, d'environ 8.7 heures, est clairement indiquée.  L’activité du 21 a permis de corriger cette tendance, avec un score de 77 et une durée de 7.8 heures.\n\nVotre niveau de performance est stable, avec une VO2max de 57 et des vitesses maximales intéressantes.  Il est important de maintenir cette base, tout en continuant à améliorer votre endurance.  Votre puissance maximale est de 531 W, ce qui indique un bon niveau de force.\n\nIl est crucial de prendre en compte les aspects liés à la récupération. Les données montrent une tendance à la fatigue, notamment avec des FC repos en baisse et un stress élevé.  Il serait bénéfique de privilégier des jours de repos actifs ou de se concentrer sur la récupération, en particulier après les périodes de charge intense.  L'activité du 21 a permis de briser cette tendance.",
+  "coachSignals": {
+    "alert": "Fatigue élevée détectée, surveillez votre niveau d'énergie.",
+    "advice": "Priorisez une séance de récupération active légère aujourd'hui.",
+    "tomorrowWorkout": "Envisagez une course tranquille de 6-8 km pour maintenir la forme.",
+    "fatigueRisk": "high",
+    "focus": "recovery"
+  },
+  "totalDuration": 48369793300,
+  "loadDuration": 41262802300,
+  "evalCount": 418,
+  "evalDuration": 5949413600
+}

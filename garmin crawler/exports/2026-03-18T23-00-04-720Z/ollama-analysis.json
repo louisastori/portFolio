@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-03-18T23-00-04-720Z",
+  "generatedAt": "2026-03-18T23:15:35.989Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4633,
+  "analysisText": "Votre bilan Garmin indique une activité physique régulière avec une charge globale de 6647. Sur les 7 derniers jours, vous avez accumulé 185.5 km, ce qui représente une progression notable par rapport aux 26 activités des 28 derniers jours. La majorité de vos activités récentes se sont déroulées sur tapis roulant, avec une préférence pour des courses tranquilles et des répétitions de vitesse. \n\nVotre sommeil reste un point à améliorer. Les scores moyens sont autour de 54, et la durée moyenne est de seulement 4.6 heures. Les nuits récentes ont été marquées par des interruptions et des périodes de sommeil léger, avec une HRV variable. Il serait bénéfique d'optimiser votre routine pour atteindre un sommeil plus profond et régulier, idéalement autour de 8 heures.\n\nMalgré ces aspects à améliorer, vous démontrez une bonne endurance, avec un VO2max de 57 et des performances notables sur les 10 km (6:14/km).  Votre vitesse maximale sur le vélo (72.9 km/h) témoigne d'une puissance significative.  Cependant, la charge de 2026-02-06 sur Castelló d'Empúries est votre meilleure performance, et il serait intéressant d'envisager de reproduire des séances similaires.\n\nVotre activité la plus récente, une course tranquille de 6.5 km sur tapis, confirme votre tendance à privilégier les entraînements sur piste.  Il est important de varier les types d'entraînement pour solliciter différents groupes musculaires et éviter la stagnation.  L'augmentation de la charge sur les jambes est un point à surveiller.",
+  "coachSignals": {
+    "alert": "Fatigue élevée détectée, surveillez votre niveau d'énergie.",
+    "advice": "Privilégiez une séance de récupération active avec une marche légère.",
+    "tomorrowWorkout": "Envisagez une course tranquille de 60-75 minutes pour maintenir votre forme.",
+    "fatigueRisk": "high",
+    "focus": "stress"
+  },
+  "totalDuration": 17022958400,
+  "loadDuration": 11790522000,
+  "evalCount": 360,
+  "evalDuration": 4064364200
+}

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300&amp;family=Manrope:wght@300;400;500;600;800&amp;family=Sora:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#4a3518",
+              "on-tertiary-fixed": "#360f00",
+              "on-secondary-fixed": "#24190b",
+              "on-background": "#a09e96",
+              "primary-container": "#0d0d0d",
+              "on-primary-container": "#665c52",
+              "surface-dim": "#1a1a1a",
+              "tertiary-container": "#2b0a00",
+              "secondary-container": "#33220a",
+              "on-primary-fixed-variant": "#4d4135",
+              "surface-bright": "#121212",
+              "primary": "#000000",
+              "secondary-fixed-dim": "#8c622d",
+              "surface-container-high": "#141414",
+              "inverse-surface": "#fef9f1",
+              "on-primary-fixed": "#ffb347",
+              "surface-variant": "#1a1816",
+              "on-tertiary-container": "#8b0000",
+              "on-primary": "#8c7d6b",
+              "on-secondary-fixed-variant": "#7a5525",
+              "on-error": "#000000",
+              "tertiary-fixed": "#ffdbcd",
+              "surface-container": "#0f0f0f",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#666666",
+              "inverse-primary": "#ffb347",
+              "error": "#601410",
+              "primary-fixed": "#ffb347",
+              "surface-container-lowest": "#000000",
+              "surface-container-low": "#0a0a0a",
+              "surface": "#000000",
+              "on-tertiary-fixed-variant": "#79310b",
+              "on-surface": "#7a7670",
+              "surface-tint": "#ffb347",
+              "on-secondary-container": "#ffb347",
+              "on-error-container": "#93000a",
+              "inverse-on-surface": "#000000",
+              "error-container": "#2b0a0a",
+              "background": "#000000",
+              "primary-fixed-dim": "#8c622d",
+              "outline-variant": "#333333",
+              "outline": "#444444",
+              "on-secondary": "#000000",
+              "tertiary-fixed-dim": "#ffb596",
+              "tertiary": "#8b0000",
+              "surface-container-highest": "#1c1c1c",
+              "secondary": "#ffb347"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(13, 13, 13, 0.4);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+      }
+      body {
+        background-color: #000000;
+        color: #555555;
+        overflow-x: hidden;
+      }
+      /* Reduce overall intensity */
+      img {
+        filter: brightness(0.3) contrast(1.2) sepia(0.5) hue-rotate(-20deg);
+      }
+    </style>
+</head>
+<body class="font-body selection:bg-secondary-container selection:text-secondary">
+<!-- SideNavBar (Authority: Shared Components JSON) -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-10 gap-2 bg-[#000000] text-[#555555] docked left-0 h-full w-72 shadow-[40px_0_60px_rgba(0,0,0,0.8)] z-50 border-r border-white/5">
+<div class="px-8 mb-12">
+<h2 class="font-['Noto_Serif'] text-4xl font-light italic text-[#444444]">ProjetHome</h2>
+<div class="mt-8 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-[#0a0a0a] flex items-center justify-center border border-white/5">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="close-up portrait of a relaxed man in soft evening lighting with warm tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsh9bMISVYPlFx9bzObuRen7YHMsB99Zu5Daxh3afpXfPYyzY4BvtNUU3tRyeuzrfTrj0NhP4V-hJxLPfeqxhHoLMawJpbM3RxTEDbWvSGTEFdWf2kHK8TFucqbwli8ODiUMOsQhvL72xhUCI-t-SDKdU1I-24LmJwvbSk2aXWq9b0vByq8Tq_BaUoej-COzR-eGTksO60yj7wIBintZTO1ZUei6U_0qOVP0qIgNgxJLgpo9o1uzIqkqc_tK1QhOtHkqRN1pE-GUGD"/>
+</div>
+<div>
+<p class="font-headline text-lg text-[#666666]">Good Evening</p>
+<p class="font-['Sora'] text-[10px] uppercase tracking-widest text-[#444444]">Digital Atelier</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 text-[#444444] px-6 py-4 mx-4 hover:bg-white/5 rounded-full transition-transform duration-300 scale-98" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Sora'] text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 text-[#444444] px-6 py-4 mx-4 hover:bg-white/5 rounded-full transition-transform duration-300 scale-98" href="#">
+<span class="material-symbols-outlined">door_open</span>
+<span class="font-['Sora'] text-sm">Rooms</span>
+</a>
+<a class="flex items-center gap-4 text-[#444444] px-6 py-4 mx-4 hover:bg-white/5 rounded-full transition-transform duration-300 scale-98" href="#">
+<span class="material-symbols-outlined">self_improvement</span>
+<span class="font-['Sora'] text-sm">Wellness</span>
+</a>
+<a class="flex items-center gap-4 text-[#444444] px-6 py-4 mx-4 hover:bg-white/5 rounded-full transition-transform duration-300 scale-98" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-['Sora'] text-sm">Sports</span>
+</a>
+<a class="flex items-center gap-4 text-[#444444] px-6 py-4 mx-4 hover:bg-white/5 rounded-full transition-transform duration-300 scale-98" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span class="font-['Sora'] text-sm">Automation</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-white/5 pt-6">
+<a class="flex items-center gap-4 bg-[#2b0a00]/40 text-[#8b0000] border border-[#8b0000]/20 rounded-full px-6 py-4 mx-4 transition-transform duration-300 scale-98" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bedtime</span>
+<span class="font-['Sora'] text-sm">Ultra Dark Active</span>
+</a>
+<a class="flex items-center gap-4 text-[#444444] px-6 py-4 mx-4 hover:bg-white/5 rounded-full transition-transform duration-300 scale-98" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-['Sora'] text-sm">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-72 min-h-screen p-12 lg:p-16 flex flex-col bg-[#000000]">
+<!-- Header / Large Dim Clock -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20">
+<div class="max-w-2xl">
+<h1 class="font-headline text-[120px] leading-none font-light text-white/10 tracking-tighter">
+                23:42
+            </h1>
+<p class="font-headline text-3xl text-[#554433] mt-4 italic">Preparation for deep sleep.</p>
+</div>
+<div class="mt-8 md:mt-0 glass-card rounded-full p-2 flex items-center gap-2 border border-white/5">
+<div class="bg-amber-950/20 text-[#8c622d] px-6 py-3 rounded-full flex items-center gap-3">
+<span class="material-symbols-outlined text-xl">volume_off</span>
+<span class="font-semibold text-sm">Silent Mode</span>
+<div class="w-10 h-6 bg-[#33220a] rounded-full relative">
+<div class="absolute right-1 top-1 w-4 h-4 bg-[#8c622d] rounded-full"></div>
+</div>
+</div>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-8 flex-1">
+<!-- Hero Sleep Protocol Card -->
+<div class="col-span-12 lg:col-span-8 glass-card rounded-xl p-10 flex flex-col justify-between relative overflow-hidden min-h-[400px] border border-white/5">
+<div class="absolute top-0 right-0 w-1/2 h-full">
+<div class="absolute inset-0 bg-gradient-to-l from-black to-transparent z-10"></div>
+<img class="w-full h-full object-cover" data-alt="moody high-end bedroom at night with soft candle light and velvet textures in deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY-DghKJO89jHFaoay-7ZTR3Jb19jKkD10Q2UaVG_Hs-BOB1WrhmNEhjWCwwXC6lWXTbq4Ky7d4op5SaRM4xDBuhO18BDOuWeiDO9dM4NereipqSJcg3uYv6vXCU8sCU17jlIugMqruINECZm4nrw9fJYReqmQUGJDUyYhs5Uhopcz7sr0C-4rmpsqTJ5FsZTxzWRVEOCaUvWctoI516ES8X_MzigIyRVBD0RTQikV-_2tDOw_CFgJpGaVttge9NZQWGW9pY8ceji2"/>
+</div>
+<div class="relative z-20 max-w-md">
+<h3 class="font-headline text-4xl mb-6 text-[#776655]">Start Sleep Protocol</h3>
+<p class="text-[#443322] text-lg mb-10 leading-relaxed">Lowering bedroom temperature to 18°C, activating white noise, and dimming all lights to 5%.</p>
+<button class="bg-[#0f0f0f] text-[#ffb347] px-10 py-6 rounded-full font-bold text-xl flex items-center gap-4 hover:scale-95 transition-transform duration-200 border border-[#ffb347]/10 shadow-lg shadow-black">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                    Begin Routine
+                </button>
+</div>
+<div class="relative z-20 flex gap-6 mt-8">
+<div class="flex items-center gap-2 text-[#443322]">
+<span class="material-symbols-outlined text-sm">thermostat</span>
+<span class="text-sm font-medium tracking-wide">18.5°C</span>
+</div>
+<div class="flex items-center gap-2 text-[#443322]">
+<span class="material-symbols-outlined text-sm">air</span>
+<span class="text-sm font-medium tracking-wide">Air Quality: Optimal</span>
+</div>
+</div>
+</div>
+<!-- Goodnight Automation Card -->
+<div class="col-span-12 lg:col-span-4 bg-[#8b0000]/5 rounded-xl p-10 border border-[#8b0000]/10 flex flex-col items-center justify-center text-center hover:bg-[#8b0000]/10 transition-colors cursor-pointer group">
+<div class="w-24 h-24 rounded-full bg-[#8b0000]/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform border border-[#8b0000]/10">
+<span class="material-symbols-outlined text-5xl text-[#8b0000]" style="font-variation-settings: 'FILL' 1;">bedtime</span>
+</div>
+<h3 class="font-headline text-3xl mb-4 text-[#8b0000]">Goodnight</h3>
+<p class="text-[#8b0000]/40 mb-8 max-w-[200px]">Turn off all lights, lock all doors, and activate perimeter alarm.</p>
+<div class="w-full h-1 bg-[#8b0000]/10 rounded-full overflow-hidden">
+<div class="h-full bg-[#8b0000]/30 w-0 group-active:w-full transition-all duration-1000"></div>
+</div>
+<p class="mt-4 text-xs font-bold tracking-widest uppercase text-[#8b0000]/20">Hold to activate</p>
+</div>
+<!-- Sleep Tracking Insight -->
+<div class="col-span-12 lg:col-span-4 glass-card rounded-xl p-8 border border-white/5">
+<div class="flex justify-between items-start mb-10">
+<div class="bg-[#33220a]/20 p-3 rounded-lg border border-[#ffb347]/10">
+<span class="material-symbols-outlined text-[#8c622d]">monitoring</span>
+</div>
+<span class="text-xs font-bold text-[#444444] uppercase tracking-widest">Efficiency 94%</span>
+</div>
+<h4 class="font-headline text-2xl mb-2 text-[#666666]">Last Night</h4>
+<p class="text-[#444444] text-sm mb-8 italic">"You reached deep sleep 15 minutes faster than your weekly average."</p>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<span class="text-sm text-[#444444]">Deep Sleep</span>
+<span class="text-sm font-bold text-[#8c622d]">2h 45m</span>
+</div>
+<div class="w-full h-1.5 bg-white/5 rounded-full">
+<div class="h-full bg-[#8c622d]/40 w-[85%] rounded-full"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-[#444444]">REM Phase</span>
+<span class="text-sm font-bold text-[#8b0000]/60">1h 12m</span>
+</div>
+<div class="w-full h-1.5 bg-white/5 rounded-full">
+<div class="h-full bg-[#8b0000]/30 w-[40%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Environment Controls (Pilled Style) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-6">
+<div class="flex items-center justify-between px-4">
+<h4 class="font-headline text-xl text-[#444444]">Night Environment</h4>
+<span class="material-symbols-outlined text-white/10">settings_night_sight</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Lighting -->
+<div class="bg-white/[0.02] p-6 rounded-lg flex items-center justify-between group hover:bg-white/[0.04] transition-colors border border-white/5">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#8b0000]/60">light_group</span>
+<div>
+<p class="text-[#555555] text-sm font-bold">Ambient Light</p>
+<p class="text-xs text-[#333333]">Warm Glow • 5%</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white/5">chevron_right</span>
+</div>
+<!-- Temperature -->
+<div class="bg-white/[0.02] p-6 rounded-lg flex items-center justify-between group hover:bg-white/[0.04] transition-colors border border-white/5">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#8c622d]/60">ac_unit</span>
+<div>
+<p class="text-[#555555] text-sm font-bold">Climate</p>
+<p class="text-xs text-[#333333]">Cooling • 19°C</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white/5">chevron_right</span>
+</div>
+<!-- Audio -->
+<div class="bg-white/[0.02] p-6 rounded-lg flex items-center justify-between group hover:bg-white/[0.04] transition-colors border border-white/5">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#444444]">waves</span>
+<div>
+<p class="text-[#555555] text-sm font-bold">White Noise</p>
+<p class="text-xs text-[#333333]">Soft Rainfall</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white/5">chevron_right</span>
+</div>
+</div>
+<!-- Custom Component: At-A-Glance Arc (Simplified for Night Mode) -->
+<div class="glass-card rounded-xl p-8 flex items-center justify-between mt-2 border border-white/5">
+<div class="flex flex-col">
+<h5 class="text-sm font-bold text-[#333333] uppercase tracking-widest mb-2">Restful State</h5>
+<p class="text-[#444444] text-xl font-headline italic">The house is breathing with you.</p>
+</div>
+<div class="relative w-32 h-16 overflow-hidden">
+<svg class="w-full h-full" viewbox="0 0 100 50">
+<path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#0f0f0f" stroke-linecap="round" stroke-width="8"></path>
+<path d="M 10 50 A 40 40 0 0 1 70 15" fill="none" stroke="url(#arcGradient)" stroke-linecap="round" stroke-width="8"></path>
+<defs>
+<lineargradient id="arcGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#33220a;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#8c622d;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 text-[#8c622d] text-lg font-bold">92%</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Meta -->
+<footer class="mt-20 flex justify-between items-center text-white/5 text-[10px] font-bold tracking-[0.2em] uppercase">
+<span>Adaptive Night Mode Active</span>
+<span>Est. Wake Up: 07:30 AM</span>
+<span>Atelier OS v4.2</span>
+</footer>
+</main>
+<!-- Contextual FAB (Hidden for Night Mode as per suppression rules) -->
+</body></html>

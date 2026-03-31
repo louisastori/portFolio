@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-03-17T23-00-03-572Z",
+  "generatedAt": "2026-03-17T23:15:10.983Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4633,
+  "analysisText": "Votre bilan Garmin révèle une activité physique régulière, mais avec des variations notables. Sur les 52 activités enregistrées, 38% se sont déroulées en extérieur, principalement du vélo sur route. La charge globale est de 6549, avec une tendance à l'augmentation récente, notamment en raison d'une charge de 1075 sur les 7 derniers jours et 3629 sur les 28 derniers jours. \n\nLa récupération est un point à surveiller. Les nuits récentes montrent des scores de sommeil variables, oscillant entre 44 et 86, avec des durées moyennes autour de 5 heures. Le besoin de sommeil est significativement supérieur à la durée moyenne observée (8.8h contre 6.8h). La présence de stress nocturne, notamment le 15 mars avec 18, et de variations importantes de l'HRV, suggèrent des facteurs de stress potentiels impactant la qualité du sommeil.\n\nVotre activité récente est dominée par des séances sur tapis roulant, principalement des répétitions de vitesse et des courses plus courtes. Ces séances, bien que structurées, ne représentent qu'une petite partie de votre activité globale. Le vélo sur route reste votre activité principale, avec des sorties notables à Villenave-d'Ornon. La puissance maximale atteinte lors d'une répétition de vitesse (531W) témoigne d'une capacité de production de force intéressante.\n\nIl est important de noter que votre vitesse max (72.9 km/h) et votre FC max (202) datent de février 2026, ce qui indique une possible dégradation de vos performances maximales. Il serait pertinent de réaliser des tests de performance pour évaluer votre condition physique actuelle. Enfin, l'activité en intérieur est importante (32 activités), ce qui peut indiquer une adaptation aux conditions météorologiques ou un besoin de volume à ajouter.",
+  "coachSignals": {
+    "alert": "Risque de fatigue élevé, surveillez votre niveau d'énergie.",
+    "advice": "Privilégiez une séance de récupération active, comme une marche légère.",
+    "tomorrowWorkout": "Envisagez une course à pied de 60-75 minutes pour maintenir votre forme.",
+    "fatigueRisk": "moderate",
+    "focus": "fatigue"
+  },
+  "totalDuration": 5456763900,
+  "loadDuration": 289771500,
+  "evalCount": 410,
+  "evalDuration": 4423032400
+}

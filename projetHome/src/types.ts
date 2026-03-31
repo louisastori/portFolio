@@ -49,6 +49,8 @@ export type LightDevice = {
   name: string;
   isOn: boolean;
   brightness: number;
+  supportsColor?: boolean;
+  colorHex?: string | null;
 };
 
 export type AppWarning = {

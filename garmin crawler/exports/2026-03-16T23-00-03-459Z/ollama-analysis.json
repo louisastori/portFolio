@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-03-16T23-00-03-459Z",
+  "generatedAt": "2026-03-17T19:21:36.796Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4627,
+  "analysisText": "Votre récente activité est marquée par une forte charge, principalement due à une succession d’entraînements sur tapis roulant. Les dernières semaines ont été caractérisées par une activité intense, notamment avec des courses de 8 à 10 kilomètres, ce qui se traduit par une charge globale de 3594 kcal.  La majorité de ces séances se sont déroulées en intérieur, avec une prédominance de la course à pied sur tapis roulant.\n\nLe sommeil reste un point faible. Les scores de sommeil sont variables, avec des nuits où la durée est satisfaisante (8.8h la nuit du 13 mars), et d’autres où elle est significativement réduite et de mauvaise qualité, comme la nuit du 12 mars, où le score est très bas et la durée est d’à peine 1.8h.  Le stress nocturne est également présent, avec des valeurs supérieures à 20.  Il est important d'analyser les insights associés à ces nuits pour identifier les facteurs contributifs.\n\nVotre niveau de forme physique est bon, avec une VO2max de 57 et des vitesses maximales intéressantes. Cependant, il est important de veiller à la récupération, car les séances récentes ont été intenses et les nuits de sommeil ont été perturbées.  La charge de 2026-02-06 sur Castelló d'Empúries est toujours un repère de performance à atteindre.\n\nIl serait bénéfique de diversifier vos activités et de privilégier des périodes de repos pour permettre une récupération optimale.  Surveillez attentivement vos nuits et essayez d’améliorer la qualité de votre sommeil.  L'activité en extérieur, notamment le vélo, pourrait être envisagée pour varier les sensations et réduire la charge sur le tapis roulant.",
+  "coachSignals": {
+    "alert": "Fatigue élevée due à une activité intense et plusieurs courses récentes.",
+    "advice": "Privilégiez une séance de récupération active légère, en privilégiant le vélo à faible intensité.",
+    "tomorrowWorkout": "Considérez une course à pied de 60-75 minutes à allure modérée pour favoriser la récupération.",
+    "fatigueRisk": "high",
+    "focus": "Fatigue"
+  },
+  "totalDuration": 7613493800,
+  "loadDuration": 2697264500,
+  "evalCount": 385,
+  "evalDuration": 4145657400
+}

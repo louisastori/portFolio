@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Sora:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#332200",
+              "on-tertiary-fixed": "#ffb596",
+              "on-secondary-fixed": "#ffb900",
+              "on-background": "#e6e1e5",
+              "primary-container": "#1a1c1e",
+              "on-primary-container": "#d6e3f7",
+              "surface-dim": "#0e0e0e",
+              "tertiary-container": "#4a2800",
+              "secondary-container": "#2d2d2d",
+              "on-primary-fixed-variant": "#384859",
+              "surface-bright": "#1c1b1f",
+              "primary": "#ffb900",
+              "secondary-fixed-dim": "#4d4d4d",
+              "surface-container-high": "#2b2930",
+              "inverse-surface": "#e6e1e5",
+              "on-primary-fixed": "#001d31",
+              "surface-variant": "#49454f",
+              "on-tertiary-container": "#ffb596",
+              "on-primary": "#000000",
+              "on-secondary-fixed-variant": "#ffcc00",
+              "on-error": "#601410",
+              "tertiary-fixed": "#ffdbcd",
+              "surface-container": "#1d1c1c",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#cac4cf",
+              "inverse-primary": "#006495",
+              "error": "#f2b8b5",
+              "primary-fixed": "#d1e4ff",
+              "surface-container-lowest": "#000000",
+              "surface-container-low": "#1c1b1b",
+              "surface": "#0a0a0a",
+              "on-tertiary-fixed-variant": "#79310b",
+              "on-surface": "#e6e1e5",
+              "surface-tint": "#ffb900",
+              "on-secondary-container": "#ffb900",
+              "on-error-container": "#f9dedc",
+              "inverse-on-surface": "#313033",
+              "error-container": "#8c1d18",
+              "background": "#000000",
+              "primary-fixed-dim": "#b7c8dd",
+              "outline-variant": "#49454f",
+              "outline": "#938f99",
+              "on-secondary": "#000000",
+              "tertiary-fixed-dim": "#ffb596",
+              "tertiary": "#ffb596",
+              "surface-container-highest": "#36343b",
+              "secondary": "#ffb900"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Sora"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(18, 18, 18, 0.7);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+      .active-pill {
+        box-shadow: 0 4px 20px rgba(255, 185, 0, 0.2);
+      }
+      body {
+        background-color: #000000;
+      }
+    </style>
+</head>
+<body class="bg-black font-body text-on-surface overflow-hidden">
+<!-- SideNavBar from COMPONENTS_3 -->
+<nav class="fixed left-0 top-0 h-full w-24 bg-neutral-950 dark:bg-black flex flex-col items-center py-10 z-50 tonal-transition bg-neutral-900/10">
+<div class="mb-12 flex flex-col items-center gap-1">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-neutral-800">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvEfi1Ai8O_miCa8pT-VhmhY-9BYCGWpMe-R2ld5nJ1bBb3Y1w-C70Oa-uOv11diagr30QrVXIVtf5sRwTmTZTjfU7q5qbGMrUSoKdo1P-9ZMGUQ6lvAmhP8v82cd6-wJWwLxhW56XBjF8AGELCHI6KOwWTp7KbcrfanYh9i4RNjkgzM-x0AbNyHIPAfZ-oQ5oIZsgreLcSdB06ZlSbmUrMdehgzdhDsSc6zu5giMeF3ID8QPvb3HNc74SKhEy8o23qt22L-ForGCu"/>
+</div>
+<p class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest text-neutral-500 mt-2">Rest</p>
+</div>
+<div class="flex-1 flex flex-col gap-6">
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 transition-all rounded-2xl" href="#">
+<span class="material-symbols-outlined">bedtime</span>
+<span class="font-['Noto_Serif'] text-[8px] uppercase tracking-widest mt-1">Sleep</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 transition-all rounded-2xl" href="#">
+<span class="material-symbols-outlined">shield</span>
+<span class="font-['Noto_Serif'] text-[8px] uppercase tracking-widest mt-1">Security</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 transition-all rounded-2xl" href="#">
+<span class="material-symbols-outlined">thermostat</span>
+<span class="font-['Noto_Serif'] text-[8px] uppercase tracking-widest mt-1">Climate</span>
+</a>
+<a class="flex flex-col items-center justify-center text-orange-600 bg-orange-950/20 rounded-full p-4 active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">weekend</span>
+<span class="font-['Noto_Serif'] text-[8px] uppercase tracking-widest mt-1 font-semibold">Lounge</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-6">
+<button class="text-neutral-700 hover:text-orange-800 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="text-neutral-700 hover:text-orange-800 transition-colors">
+<span class="material-symbols-outlined">power_settings_new</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-24 min-h-screen p-12 lg:p-16 relative">
+<!-- TopAppBar from COMPONENTS_3 style -->
+<header class="fixed top-0 left-24 right-0 flex justify-between items-center px-12 py-8 z-40 bg-neutral-950/80 backdrop-blur-xl bg-gradient-to-b from-neutral-900/20 to-transparent">
+<div class="flex items-center gap-6">
+<button class="w-12 h-12 rounded-full bg-neutral-900 flex items-center justify-center text-orange-700 hover:text-orange-600 transition-all active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div>
+<h1 class="font-['Noto_Serif'] text-4xl font-light tracking-tight text-orange-700">Salon</h1>
+<p class="text-neutral-500 font-medium text-xs uppercase tracking-widest mt-1">Living Space • 22.5°C</p>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full flex items-center justify-center text-neutral-500 hover:text-orange-700 transition-colors">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="w-12 h-12 rounded-full flex items-center justify-center text-neutral-500 hover:text-orange-700 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<div class="mt-24">
+<!-- Bento Layout Grid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Lighting Control Group (Ultra Dark Restyle) -->
+<section class="col-span-12 lg:col-span-7 flex flex-col gap-8">
+<div class="glass-card rounded-xl p-10 flex flex-col gap-10 border border-neutral-800/50 shadow-2xl">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-orange-950/40 flex items-center justify-center text-orange-500">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<h3 class="font-headline text-2xl text-neutral-200">Lumières Principales</h3>
+</div>
+<span class="font-label text-sm font-semibold text-orange-500">85% Intensité</span>
+</div>
+<!-- Slider Intensity - Amber Style -->
+<div class="space-y-4">
+<div class="flex justify-between text-[10px] font-label uppercase tracking-widest text-neutral-500">
+<span>Min</span>
+<span>Luminosité</span>
+<span>Max</span>
+</div>
+<div class="relative h-14 w-full bg-neutral-900 rounded-full overflow-hidden p-1.5 group cursor-pointer border border-neutral-800">
+<div class="absolute inset-y-1.5 left-1.5 bg-orange-600/80 w-[85%] rounded-full flex items-center justify-end px-3">
+<div class="w-10 h-10 bg-neutral-200 rounded-full shadow-lg flex items-center justify-center">
+<div class="w-1 h-5 bg-neutral-900/20 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Color Temperature - Low Brightness Style -->
+<div class="space-y-4">
+<div class="flex justify-between text-[10px] font-label uppercase tracking-widest text-neutral-500">
+<span>Chaud</span>
+<span>Teinte</span>
+<span>Froid</span>
+</div>
+<div class="h-10 w-full bg-gradient-to-r from-orange-900/40 via-neutral-800 to-blue-900/40 rounded-full relative border border-neutral-800">
+<div class="absolute left-1/3 top-1/2 -translate-y-1/2 w-8 h-8 bg-neutral-100 rounded-full shadow-xl"></div>
+</div>
+</div>
+<!-- Scenes Selection -->
+<div class="grid grid-cols-3 gap-4">
+<button class="p-6 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:border-orange-900 hover:text-orange-500 transition-all active:scale-95">
+<span class="material-symbols-outlined block mb-2 text-3xl">menu_book</span>
+<span class="font-label text-xs font-medium uppercase tracking-wider">Lecture</span>
+</button>
+<button class="p-6 rounded-lg bg-orange-900/20 border border-orange-700/50 text-orange-500 shadow-xl active-pill transition-all">
+<span class="material-symbols-outlined block mb-2 text-3xl" style="font-variation-settings: 'FILL' 1;">movie</span>
+<span class="font-label text-xs font-semibold uppercase tracking-wider">Cinéma</span>
+</button>
+<button class="p-6 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:border-orange-900 hover:text-orange-500 transition-all active:scale-95">
+<span class="material-symbols-outlined block mb-2 text-3xl">spa</span>
+<span class="font-label text-xs font-medium uppercase tracking-wider">Détente</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Climate & Media (Ultra Dark) -->
+<aside class="col-span-12 lg:col-span-5 flex flex-col gap-8">
+<!-- Climate Card -->
+<div class="glass-card rounded-xl p-10 border border-neutral-800/50 shadow-2xl">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-headline text-2xl mb-1 text-neutral-200">Climatisation</h3>
+<p class="text-neutral-500 text-xs font-medium uppercase tracking-widest">Ambient Control</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-orange-950/40 flex items-center justify-center text-orange-600">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">thermostat</span>
+</div>
+</div>
+<div class="flex items-center justify-center gap-10 py-4">
+<button class="w-16 h-16 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-orange-500 hover:border-orange-900 transition-all active:scale-90">
+<span class="material-symbols-outlined text-3xl">remove</span>
+</button>
+<div class="text-center">
+<span class="font-headline text-8xl font-light text-neutral-100">22</span>
+<span class="font-headline text-4xl font-light text-orange-700 -ml-2">.5°</span>
+</div>
+<button class="w-16 h-16 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-orange-500 hover:border-orange-900 transition-all active:scale-90">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="bg-neutral-900/50 rounded-lg p-4 flex items-center gap-4 border border-neutral-800/30">
+<span class="material-symbols-outlined text-orange-900">humidity_percentage</span>
+<div>
+<p class="text-[9px] uppercase tracking-widest font-bold text-neutral-600">Humidité</p>
+<p class="font-semibold text-neutral-300">48%</p>
+</div>
+</div>
+<div class="bg-neutral-900/50 rounded-lg p-4 flex items-center gap-4 border border-neutral-800/30">
+<span class="material-symbols-outlined text-orange-900">air</span>
+<div>
+<p class="text-[9px] uppercase tracking-widest font-bold text-neutral-600">Ventilation</p>
+<p class="font-semibold text-neutral-300">Auto</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Media Player Card -->
+<div class="glass-card rounded-xl p-6 border border-neutral-800/50 shadow-2xl relative overflow-hidden group">
+<div class="absolute inset-0 opacity-10 bg-gradient-to-br from-orange-900 to-black scale-110 blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
+<div class="relative z-10 flex gap-6 items-center">
+<div class="w-28 h-28 rounded-lg overflow-hidden shadow-2xl shrink-0 border border-white/5">
+<img alt="Media Art" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXF2NTLxlcJsBq_-5wsoVbWgWV_KoQcKnu2A1hb-Mdk8iC3dqaqpNWCrtxPHB1pEGeiVju0ZongIdrgvZL6AbD2eQ8OvUgM-BKrZAVisSjPUBx-nlSyCNST8vhUdmy-vprIaZdmPtoo3wM4-L7DJy9JC-gRQQQsdZPLesFDikQDsRKKC4SZ4J2sw29O8yOa9smkv_tTOBcfK0sOKpP6CvoCPg6AH6sHPllBUdkyt_6iY35m_FjXGWBp6A3uRgB7LUHxnzbOfuyQzG9"/>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="font-label text-[9px] uppercase tracking-[0.3em] font-bold text-orange-800 mb-1">Lecture en cours</p>
+<h4 class="font-headline text-xl truncate text-neutral-200 mb-0.5">Nocturnes, Op. 9</h4>
+<p class="text-neutral-500 text-xs truncate italic">Frédéric Chopin • Rubinstein</p>
+<div class="mt-4 flex items-center gap-6">
+<button class="text-neutral-700 hover:text-orange-500 transition-colors">
+<span class="material-symbols-outlined">skip_previous</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-neutral-100 text-black flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<button class="text-neutral-700 hover:text-orange-500 transition-colors">
+<span class="material-symbols-outlined">skip_next</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-6 space-y-2">
+<div class="h-1 w-full bg-neutral-900 rounded-full overflow-hidden">
+<div class="h-full bg-orange-700 w-1/3 rounded-full"></div>
+</div>
+<div class="flex justify-between font-label text-[9px] text-neutral-600 tracking-widest uppercase">
+<span>1:42</span>
+<span>5:12</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Secondary Information / Small Grid -->
+<div class="grid grid-cols-4 gap-8 mt-8">
+<div class="glass-card rounded-lg p-6 border border-neutral-800/50 flex items-center gap-4 transition-transform hover:-translate-y-1">
+<span class="material-symbols-outlined text-orange-950 text-3xl">window</span>
+<div>
+<p class="font-label text-[9px] uppercase tracking-widest font-bold text-neutral-600">Stores</p>
+<p class="font-semibold text-md text-neutral-300">Fermés</p>
+</div>
+</div>
+<div class="glass-card rounded-lg p-6 border border-neutral-800/50 flex items-center gap-4 transition-transform hover:-translate-y-1">
+<span class="material-symbols-outlined text-orange-950 text-3xl">air_purifier</span>
+<div>
+<p class="font-label text-[9px] uppercase tracking-widest font-bold text-neutral-600">Qualité Air</p>
+<p class="font-semibold text-md text-orange-700">Excellente</p>
+</div>
+</div>
+<div class="glass-card rounded-lg p-6 border border-neutral-800/50 flex items-center gap-4 transition-transform hover:-translate-y-1">
+<span class="material-symbols-outlined text-orange-950 text-3xl">sensors</span>
+<div>
+<p class="font-label text-[9px] uppercase tracking-widest font-bold text-neutral-600">Occupation</p>
+<p class="font-semibold text-md text-neutral-300">Présent</p>
+</div>
+</div>
+<div class="glass-card rounded-lg p-6 border border-neutral-800/50 flex items-center gap-4 transition-transform hover:-translate-y-1">
+<span class="material-symbols-outlined text-orange-950 text-3xl">bolt</span>
+<div>
+<p class="font-label text-[9px] uppercase tracking-widest font-bold text-neutral-600">Énergie</p>
+<p class="font-semibold text-md text-neutral-300">145 W</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Background Decorative Elements - Ultra Darkened -->
+<div class="fixed top-0 right-0 w-full h-screen -z-10 pointer-events-none overflow-hidden">
+<div class="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full bg-orange-950/10 blur-[150px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-neutral-900/20 blur-[150px]"></div>
+</div>
+</body></html>

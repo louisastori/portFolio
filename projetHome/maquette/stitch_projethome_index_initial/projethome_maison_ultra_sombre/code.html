@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Night Atelier | Home Control</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&amp;family=Manrope:wght@400;500;600;700&amp;family=Sora:wght@600&amp;family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#ffdbcd",
+              "tertiary": "#330e00",
+              "secondary-fixed": "#ffdbcd",
+              "primary-container": "#1a1a1a",
+              "surface-variant": "#262626",
+              "surface-container-high": "#1a1a1a",
+              "on-primary-fixed": "#000000",
+              "inverse-surface": "#fef9f1",
+              "on-tertiary-fixed": "#360f00",
+              "on-primary-fixed-variant": "#384859",
+              "surface-container-highest": "#333333",
+              "secondary": "#f59e0b", /* Warm Amber */
+              "on-secondary": "#000000",
+              "on-surface": "#e5e5e5",
+              "primary": "#f59e0b",
+              "on-error": "#ffffff",
+              "surface-container": "#0a0a0a",
+              "error-container": "#93000a",
+              "surface-bright": "#171717",
+              "primary-fixed": "#ffdbcd",
+              "surface-container-low": "#0f0f0f",
+              "tertiary-container": "#551c00",
+              "on-background": "#e5e5e5",
+              "error": "#ffb4ab",
+              "surface-dim": "#0a0a0a",
+              "on-tertiary-fixed-variant": "#79310b",
+              "surface": "#000000",
+              "primary-fixed-dim": "#b7c8dd",
+              "background": "#000000",
+              "on-primary": "#000000",
+              "surface-container-lowest": "#000000",
+              "outline": "#404040",
+              "inverse-on-surface": "#1d1c17",
+              "on-secondary-fixed": "#00201c",
+              "secondary-fixed-dim": "#93d3c6",
+              "on-surface-variant": "#a3a3a3",
+              "on-tertiary-container": "#dc7d52",
+              "on-primary-container": "#f59e0b",
+              "on-secondary-fixed-variant": "#045047",
+              "on-error-container": "#ffdad6",
+              "inverse-primary": "#b7c8dd",
+              "tertiary-fixed": "#ffdbcd"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"],
+              "fraunces": ["Fraunces"],
+              "sora": ["Sora"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(32px);
+        -webkit-backdrop-filter: blur(32px);
+      }
+      body {
+        font-family: 'Manrope', sans-serif;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #262626;
+        border-radius: 10px;
+      }
+    </style>
+</head>
+<body class="bg-black text-on-surface min-h-screen flex flex-row overflow-hidden">
+<!-- Sidebar (Modified for Night Atelier style) -->
+<aside class="fixed left-0 top-0 h-full w-24 bg-black flex flex-col items-center py-10 z-50 border-r border-neutral-900">
+<div class="mb-12">
+<div class="w-12 h-12 rounded-full bg-neutral-900 flex items-center justify-center overflow-hidden border border-neutral-800">
+<span class="material-symbols-outlined text-neutral-600" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+<nav class="flex-grow flex flex-col gap-8">
+<!-- Sleep Tab -->
+<a class="flex flex-col items-center justify-center text-neutral-700 hover:text-orange-900 transition-colors group" href="#">
+<span class="material-symbols-outlined text-3xl mb-1 group-hover:scale-110 transition-transform" data-icon="bedtime">bedtime</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest font-bold">Sleep</span>
+</a>
+<!-- Security Tab -->
+<a class="flex flex-col items-center justify-center text-neutral-700 hover:text-orange-900 transition-colors group" href="#">
+<span class="material-symbols-outlined text-3xl mb-1 group-hover:scale-110 transition-transform" data-icon="shield">shield</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest font-bold">Security</span>
+</a>
+<!-- Climate Tab (Active Style Replacement) -->
+<a class="flex flex-col items-center justify-center text-orange-600 bg-orange-950/20 rounded-full p-3 transition-all scale-110" href="#">
+<span class="material-symbols-outlined text-3xl mb-1" data-icon="thermostat">thermostat</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest font-bold">Climate</span>
+</a>
+<!-- Lounge Tab -->
+<a class="flex flex-col items-center justify-center text-neutral-700 hover:text-orange-900 transition-colors group" href="#">
+<span class="material-symbols-outlined text-3xl mb-1 group-hover:scale-110 transition-transform" data-icon="weekend">weekend</span>
+<span class="font-['Noto_Serif'] text-[10px] uppercase tracking-widest font-bold">Lounge</span>
+</a>
+</nav>
+<div class="mt-auto">
+<button class="text-neutral-700 hover:text-orange-600 transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="power_settings_new">power_settings_new</span>
+</button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-24 flex-grow flex flex-col h-screen overflow-y-auto bg-black">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-24 flex justify-between items-center px-12 py-8 bg-black/80 backdrop-blur-xl z-40">
+<span class="font-['Noto_Serif'] text-xl font-medium text-neutral-500 tracking-tight">Night Atelier</span>
+<div class="flex items-center gap-8">
+<button class="material-symbols-outlined text-neutral-600 hover:text-orange-600 transition-colors duration-300 scale-95" data-icon="dark_mode">dark_mode</button>
+<button class="material-symbols-outlined text-neutral-600 hover:text-orange-600 transition-colors duration-300 scale-95" data-icon="settings">settings</button>
+</div>
+</header>
+<!-- Content Area -->
+<section class="px-12 pt-32 pb-12">
+<!-- Hero Statement -->
+<div class="mb-16 max-w-2xl">
+<h2 class="font-['Fraunces'] text-6xl font-bold tracking-tight text-neutral-200 leading-tight">Your sanctuary is in <span class="text-orange-600">Rest</span> mode.</h2>
+<div class="mt-8 flex items-center gap-4">
+<div class="bg-orange-950/20 border border-orange-900/30 px-5 py-2 rounded-full flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-orange-600 animate-pulse"></span>
+<span class="text-[10px] font-bold text-orange-600 uppercase tracking-[0.2em]">Environment optimized</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Salon -->
+<div class="col-span-12 lg:col-span-8 glass-card rounded-xl p-10 flex flex-col justify-between min-h-[450px] border border-neutral-800/50 shadow-2xl relative overflow-hidden group">
+<div class="absolute inset-0 z-0 opacity-20 transition-opacity duration-700 group-hover:opacity-30">
+<img alt="Luxury minimalist living room" class="w-full h-full object-cover grayscale" data-alt="Modern minimalist living room with warm wood accents, large windows, and soft indirect lighting at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwdQWjBM9uC_TewFS3u8Q1j3j6eOl7_qqazZp85MpvQ0in3n-lNo0oQAiDzWTRQPGIROnkuSciFfWSfKy9ktPjUER6YivMLwMBQ92PML-0Q7c6ZHFG0WRuZnEgG01rAA5Wxcs1cb4OKkTjQDXPwHzDqYe4woFCs7tsf3RJTQDxKX9WNsZGkcxkBNy1bOl24RTF0IuSXzYNf2jAURO9mcmNczvZlIO7zEjyHOx1SpLgLplj7WMkmt2Cy47UJmdB1lEl8d12Bm-VJ77E"/>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-start">
+<div>
+<span class="text-neutral-500 font-bold text-xs uppercase tracking-[0.2em] mb-3 block">Atmosphere</span>
+<h3 class="font-['Fraunces'] text-5xl font-bold text-neutral-100">Salon</h3>
+</div>
+<div class="bg-orange-600/10 border border-orange-600/30 text-orange-600 px-6 py-2 rounded-full font-bold text-sm tracking-widest uppercase">Active</div>
+</div>
+</div>
+<div class="relative z-10 flex items-end justify-between">
+<div class="flex flex-col gap-2">
+<span class="text-7xl font-fraunces font-black text-neutral-100">12<span class="text-4xl align-top text-orange-600">%</span></span>
+<span class="text-neutral-500 font-medium text-lg uppercase tracking-widest">Dimmed Amber</span>
+</div>
+<div class="flex gap-4">
+<button class="w-16 h-16 rounded-full bg-orange-600 flex items-center justify-center text-black scale-100 hover:scale-110 active:scale-95 transition-all shadow-lg shadow-orange-600/20">
+<span class="material-symbols-outlined" data-icon="lightbulb">lightbulb</span>
+</button>
+<button class="w-16 h-16 rounded-full bg-neutral-900 flex items-center justify-center text-neutral-300 border border-neutral-800 scale-100 hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="thermostat">thermostat</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Chambre -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 bg-neutral-950 border border-neutral-900 rounded-xl p-8 flex flex-col justify-between min-h-[450px] hover:border-orange-900/40 transition-colors group">
+<div>
+<div class="flex justify-between items-center mb-10">
+<h3 class="font-['Fraunces'] text-3xl font-bold text-neutral-100">Chambre</h3>
+<span class="px-4 py-1 rounded-full bg-neutral-900 text-neutral-500 text-[10px] font-bold uppercase tracking-widest">Quiet</span>
+</div>
+<div class="space-y-8">
+<div class="flex items-center justify-between">
+<span class="text-neutral-500 uppercase text-[10px] font-bold tracking-widest">Temperature</span>
+<span class="text-2xl font-bold text-neutral-100">18.5°C</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-neutral-500 uppercase text-[10px] font-bold tracking-widest">Deep Sleep</span>
+<span class="text-2xl font-bold text-orange-600">Optimal</span>
+</div>
+</div>
+</div>
+<div>
+<div class="flex flex-col gap-1 mb-8">
+<span class="text-5xl font-fraunces font-black text-neutral-100">0<span class="text-2xl align-top text-orange-600">%</span></span>
+<span class="text-neutral-500 font-medium uppercase text-xs tracking-widest">Total Darkness</span>
+</div>
+<button class="w-full py-5 bg-neutral-900 text-neutral-200 font-bold rounded-lg border border-neutral-800 hover:bg-orange-950 hover:text-orange-500 transition-all uppercase text-xs tracking-widest">
+                        Wake Configuration
+                    </button>
+</div>
+</div>
+<!-- Bureau -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 bg-neutral-950 border border-neutral-900 rounded-xl p-8 flex flex-col justify-between min-h-[450px]">
+<div>
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-['Fraunces'] text-3xl font-bold text-neutral-100">Bureau</h3>
+<span class="px-4 py-1 rounded-full bg-orange-600 text-black text-[10px] font-bold uppercase tracking-widest">Locked</span>
+</div>
+<p class="text-neutral-500 text-sm leading-relaxed uppercase tracking-wider">Access restricted during rest hours to ensure mental clarity.</p>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-4">
+<span class="text-6xl font-fraunces font-black text-neutral-100">0<span class="text-3xl align-top text-orange-600">%</span></span>
+<span class="text-neutral-500 font-medium text-xs uppercase tracking-widest leading-tight">Work<br/>Power</span>
+</div>
+<div class="h-1 w-full bg-neutral-900 rounded-full overflow-hidden">
+<div class="h-full bg-orange-600/20 w-[0%]"></div>
+</div>
+</div>
+</div>
+<!-- Cuisine -->
+<div class="col-span-12 lg:col-span-8 glass-card rounded-xl p-10 flex flex-col lg:flex-row gap-12 border border-neutral-800/50 shadow-2xl overflow-hidden relative group">
+<div class="absolute right-0 top-0 w-1/3 h-full opacity-5 pointer-events-none grayscale">
+<img alt="Modern kitchen detail" class="w-full h-full object-cover" data-alt="Close-up of a high-end designer kitchen with marble countertops, matte black faucets, and architectural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVFVlxmWbgytC343M9oK4t4tuaIMCDJc5vNxwL9mr-NROllL_wFjFFT6X8sCHbQpnB1KpOKOxuLiuZvQvS8xlrEajJ0vq-3Y2qWDEFxvDOeb_enaiFR2aGB52p5OVADtbAJvH92Y2Cz1GBJsXPh_Ex3NUpfkpZbCYA111WPW5xFmbOGYR1tlarCxGaamxKfLsIn9dq8hx62RmVos1Hve6ofiVXBtrvpKw0g2lPm8Hqk2Ow8zTINolcJZnGKPNDUUjpXJCED5Fe4C_6"/>
+</div>
+<div class="flex-grow flex flex-col justify-between relative z-10">
+<div>
+<div class="flex justify-between items-center mb-10">
+<h3 class="font-['Fraunces'] text-4xl font-bold text-neutral-100">Cuisine</h3>
+<span class="px-4 py-1 rounded-full bg-neutral-900 text-neutral-500 text-[10px] font-bold uppercase tracking-widest">Hibernate</span>
+</div>
+<div class="flex gap-16">
+<div>
+<span class="text-neutral-500 text-[10px] font-bold uppercase tracking-widest block mb-2">Leak Sensors</span>
+<span class="text-2xl font-bold text-neutral-100">Secured</span>
+</div>
+<div>
+<span class="text-neutral-500 text-[10px] font-bold uppercase tracking-widest block mb-2">Humidity</span>
+<span class="text-2xl font-bold text-neutral-100">42%</span>
+</div>
+</div>
+</div>
+<div class="mt-8 flex items-center gap-8">
+<div class="flex flex-col">
+<span class="text-5xl font-fraunces font-black text-neutral-100">0<span class="text-2xl align-top text-orange-600">%</span></span>
+<span class="text-neutral-500 font-medium uppercase text-xs tracking-widest">Illumination</span>
+</div>
+<button class="px-8 py-5 bg-orange-600 text-black font-bold rounded-lg hover:bg-orange-500 transition-all flex items-center gap-3 uppercase text-xs tracking-[0.2em]">
+<span class="material-symbols-outlined" data-icon="coffee">coffee</span>
+                            Morning Pre-Heat
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Meta -->
+<div class="mt-24 flex justify-between items-center text-neutral-700">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+<span class="text-[10px] font-bold uppercase tracking-[0.2em]">Encrypted Connection</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="nights_stay">nights_stay</span>
+<span class="text-[10px] font-bold uppercase tracking-[0.2em]">Rest Phase 4/4</span>
+</div>
+</div>
+<div class="font-['Noto_Serif'] italic text-sm opacity-30">Night Atelier OS v9.0-Ultra</div>
+</div>
+</section>
+</main>
+<!-- Floating Emergency Action -->
+<button class="fixed bottom-12 right-12 w-20 h-20 rounded-full bg-neutral-900 text-orange-600 border border-orange-950/50 shadow-2xl flex items-center justify-center scale-100 hover:bg-orange-950/20 hover:scale-110 active:scale-90 transition-all z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="emergency_home" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+</button>
+</body></html>

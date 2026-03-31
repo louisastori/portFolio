@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-03-26T23-00-04-188Z",
+  "generatedAt": "2026-03-26T23:15:32.686Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4700,
+  "analysisText": "Compte-rendu de forme – Analyse du 27 mars 2026\n\nVotre activité récente présente un profil intéressant avec une charge globale significative, mais aussi des variations notables en termes de sommeil et de récupération. Sur les 7 derniers jours, vous avez accumulé 201 km, ce qui témoigne d'une activité régulière, bien que la charge ait été particulièrement élevée le samedi avec 399 km.  Cette forte concentration de volume est à surveiller pour éviter un risque de surcharge.\n\nLe sommeil reste un point d'attention. Les scores moyens autour de 58 et une durée moyenne de 6.1 heures suggèrent un besoin de sommeil potentiellement plus important. Les nuits récentes, notamment le 22 mars avec un score de 53 et un retour de qualité négatif, indiquent des problèmes de sommeil persistants.  Le besoin de sommeil estimé à 8.7 heures pourrait être un indicateur pertinent à explorer.  L'éveil tardif du 23 mars, avec un score de 69 et un retour de qualité négatif, confirme cette tendance.\n\nMalgré ces difficultés de sommeil, vous avez démontré une certaine capacité de récupération. Les valeurs de HRV (Heart Rate Variability) ont oscillé, mais ont généralement été positives, et le body battery a montré des gains significatifs, notamment lors de la course du 25 mars.  Cependant, la qualité de la récupération reste variable, ce qui nécessite une attention particulière à votre alimentation, à votre hydratation et à votre gestion du stress.\n\nVotre performance est globalement correcte, avec un VO2max de 57 et des vitesses maximales notables.  Cependant, il est important de continuer à travailler sur l'amélioration de votre endurance, en particulier en optimisant vos nuits et vos périodes de récupération.  Le volume élevé du samedi et les difficultés de sommeil pourraient impacter vos performances à long terme.\n\nIl est recommandé de privilégier des séances plus courtes et plus fréquentes, en intégrant des périodes de repos actives.  Surveillez attentivement votre HRV et votre sommeil, et ajustez votre entraînement en conséquence.  L'optimisation de votre sommeil devrait être une priorité.",
+  "coachSignals": {
+    "alert": "Fatigue élevée détectée, sommeil fragmenté et stress élevé.",
+    "advice": "Privilégiez une séance de récupération active courte et douce, en insistant sur la qualité du sommeil.",
+    "tomorrowWorkout": "Considérez une course à pied de 60-75 minutes à allure modérée pour favoriser la récupération.",
+    "fatigueRisk": "high",
+    "focus": "Recovery"
+  },
+  "totalDuration": 15494802600,
+  "loadDuration": 9507965800,
+  "evalCount": 467,
+  "evalDuration": 4996308900
+}

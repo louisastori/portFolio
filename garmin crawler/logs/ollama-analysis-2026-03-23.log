@@ -1,0 +1,51 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260323001502
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 49408
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-03-23T00:15:02
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+Ollama API not ready, starting local server...
+PS>Erreur de terminaison (Invoke-WebRequest) : « Le délai de l’opération a expiré. »
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-03-22T23-00-05-530Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "Fatigue élevée détectée, surveillez votre niveau d'énergie.",
+    "advice": "Privilégiez une séance de récupération active, comme une marche légère.",
+    "tomorrowWorkout": "Envisagez une course à pied de 60-75 minutes pour maintenir votre forme.",
+    "fatigueRisk": "high",
+    "focus": "recovery"
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-03-22T23-00-05-530Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-03-22T23-00-05-530Z\\ollama-analys
+is.json",
+  "preview": "Compte-rendu de forme – Analyse Garmin – 2026-03-23\n\nVotre activité récente présente un profil intéressa
+nt avec des fluctuations notables. La charge globale est conséquente, atteignant 7226 unités, principalement due à u"
+}
+Nightly Ollama analysis completed: 2026-03-23T00:15:40
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260323001540
+**********************

@@ -5,9 +5,11 @@
   "main": "crawler.js",
   "scripts": {
     "crawl": "node crawler.js",
+    "analyze": "node ollama-analyze.js",
+    "analyze:dry": "node ollama-analyze.js --dry-run",
     "login": "node crawler.js --prepare-login --skip-activity-details --activity-limit 1",
     "chrome:debug": "node crawler.js --prepare-login --skip-activity-details --activity-limit 1",
-    "test": "node --check crawler.js"
+    "test": "node --check crawler.js && node --check ollama-analyze.js"
   },
   "keywords": [],
   "author": "",

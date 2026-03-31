@@ -1,0 +1,50 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260319001502
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 94020
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-03-19T00:15:02
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+Ollama API not ready, starting local server...
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-03-18T23-00-04-720Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "Fatigue élevée détectée, surveillez votre niveau d'énergie.",
+    "advice": "Privilégiez une séance de récupération active avec une marche légère.",
+    "tomorrowWorkout": "Envisagez une course tranquille de 60-75 minutes pour maintenir votre forme.",
+    "fatigueRisk": "high",
+    "focus": "stress"
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-03-18T23-00-04-720Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-03-18T23-00-04-720Z\\ollama-analys
+is.json",
+  "preview": "Votre bilan Garmin indique une activité physique régulière avec une charge globale de 6647. Sur les 7 dern
+iers jours, vous avez accumulé 185.5 km, ce qui représente une progression notable par rapport aux 26 activités de"
+}
+Nightly Ollama analysis completed: 2026-03-19T00:15:36
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260319001536
+**********************

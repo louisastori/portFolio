@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sommeil et Soleil</title>
+    <link rel="stylesheet" href="/app.css?v=20260318-sleep-sun" />
+    <script defer src="/sleep-sun.js?v=20260318-sleep-sun"></script>
+  </head>
+  <body class="sleep-sun-body">
+    <div class="sleep-sun-shell">
+      <header class="sleep-sun-hero">
+        <div>
+          <p class="eyebrow">Sommeil et soleil</p>
+          <h1>Lever de soleil a Bordeaux et rythme de sommeil.</h1>
+          <p class="subtitle">
+            Une page dediee pour comparer ton reveil habituel, le soleil et l heure de coucher cible.
+          </p>
+        </div>
+        <div class="sleep-sun-hero-actions">
+          <a class="secondary-button sleep-sun-link" href="/">Retour dashboard</a>
+          <button id="sleepSunRefreshButton" class="primary-button" type="button">Actualiser</button>
+        </div>
+      </header>
+
+      <main class="sleep-sun-grid">
+        <section class="sleep-sun-card sleep-sun-card-accent">
+          <p class="sleep-sun-kicker">Soleil</p>
+          <h2 id="sunriseTimeValue" class="sleep-sun-big-value">--:--</h2>
+          <p id="sunriseDateValue" class="sleep-sun-note">Chargement du lever de soleil...</p>
+        </section>
+
+        <section class="sleep-sun-card">
+          <p class="sleep-sun-kicker">Ton reveil</p>
+          <h2 id="wakeTimeValue" class="sleep-sun-big-value">--:--</h2>
+          <p id="wakeTimeNote" class="sleep-sun-note">Chargement de ton heure de lever...</p>
+        </section>
+
+        <section class="sleep-sun-card">
+          <p class="sleep-sun-kicker">Coucher cible</p>
+          <h2 id="bedtimeValue" class="sleep-sun-big-value">--:--</h2>
+          <p id="bedtimeNote" class="sleep-sun-note">Chargement de l heure ideale...</p>
+        </section>
+
+        <section class="sleep-sun-card sleep-sun-card-wide">
+          <div class="sleep-sun-panel-head">
+            <div>
+              <p class="sleep-sun-kicker">Comparaison</p>
+              <h3>Lever, besoin de sommeil et dette recente</h3>
+            </div>
+            <p id="sleepSunGeneratedAt" class="sleep-sun-meta">En attente</p>
+          </div>
+          <div id="sleepSunComparison" class="sleep-sun-stats-grid">
+            <article class="sleep-sun-mini-card">
+              <p class="sleep-sun-mini-label">Chargement</p>
+              <p class="sleep-sun-mini-value">...</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="sleep-sun-card">
+          <p class="sleep-sun-kicker">Volet futur</p>
+          <h3>Automatisation soleil</h3>
+          <div id="sleepSunAutomation" class="sleep-sun-callout">
+            Chargement du scenario volet...
+          </div>
+        </section>
+
+        <section class="sleep-sun-card">
+          <p class="sleep-sun-kicker">Temperature future</p>
+          <h3>Confort de nuit</h3>
+          <div id="sleepSunTemperature" class="sleep-sun-callout">
+            Chargement du scenario temperature...
+          </div>
+        </section>
+
+        <section class="sleep-sun-card sleep-sun-card-wide">
+          <p class="sleep-sun-kicker">Etat</p>
+          <div id="sleepSunStatus" class="sleep-sun-status">
+            Chargement...
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

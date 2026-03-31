@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Digital Atelier | Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&amp;family=Manrope:wght@400;600;800&amp;family=Sora:wght@400;600;700&amp;family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#ffb347",
+              "tertiary": "#8b0000",
+              "secondary-fixed": "#4a3518",
+              "primary-container": "#0d0d0d",
+              "surface-variant": "#1a1816",
+              "surface-container-high": "#141414",
+              "on-primary-fixed": "#ffb347",
+              "inverse-surface": "#fef9f1",
+              "on-tertiary-fixed": "#360f00",
+              "on-primary-fixed-variant": "#4d4135",
+              "surface-container-highest": "#1c1c1c",
+              "secondary": "#ffb347",
+              "on-secondary": "#000000",
+              "on-surface": "#7a7670",
+              "tertiary-fixed-dim": "#ffb596",
+              "primary": "#000000",
+              "on-error": "#000000",
+              "surface-container": "#0f0f0f",
+              "error-container": "#2b0a0a",
+              "surface-bright": "#121212",
+              "primary-fixed": "#ffb347",
+              "surface-container-low": "#0a0a0a",
+              "tertiary-container": "#2b0a00",
+              "on-background": "#a09e96",
+              "error": "#601410",
+              "surface-dim": "#1a1a1a",
+              "on-tertiary-fixed-variant": "#79310b",
+              "surface": "#000000",
+              "primary-fixed-dim": "#8c622d",
+              "background": "#000000",
+              "on-primary": "#8c7d6b",
+              "surface-container-lowest": "#000000",
+              "outline": "#444444",
+              "inverse-on-surface": "#000000",
+              "on-secondary-fixed": "#24190b",
+              "secondary-fixed-dim": "#8c622d",
+              "on-surface-variant": "#666666",
+              "on-tertiary-container": "#8b0000",
+              "on-primary-container": "#665c52",
+              "on-secondary-fixed-variant": "#7a5525",
+              "on-error-container": "#93000a",
+              "inverse-primary": "#ffb347",
+              "tertiary-fixed": "#ffdbcd"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif", "serif"],
+              "body": ["Manrope", "sans-serif"],
+              "label": ["Manrope", "sans-serif"],
+              "sora": ["Sora", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-panel {
+            background: rgba(13, 13, 13, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        body {
+            background-color: #000000;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1c1c1c;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-black text-on-surface font-body min-h-screen overflow-hidden">
+<!-- SideNavBar (Authority: Shared Components JSON - COMPONENTS_3) -->
+<nav class="fixed left-0 top-0 h-full w-24 bg-black flex flex-col items-center py-10 z-50 border-r border-white/5">
+<div class="mb-12">
+<span class="material-symbols-outlined text-orange-900 text-3xl">nights_stay</span>
+</div>
+<div class="flex flex-col flex-1 gap-8">
+<!-- Active Tab: Sleep -->
+<a class="flex flex-col items-center justify-center text-orange-600 bg-orange-950/20 rounded-full p-4 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-2xl">bedtime</span>
+<span class="font-['Noto_Serif'] text-[8px] uppercase tracking-widest mt-1">Sleep</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-2xl">shield</span>
+<span class="font-['Noto_Serif'] text-[8px] uppercase tracking-widest mt-1">Security</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-2xl">thermostat</span>
+<span class="font-['Noto_Serif'] text-[8px] uppercase tracking-widest mt-1">Climate</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-800 p-4 hover:bg-neutral-900/50 rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-2xl">weekend</span>
+<span class="font-['Noto_Serif'] text-[8px] uppercase tracking-widest mt-1">Lounge</span>
+</a>
+</div>
+<div class="mt-auto px-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-white/10 opacity-50 grayscale">
+<img alt="User Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDmbjA_4LFvGODZ1K4i13tu6WNHQ8lFrPCUAyMbY062Twm-1sO9BY14wPe8JCSxF7UIMtwh4PB31CkEB10aiSsEfYHeZXmJSVZPmr_i1f3g-ezaBqWoLSElju1Cs8zG9E3mGl4UVHDNaBrQx6OsTxsdOp9cKaGbs14WwI2rR9T3KuFIiMjYDh0nAbM7q0gawNVcFrpS1qbEx1bk8Tpx9mhcWAUoFMqNZglFfie-n62P83GpnLtOllDMCuP-L2XKs909lJwRhnhZaR_"/>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="ml-24 h-screen p-12 overflow-y-auto bg-black">
+<!-- TopAppBar (Authority: Shared Components JSON - COMPONENTS_3) -->
+<header class="fixed top-0 left-24 right-0 flex justify-between items-center px-8 py-6 w-full bg-neutral-950/80 backdrop-blur-xl bg-gradient-to-b from-neutral-900/20 to-transparent z-40">
+<h1 class="text-xl font-medium text-neutral-500 font-['Noto_Serif'] tracking-tight">Night Atelier</h1>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-2xl text-orange-700 hover:text-orange-800 transition-colors duration-300 scale-95 active:scale-90">dark_mode</button>
+<button class="material-symbols-outlined text-2xl text-orange-700 hover:text-orange-800 transition-colors duration-300 scale-95 active:scale-90">settings</button>
+</div>
+</header>
+<div class="pt-16">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Hero Comfort Card -->
+<section class="col-span-8 glass-panel rounded-xl p-10 flex flex-col justify-between min-h-[440px] relative overflow-hidden">
+<div class="relative z-10">
+<span class="bg-orange-950/40 text-orange-500/80 px-4 py-1.5 rounded-full font-bold text-[10px] tracking-[0.2em] uppercase border border-orange-500/10">Ultra Sombre Active</span>
+<h2 class="font-headline text-7xl font-light text-white/20 mt-8 leading-none italic">Home Comfort</h2>
+<p class="text-neutral-600 text-xl mt-4 max-w-md italic">Balanced for deep restoration.</p>
+</div>
+<div class="absolute right-0 bottom-0 top-0 w-1/2 flex items-center justify-center pointer-events-none">
+<!-- At-A-Glance Arc Gauge -->
+<div class="relative w-80 h-80 flex items-center justify-center opacity-40">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/[0.02]" cx="160" cy="160" fill="transparent" r="140" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-orange-900" cx="160" cy="160" fill="transparent" r="140" stroke="currentColor" stroke-dasharray="880" stroke-dashoffset="140" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center pt-4">
+<span class="font-headline text-8xl font-light text-white/10">84%</span>
+<span class="font-sora font-bold text-neutral-700 tracking-widest uppercase text-[10px]">Rest Index</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Room Status -->
+<section class="col-span-4 flex flex-col gap-6">
+<div class="glass-panel rounded-xl p-8 flex items-center gap-6 border-l-4 border-orange-900/40 bg-white/[0.01]">
+<div class="w-14 h-14 rounded-lg bg-orange-950/10 flex items-center justify-center border border-orange-950/20">
+<span class="material-symbols-outlined text-orange-900 text-3xl">living</span>
+</div>
+<div>
+<h3 class="text-xl font-medium text-neutral-400">Living Room</h3>
+<p class="text-neutral-600 text-sm">22.5°C • Purifying</p>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-8 flex items-center gap-6 bg-white/[0.01]">
+<div class="w-14 h-14 rounded-lg bg-white/[0.02] flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-neutral-600 text-3xl">bed</span>
+</div>
+<div>
+<h3 class="text-xl font-medium text-neutral-400">Bedroom</h3>
+<p class="text-neutral-600 text-sm">19.0°C • Standby</p>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-8 flex items-center gap-6 bg-white/[0.01]">
+<div class="w-14 h-14 rounded-lg bg-white/[0.02] flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-neutral-600 text-3xl">kitchen</span>
+</div>
+<div>
+<h3 class="text-xl font-medium text-neutral-400">Kitchen</h3>
+<p class="text-neutral-600 text-sm">Lights Off</p>
+</div>
+</div>
+</section>
+<!-- Scenario Timeline -->
+<section class="col-span-12 mt-8">
+<div class="flex items-end justify-between mb-8">
+<div>
+<p class="font-sora font-bold text-orange-900 uppercase tracking-[0.3em] text-[10px] mb-2">Daily Rhythm</p>
+<h2 class="font-headline text-5xl font-light text-neutral-400 italic">Daily Scenario</h2>
+</div>
+<button class="bg-neutral-900/50 text-neutral-500 border border-white/5 font-sora font-bold px-8 py-4 rounded-full hover:bg-neutral-900 transition-all scale-100 active:scale-95 text-xs uppercase tracking-widest">
+                        Edit Schedule
+                    </button>
+</div>
+<div class="grid grid-cols-4 gap-8">
+<!-- Wake Up -->
+<div class="group relative bg-white/[0.01] rounded-xl p-8 border border-white/5 transition-all cursor-pointer hover:border-orange-950/30">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-3xl text-neutral-700 group-hover:text-orange-950 transition-colors">wb_sunny</span>
+<span class="text-neutral-700 font-bold text-xs tracking-widest">07:30</span>
+</div>
+<h4 class="font-headline text-2xl font-light text-neutral-400 mb-2">Wake up</h4>
+<p class="text-neutral-600 text-sm leading-relaxed">Soft light, Jazz, and Coffee brew.</p>
+<div class="mt-8 h-0.5 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full w-full bg-orange-900/10"></div>
+</div>
+</div>
+<!-- Sport -->
+<div class="group relative bg-white/[0.01] rounded-xl p-8 border border-white/5 transition-all cursor-pointer hover:border-orange-950/30">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-3xl text-neutral-700 group-hover:text-orange-950 transition-colors">fitness_center</span>
+<span class="text-neutral-700 font-bold text-xs tracking-widest">09:00</span>
+</div>
+<h4 class="font-headline text-2xl font-light text-neutral-400 mb-2">Sport</h4>
+<p class="text-neutral-600 text-sm leading-relaxed">Cool air, High energy playlist.</p>
+<div class="mt-8 h-0.5 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full w-full bg-orange-900/10"></div>
+</div>
+</div>
+<!-- Calm Evening (Active) -->
+<div class="group relative bg-white/[0.02] rounded-xl p-8 shadow-2xl border border-orange-900/30 transition-all cursor-pointer scale-[1.02]">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-3xl text-orange-700" style="font-variation-settings: 'FILL' 1;">bedtime</span>
+<span class="bg-orange-950 text-orange-600 px-3 py-1 rounded-md font-bold text-[10px] tracking-widest">ACTIVE</span>
+</div>
+<h4 class="font-headline text-2xl font-light text-neutral-300 mb-2 italic">Calm Evening</h4>
+<p class="text-neutral-500 text-sm leading-relaxed">Warm lighting, 22°C, Privacy blinds.</p>
+<div class="mt-8 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full w-[65%] bg-orange-900"></div>
+</div>
+</div>
+<!-- Night -->
+<div class="group relative bg-white/[0.01] rounded-xl p-8 border border-white/5 transition-all cursor-pointer hover:border-orange-950/30">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-3xl text-neutral-700 group-hover:text-orange-950 transition-colors">dark_mode</span>
+<span class="text-neutral-700 font-bold text-xs tracking-widest">23:00</span>
+</div>
+<h4 class="font-headline text-2xl font-light text-neutral-400 mb-2">Night</h4>
+<p class="text-neutral-600 text-sm leading-relaxed">Eco mode, Full security lock.</p>
+<div class="mt-8 h-0.5 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full w-0 bg-orange-900"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Floating Action for Tablet -->
+<div class="fixed bottom-12 right-12 flex gap-4">
+<button class="w-16 h-16 rounded-full bg-neutral-900 text-orange-900 flex items-center justify-center border border-orange-950/20 shadow-2xl hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">mic</span>
+</button>
+<button class="w-16 h-16 rounded-full bg-orange-950/30 text-orange-700 flex items-center justify-center border border-orange-900/20 shadow-2xl hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">emergency_home</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProjetHome | Chambre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/site.css?v=20260331-multipage" />
+    <script defer src="/site.js?v=20260331-multipage"></script>
+  </head>
+  <body data-page="chambre">
+    <div id="nightOverlay" class="night-overlay" hidden>
+      <div class="night-overlay-card"><p class="night-overlay-kicker">ProjetHome</p><h2 id="nightOverlayTitle" class="night-overlay-title">Rest Mode</h2><p id="nightOverlayCopy" class="night-overlay-copy">Touchez pour revenir au hub.</p></div>
+    </div>
+    <div class="page-frame">
+      <aside class="side-rail">
+        <div class="brand-block"><div class="brand-mark">PH</div><div><div class="brand-name">Night Atelier</div><div class="brand-note">tablet hub</div></div></div>
+        <nav class="rail-nav" aria-label="Pages">
+          <a class="nav-link" href="/" data-nav="home"><span class="nav-link-label">Home</span></a>
+          <a class="nav-link" href="/maison.html" data-nav="maison"><span class="nav-link-label">Maison</span></a>
+          <a class="nav-link" href="/sport.html" data-nav="sport"><span class="nav-link-label">Sport</span></a>
+          <a class="nav-link" href="/assistant.html" data-nav="assistant"><span class="nav-link-label">AI</span></a>
+          <a class="nav-link" href="/automatisations.html" data-nav="automatisations"><span class="nav-link-label">Flow</span></a>
+          <a class="nav-link" href="/chambre.html" data-nav="chambre"><span class="nav-link-label">Sleep</span></a>
+        </nav>
+        <div class="rail-footer"><div class="rail-pill">Deep sleep</div><a class="support-link" href="/automatisations.html">night flow</a></div>
+      </aside>
+
+      <div class="app-shell">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Sleep</p>
+            <h1>Rest Mode</h1>
+            <p class="topbar-lead">Page dediee au coucher: pas de grille generaliste, seulement le protocole, l etat chambre et les signaux utiles.</p>
+          </div>
+          <div class="topbar-actions">
+            <div class="topbar-button-row"><button class="ghost-button" type="button" data-action="refresh">Refresh live</button><a class="ghost-button" href="/automatisations.html">Night flow</a></div>
+            <div id="syncStatus" class="sync-pill">Hub stable</div>
+            <div class="clock-stack"><strong class="clock-time" data-frame="clock">--:--</strong><span class="clock-date" data-frame="date">--</span></div>
+          </div>
+        </header>
+
+        <div id="globalBanner" class="global-banner" hidden></div>
+
+        <main class="page-content">
+          <section class="hero-grid">
+            <article class="feature-panel warm-panel">
+              <p class="eyebrow">Rest mode</p>
+              <h2 class="display-title">Deep <span>sleep.</span></h2>
+              <p id="bedroomLead" class="soft-copy">Preparation du coucher, blackout preview et protocole de nuit en un seul lieu.</p>
+              <div class="button-row" style="margin-top:14px">
+                <button id="bedroomStartProtocol" class="primary-button" type="button">Start session</button>
+                <button id="bedroomPreviewNight" class="ghost-button" type="button">Preview blackout</button>
+              </div>
+            </article>
+            <aside class="feature-panel">
+              <p class="eyebrow">Target</p>
+              <div id="bedroomTarget" class="stack-grid"></div>
+            </aside>
+          </section>
+
+          <section class="section-split">
+            <section class="section-block"><div class="section-heading"><div><p class="eyebrow">Protocol</p><h2>Sleep protocol</h2></div></div><div id="bedroomProtocol" class="stack-grid"></div></section>
+            <section class="section-block">
+              <div class="section-heading"><div><p class="eyebrow">Ambient</p><h2>Night environment</h2></div></div>
+              <div id="bedroomEnvironment" class="chip-grid"></div>
+              <div id="bedroomCallout" class="highlight-card" style="margin-top:14px"></div>
+            </section>
+          </section>
+
+          <section class="section-block"><div class="section-heading"><div><p class="eyebrow">Notes</p><h2>Rest metrics</h2></div></div><div id="bedroomNotes" class="summary-grid"></div></section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
