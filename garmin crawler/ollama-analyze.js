@@ -34,6 +34,7 @@ Usage:
 
 Options:
   --exports-dir <path>     Exports Garmin a analyser (default: ./exports)
+  --export-name <name>     Dossier d export a enrichir (default: latest)
   --model <name>           Modele Ollama (default: auto)
   --base-url <url>         Endpoint Ollama (default: ${DEFAULT_OLLAMA_BASE_URL})
   --dry-run                N appelle pas Ollama, affiche seulement le plan d execution
@@ -51,6 +52,7 @@ const toAbsoluteExportsDir = (value) =>
 const parseArgs = (argv) => {
   const args = {
     exportsDir: toAbsoluteExportsDir(),
+    exportName: "",
     baseUrl: DEFAULT_OLLAMA_BASE_URL.replace(/\/+$/, ""),
     model: DEFAULT_OLLAMA_MODEL,
     dryRun: false,
@@ -76,6 +78,12 @@ const parseArgs = (argv) => {
 
     if (token === "--exports-dir") {
       args.exportsDir = toAbsoluteExportsDir(nextValue);
+      index += 1;
+      continue;
+    }
+
+    if (token === "--export-name") {
+      args.exportName = nextValue.trim();
       index += 1;
       continue;
     }
@@ -507,12 +515,21 @@ const main = async () => {
     throw new Error(`No Garmin exports found in ${args.exportsDir}`);
   }
 
-  const exportName = selectLatestExportName(exportsData);
+  const exportName = args.exportName || selectLatestExportName(exportsData);
   if (!exportName) {
     throw new Error("Unable to determine the latest Garmin export to analyse.");
   }
 
   const exportDir = path.join(args.exportsDir, exportName);
+  try {
+    const stat = await fs.stat(exportDir);
+    if (!stat.isDirectory()) {
+      throw new Error("not a directory");
+    }
+  } catch (_error) {
+    throw new Error(`Garmin export directory not found: ${exportDir}`);
+  }
+
   const summary = buildSummary(exportsData);
   const payload = buildAnalysisPayload(summary);
   const prompt = buildPrompt(payload);

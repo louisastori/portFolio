@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-03T10-43-45-178Z",
+  "generatedAt": "2026-04-03T10:47:49.526Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4674,
+  "analysisText": "Compte-rendu de forme – Analyse du 3 avril 2026\n\nVotre récente activité témoigne d’une charge d’entraînement significative, avec un total de 162 km parcourus sur les sept derniers jours et 627.8 km accumulés sur les 28 derniers jours. Cette charge, particulièrement élevée, est concentrée autour de Samedi avec une activité notable de 404.8 km, ce qui suggère une période d’investissement important dans votre entraînement. L’activité indoor prédomine, représentant 42 des 65 activités enregistrées, ce qui indique une volonté d’entraînement régulier, même en cas de conditions extérieures défavorables.\n\nLe sommeil reste un point à surveiller. Bien que le score moyen de qualité du sommeil sur les 28 derniers jours soit de 69, les nuits récentes présentent des variations notables. La nuit du 30 mars a été particulièrement courte et de mauvaise qualité, avec un score de 58 et une durée de 4.5 heures, marquée par un stress élevé et un manque de sommeil lent et profond. Les nuits suivantes ont montré une amélioration, mais le sommeil paradoxal (REM) reste insuffisant, notamment la nuit du 1er avril, soulignant un besoin potentiel d’optimiser votre routine pour favoriser un sommeil plus réparateur.\n\nVotre corps semble bien répondre à l’effort, avec une VO2max de 57 et des performances notables sur les 10 km (6:14/km). Cependant, la charge récente a engendré un stress élevé et un besoin de sommeil accru. La récupération est variable, avec des fluctuations importantes de la FC repos et de la HRV, indiquant une adaptation physiologique en cours. Il est crucial de privilégier les jours de récupération active et de bien dormir pour soutenir votre adaptation et prévenir les risques de surcharge.\n\nIl est intéressant de noter votre préférence pour la ville de Villenave-d'Ornon, où vous avez réalisé une grande partie de votre kilométrage, ainsi que Castelló d'Empúries. Ces lieux semblent être des spots privilégiés pour vos sorties. Il serait pertinent d'analyser les facteurs qui motivent ces choix géographiques afin d'intégrer ces éléments dans votre planification d'entraînement.",
+  "coachSignals": {
+    "alert": "Fatigue accrue détectée après la nuit du 2026-04-03 (FC élevé, sommeil fragmenté).",
+    "advice": "Privilégiez une récupération active légère aujourd'hui avec une courte séance de marche ou de vélo pour favoriser la circulation et réduire la tension.",
+    "tomorrowWorkout": "Envisagez une course à pied de 60-75 minutes à allure modérée pour renforcer votre endurance.",
+    "fatigueRisk": "moderate",
+    "focus": "Récupération et gestion du stress."
+  },
+  "totalDuration": 186436688012,
+  "loadDuration": 119151264807,
+  "evalCount": 486,
+  "evalDuration": 60289099015
+}

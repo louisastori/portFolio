@@ -23,7 +23,7 @@ Options:
   --skip-activity-details     Skip per-activity detail fetches
   --prepare-login             Open Garmin, wait for a valid session, then exit without exporting data
   --profile-dir <path>        Persistent browser profile dir (default: ${DEFAULT_PROFILE_DIR})
-  --browser-executable <path> Chrome/Chromium executable path (default: installed Chrome via Playwright)
+  --browser-executable <path> Chrome/Chromium executable path (default: bundled Playwright Chromium)
   --headless                  Run browser in headless mode
   --output-dir <path>         Output folder (default: ./exports/<timestamp>)
   --help                      Show this help
@@ -196,21 +196,20 @@ function formatAttemptSummary(attempts) {
 function getDefaultProfileDir() {
   if (process.platform === 'win32') {
     const localAppData = process.env.LOCALAPPDATA || path.join(os.homedir(), 'AppData', 'Local');
-    return path.join(localAppData, 'Google', 'Chrome', 'User Data GarminCrawler');
+    return path.join(localAppData, 'GarminCrawlerPlaywright');
   }
 
   if (process.platform === 'darwin') {
-    return path.join(os.homedir(), 'Library', 'Application Support', 'GarminCrawler');
+    return path.join(os.homedir(), 'Library', 'Application Support', 'GarminCrawlerPlaywright');
   }
 
-  return path.join(process.env.XDG_CONFIG_HOME || path.join(os.homedir(), '.config'), 'garmin-crawler');
+  return path.join(process.env.XDG_CONFIG_HOME || path.join(os.homedir(), '.config'), 'garmin-crawler-playwright');
 }
 
 async function launchBrowserContext({ profileDir, browserExecutable, headless }) {
   await fs.mkdir(profileDir, { recursive: true });
 
   const launchOptions = {
-    channel: browserExecutable ? undefined : 'chrome',
     executablePath: browserExecutable || undefined,
     headless,
     viewport: null,
@@ -231,7 +230,7 @@ async function launchBrowserContext({ profileDir, browserExecutable, headless })
       `Impossible de lancer le navigateur persistant Playwright avec le profil ${profileDir}.`,
       browserExecutable
         ? `Executable demande: ${browserExecutable}`
-        : 'Chrome installe via Playwright channel "chrome".',
+        : 'Chromium embarque de Playwright.',
       'Ferme toute fenetre qui utilise deja ce profil GarminCrawler puis relance la commande.',
       `Cause originale: ${error.message}`,
     ].join('\n'));
@@ -370,7 +369,7 @@ async function waitForAuthenticatedProfile(page, timeoutMs = DEFAULT_LOGIN_TIMEO
       lastError = error.message;
 
       if (!hintShown) {
-        console.log('Garmin session not ready yet. Sign in in the opened Chrome window if needed. Waiting up to 5 minutes...');
+        console.log('Garmin session not ready yet. Sign in in the opened Playwright browser window if needed. Waiting up to 5 minutes...');
         hintShown = true;
       }
 

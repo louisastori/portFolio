@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-04-03T10:36:58.347Z",
+  "browserEngine": "playwright",
+  "browserExecutable": "/home/louis/.cache/ms-playwright/chromium-1208/chrome-linux64/chrome",
+  "browserHeadless": true,
+  "profileDir": "/home/louis/.config/garmin-crawler-playwright",
+  "outputDir": "/home/louis/Bureau/portFolio/garmin crawler/exports/2026-04-03T10-36-43-598Z",
+  "displayName": "c93c5e2b-0737-4379-b4b8-14a6cbb3934d",
+  "startDate": "2026-03-27",
+  "endDate": "2026-04-03",
+  "activityLimit": 1,
+  "activityCount": 1,
+  "activityDetailCount": 1,
+  "dailyEntryCount": 8,
+  "sleepEntryCount": 8,
+  "pageUrl": "https://connect.garmin.com/app/home"
+}
