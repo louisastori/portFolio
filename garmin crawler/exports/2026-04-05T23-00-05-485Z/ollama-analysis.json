@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-05T23-00-05-485Z",
+  "generatedAt": "2026-04-05T23:15:26.009Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4615,
+  "analysisText": "L’analyse de votre activité récente révèle une charge globale significative, estimée à 9249 unités. Sur les 70 activités enregistrées, 8 se sont déroulées au cours des sept derniers jours, avec un total de 60.8 kilomètres parcourus.  Les 28 dernières journées ont vu 28 activités, pour un total de 647.3 kilomètres et 2263 mètres de dénivelé positif.  Votre activité est majoritairement axée sur l’extérieur, représentant 36% de vos activités.\n\nVotre sommeil a été variable. Les nuits récentes ont montré des scores moyens autour de 64, avec une durée moyenne de 5.8 heures.  Le besoin de sommeil est estimé à 8.5 heures.  Plusieurs nuits ont présenté des anomalies, notamment des retours négatifs indiquant un manque de REM insuffisant après un exercice intense.  Le stress nocturne a également été un facteur présent, bien que généralement contenu.\n\nVotre performance physique est solide, avec une VO2max de 57 et des vitesses maximales notables.  Cependant, les données récentes suggèrent une tendance à l'effort intense, avec des pics de puissance de 608W et des FC max atteignant 20.  Il est important de veiller à l’équilibre entre l’entraînement et la récupération.\n\nLes activités récentes montrent une diversité d'entraînement, allant du trail running à des séances sur tapis roulant et des activités de sport électronique.  L'accent semble être mis sur des efforts de durée modérée, avec des allures autour de 5:30/km.  Il serait bénéfique d'intégrer davantage de séances de récupération active et de varier les types d'entraînement pour optimiser votre forme physique.  L'effort intense sur Barr le 5 avril, suivi de Gertwiller le 4 avril, suggère une période d'entraînement soutenue.",
+  "coachSignals": {
+    "alert": "Fatigue élevée détectée, surveillez votre niveau de stress et votre sommeil.",
+    "advice": "Priorisez une nuit de sommeil de qualité et intégrez des moments de relaxation pour réduire le stress.",
+    "tomorrowWorkout": "Envisagez une séance de course à pied de 60-75 minutes pour maintenir votre niveau de forme.",
+    "fatigueRisk": "high",
+    "focus": "somnolence"
+  },
+  "totalDuration": 19247418800,
+  "loadDuration": 13884022900,
+  "evalCount": 415,
+  "evalDuration": 4323469900
+}

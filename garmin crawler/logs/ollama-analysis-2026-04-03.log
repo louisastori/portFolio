@@ -1,0 +1,50 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260403011502
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 58092
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-04-03T01:15:02
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+Ollama API not ready, starting local server...
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-04-02T23-00-05-694Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "Fatigue risque modérée due à une activité récente et un sommeil irrégulier.",
+    "advice": "Privilégiez une activité de récupération active comme une courte marche ou du yoga.",
+    "tomorrowWorkout": "Envisagez une course à pied de 60-75 minutes pour maintenir la forme.",
+    "fatigueRisk": "moderate",
+    "focus": "équilibre"
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-02T23-00-05-694Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-02T23-00-05-694Z\\ollama-analys
+is.json",
+  "preview": "Votre bilan sportif récent présente un profil d’activité assez varié, avec une forte composante cycliste e
+t une part significative d’entraînement sur tapis roulant. La charge totale est notable, avec 67 activités enregis"
+}
+Nightly Ollama analysis completed: 2026-04-03T01:15:32
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260403011532
+**********************

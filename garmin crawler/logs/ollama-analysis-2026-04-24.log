@@ -1,0 +1,53 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260424011502
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 43068
+PSVersion: 5.1.26100.8115
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8115
+BuildVersion: 10.0.26100.8115
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-04-24T01:15:02
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+Ollama API not ready, starting local server...
+PS>Erreur de terminaison (Invoke-WebRequest) : « Le délai de l’opération a expiré. »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Le délai de l’opération a expiré. »
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-04-23T23-00-04-513Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "FC repos élevé (49 bpm) et sommeil fragmenté (5.5h) suggèrent un risque de fatigue.",
+    "advice": "Privilégiez une récupération active et une alimentation équilibrée pour optimiser votre ressourcement.",
+    "tomorrowWorkout": "Envisagez une sortie longue et progressive pour renforcer votre endurance et explorer les enviro
+ns de Villenave-d'Ornon.",
+    "fatigueRisk": "moderate",
+    "focus": "Stress et qualité de sommeil variables, nécessitant une attention à l'équilibre."
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-23T23-00-04-513Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-23T23-00-04-513Z\\ollama-analys
+is.json",
+  "preview": "Compte-rendu de forme – 2026-04-24\n\nVotre activité récente présente un profil intéressant, marqué par un
+e charge assez élevée et des variations notables en matière de sommeil. Sur les 28 derniers jours, vous avez accumul"
+}
+Nightly Ollama analysis completed: 2026-04-24T01:15:46
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260424011546
+**********************

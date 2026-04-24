@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-11T23-00-05-524Z",
+  "generatedAt": "2026-04-11T23:15:55.210Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4746,
+  "analysisText": "Votre bilan Garmin révèle une activité physique régulière, mais avec des variations notables. Sur les 75 activités enregistrées, la majorité (39%) s'est déroulée en extérieur, avec un total de 615.6 km parcourus.  La charge récente, avec 7 activités pour 55.3 km, est relativement faible comparée à la charge globale, suggérant une période de consolidation ou de récupération.\n\nLe sommeil est un point à surveiller. Les dernières nuits ont été contrastées, avec des scores de qualité variables (entre 29 et 85) et des durées significativement différentes. Un besoin de sommeil de 8.9 heures est clairement exprimé, et les nuits récentes ont été marquées par des épisodes de sommeil fragmenté, notamment un manque de sommeil lent (REM) et des périodes de stress nocturne.  L'analyse des données de sommeil révèle un besoin de mieux optimiser vos habitudes pour favoriser un sommeil de qualité et réparateur.\n\nLes points forts de votre activité résident dans votre endurance et votre puissance. Votre VO2max est respectable (58), et vous démontrez une bonne capacité à maintenir un effort soutenu, comme en témoignent vos performances sur différentes distances.  L'activité la plus intense a été enregistrée à Villenave-d'Ornon, avec une charge de 535, et votre vitesse maximale a atteint 72.9 km/h sur route.  Cependant, la majorité de vos activités récentes se concentrent sur des séances de récupération, notamment sur les terrains variés de Gertwiller.\n\nIl est important de noter que le moment le plus intense de votre activité a été pendant l'après-midi, avec une charge de 4167, et que vous avez développé une préférence pour les activités en intérieur (46 activités).  L'analyse des lieux forts révèle une forte concentration d'activités à Villenave-d'Ornon et Castelló d'Empúries, suggérant des itinéraires que vous appréciez particulièrement.  Il serait intéressant d'explorer davantage ces zones et de varier vos parcours pour éviter la monotonie et stimuler différents aspects de votre entraînement.",
+  "coachSignals": {
+    "alert": "Fatigue accrue due à une activité intense et un sommeil fragmenté.",
+    "advice": "Privilégiez une séance de récupération active courte et douce pour favoriser la récupération.",
+    "tomorrowWorkout": "Envisagez une course à allure modérée de 60-75 minutes pour renforcer votre endurance.",
+    "fatigueRisk": "moderate",
+    "focus": "Récupération et sommeil de qualité"
+  },
+  "totalDuration": 28749772400,
+  "loadDuration": 11095292300,
+  "evalCount": 461,
+  "evalDuration": 15585096100
+}

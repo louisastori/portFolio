@@ -1,0 +1,47 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260410011502
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 82496
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-04-10T01:15:02
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-04-09T23-00-05-315Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "Risque de fatigue élevé, sommeil perturbé récent.",
+    "advice": "Privilégiez une récupération active avec une course légère.",
+    "tomorrowWorkout": "Envisagez une course de 60-75 minutes pour maintenir la forme.",
+    "fatigueRisk": "moderate",
+    "focus": "Récupération et qualité du sommeil."
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-09T23-00-05-315Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-09T23-00-05-315Z\\ollama-analys
+is.json",
+  "preview": "Votre bilan sportif présente un tableau contrasté. Sur les 74 activités enregistrées, la charge globale es
+t notable, avec 614.5 km parcourus et 2284m de dénivelé positif, principalement concentrés sur les semaines récent"
+}
+Nightly Ollama analysis completed: 2026-04-10T01:15:39
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260410011539
+**********************

@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-10T23-00-05-129Z",
+  "generatedAt": "2026-04-10T23:15:19.892Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4738,
+  "analysisText": "Compte-rendu de forme du jour – Analyse Garmin (2026-04-11)\n\nVotre activité récente présente un tableau contrasté. Sur les 7 derniers jours, vous avez accumulé un volume respectable avec 60.4 km et 5.5 heures d'activité, ce qui témoigne d'une bonne fréquence d'entraînement. Cependant, la charge totale sur les 28 derniers jours est plus élevée (614.5 km et 37.5 heures), suggérant une période d'investissement conséquent dans votre condition physique.\n\nLa récupération est un point à surveiller. Les nuits récentes ont montré des variations significatives, avec des scores de sommeil allant de 29 à 88. La durée moyenne du sommeil est de 5.1 heures, bien en dessous des 8.9 heures dont vous avez besoin. Les interruptions nocturnes, notamment les éveil de 11 et 21 minutes, ainsi que le stress nocturne détecté, indiquent potentiellement des facteurs perturbant votre sommeil. L'analyse de l'HRV (fréquence cardiaque variant) suggère une réponse physiologique variable, reflétant des jours plus ou moins stressants.\n\nLes points forts de votre entraînement résident principalement dans vos sorties en extérieur, particulièrement à Villenave-d'Ornon et Castelló d'Empúries, où vous avez réalisé des parcours longs et intenses. Votre endurance est notable, comme en témoignent vos meilleurs temps sur 10 km (4:58) et votre vitesse maximale sur route (72.9 km/h). L'activité la plus intense a été enregistrée à Villenave-d'Ornon, avec une charge de 535, ce qui est un point de référence important.\n\nIl est important de noter que vos récentes activités de récupération, notamment les runs à Gertwiller, sont bien structurées pour favoriser la récupération musculaire et l'adaptation. Néanmoins, l'absence de sommeil suffisant et les variations de stress suggèrent une possible surcharge ou un besoin d'ajuster votre planning pour optimiser votre repos et votre récupération. Il serait pertinent d'examiner attentivement vos habitudes de sommeil et de stress, et de potentiellement augmenter les périodes de repos actif.",
+  "coachSignals": {
+    "alert": "Risque de fatigue élevé en raison de l'augmentation des activités et des longues distances parcourues.",
+    "advice": "Privilégiez une séance de récupération active avec un footing léger pour faciliter la récupération.",
+    "tomorrowWorkout": "Envisagez une sortie longue à rythme modéré pour continuer à construire votre endurance.",
+    "fatigueRisk": "high",
+    "focus": "Récupération et sommeil de qualité"
+  },
+  "totalDuration": 11474687600,
+  "loadDuration": 5479318300,
+  "evalCount": 482,
+  "evalDuration": 5131383000
+}

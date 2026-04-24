@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-23T23-00-04-513Z",
+  "generatedAt": "2026-04-23T23:15:46.053Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4647,
+  "analysisText": "Compte-rendu de forme – 2026-04-24\n\nVotre activité récente présente un profil intéressant, marqué par une charge assez élevée et des variations notables en matière de sommeil. Sur les 28 derniers jours, vous avez accumulé 659 kilomètres, ce qui témoigne d'un engagement conséquent. La charge totale de 4082 kcal est également significative, suggérant des séances d'entraînement intenses.\n\nLa charge récente, avec ses 287 kilomètres et 13,2 heures d'activité, est un point fort. Vous avez particulièrement privilégié les sorties longues, notamment le 23 avril avec un parcours de 201,8 km à Villenave-d'Ornon, où votre allure moyenne était de 2:12/km.  Cependant, la nuit du 21 avril a été marquée par un sommeil de mauvaise qualité, avec un score de seulement 32 et une durée de 3,5 heures, ce qui impacte négativement votre récupération.\n\nLes nuits récentes sont un point d'attention. Le manque de sommeil profond et la présence d'éveils prolongés (jusqu'à 153 minutes la nuit du 21 avril) suggèrent un stress ou une perturbation qui pourrait affecter vos performances et votre bien-être.  L'analyse des données du sommeil indique un besoin de sommeil plus important (8,6 heures) et une amélioration de la qualité de vos nuits.\n\nVotre corps semble s'adapter bien à l'effort, avec une bonne condition physique, confirmée par votre VO2max de 58 et des temps de référence corrects sur différentes distances.  Votre puissance maximale est de 608W, ce qui est un indicateur de force intéressant.  Il est important de continuer à maintenir cette charge, tout en veillant à optimiser votre sommeil et votre récupération.  L'activité la plus intense a eu lieu le 23 avril à Carcans, avec une allure soutenue et un dénivelé important.",
+  "coachSignals": {
+    "alert": "FC repos élevé (49 bpm) et sommeil fragmenté (5.5h) suggèrent un risque de fatigue.",
+    "advice": "Privilégiez une récupération active et une alimentation équilibrée pour optimiser votre ressourcement.",
+    "tomorrowWorkout": "Envisagez une sortie longue et progressive pour renforcer votre endurance et explorer les environs de Villenave-d'Ornon.",
+    "fatigueRisk": "moderate",
+    "focus": "Stress et qualité de sommeil variables, nécessitant une attention à l'équilibre."
+  },
+  "totalDuration": 15072791400,
+  "loadDuration": 9222533600,
+  "evalCount": 438,
+  "evalDuration": 4850265900
+}

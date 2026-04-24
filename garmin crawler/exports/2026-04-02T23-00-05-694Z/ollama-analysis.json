@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-02T23-00-05-694Z",
+  "generatedAt": "2026-04-02T23:15:32.821Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4594,
+  "analysisText": "Votre bilan sportif récent présente un profil d’activité assez varié, avec une forte composante cycliste et une part significative d’entraînement sur tapis roulant. La charge totale est notable, avec 67 activités enregistrées sur les 28 derniers jours. L’activité la plus intense a été observée le samedi avec 11 sorties, atteignant une charge de 1758.\n\nVotre sommeil est un point à surveiller. Malgré une durée moyenne de 6.9 heures, les scores de qualité du sommeil varient considérablement, oscillant entre 58 et 78. Les réveils fréquents, avec jusqu'à 11 réveils en une seule nuit, et les périodes de sommeil profond limitées, suggèrent un besoin de mieux optimiser vos habitudes pour favoriser un sommeil plus réparateur. La HRV (fréquence cardiaque variant) est également variable, ce qui peut indiquer une adaptation physiologique à l'effort ou au stress.\n\nL’entraînement sur tapis roulant est bien présent, avec des séances régulières de course, dont une récente de 14.5 km.  Votre vitesse maximale sur tapis roulant est de 10.9 km/h.  Votre entraînement cycliste est très prononcé, avec des sorties longues et intenses, notamment le samedi. La puissance maximale enregistrée sur vélo est de 608W, ce qui témoigne d'une bonne capacité aérobique.\n\nIl est important de noter que votre performance est en constante évolution. Bien que vos valeurs maximales soient bonnes, il y a encore du potentiel à améliorer. L'accent devrait être mis sur la consolidation de vos acquis et sur la gestion de la récupération pour éviter la surcharge.",
+  "coachSignals": {
+    "alert": "Fatigue risque modérée due à une activité récente et un sommeil irrégulier.",
+    "advice": "Privilégiez une activité de récupération active comme une courte marche ou du yoga.",
+    "tomorrowWorkout": "Envisagez une course à pied de 60-75 minutes pour maintenir la forme.",
+    "fatigueRisk": "moderate",
+    "focus": "équilibre"
+  },
+  "totalDuration": 15129031900,
+  "loadDuration": 10191012800,
+  "evalCount": 361,
+  "evalDuration": 3922098300
+}

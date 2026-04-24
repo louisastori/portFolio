@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-13T23-00-05-219Z",
+  "generatedAt": "2026-04-13T23:15:19.694Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4734,
+  "analysisText": "Votre bilan Garmin présente une activité physique soutenue, avec une progression notable sur les dernières semaines. La charge totale, combinant les activités récentes et le historique, indique un engagement régulier. Sur les 7 derniers jours, vous avez accumulé 136 km, ce qui témoigne d’une progression par rapport aux 8 activités précédentes.\n\nLe sommeil reste un point à surveiller. Les nuits récentes montrent des variations importantes, avec des scores de qualité inférieurs à 60 et des durées moyennes de sommeil de seulement 4.3 heures. L’absence de REM significatif dans plusieurs nuits est un signal d’alarme qui pourrait impacter votre récupération et votre performance. La tendance à un coucher tardif, identifiée par l’insight “late bed time”, est un facteur à considérer.\n\nPar ailleurs, vos points forts résident principalement dans vos sorties à Villenave-d’Ornon, où vous avez réalisé des parcours conséquents et des efforts soutenus. Votre puissance maximale est de 608W, ce qui indique une bonne capacité de production d’énergie. Votre vitesse maximale est de 72.9 km/h, témoignant d'une capacité de sprint.\n\nIl est important de noter que la majorité de vos activités se déroulent en intérieur, ce qui pourrait être diversifié pour un entraînement plus complet. La charge accumulée le samedi est particulièrement élevée, ce qui pourrait indiquer un besoin de mieux équilibrer vos séances. La récupération est également un point à optimiser, avec des scores moyens inférieurs à 60 et des besoins de sommeil dépassant les 8.9 heures.  Il serait intéressant d’analyser plus en détail les raisons de ces difficultés de récupération.",
+  "coachSignals": {
+    "alert": "Risque de fatigue élevé en raison de la charge d'entraînement intense et des nuits de sommeil perturbées.",
+    "advice": "Privilégiez une séance de récupération active avec un focus sur la mobilité et la gestion du stress.",
+    "tomorrowWorkout": "Envisagez une course à pied de 60-75 minutes à allure modérée pour favoriser la récupération et l'adaptation.",
+    "fatigueRisk": "high",
+    "focus": "Stress élevé et qualité de sommeil insuffisante."
+  },
+  "totalDuration": 11480614200,
+  "loadDuration": 6081460700,
+  "evalCount": 360,
+  "evalDuration": 4421293300
+}

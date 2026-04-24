@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-21T23-00-04-364Z",
+  "generatedAt": "2026-04-21T23:15:35.994Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4662,
+  "analysisText": "Votre bilan Garmin révèle une activité physique régulière, avec une charge globale significative. Les 84 activités enregistrées, couvrant 441.2 km, témoignent d'un engagement constant. La charge récente, avec ses 67.8 km et 5.9 heures d'activité, est cependant plus faible que les périodes précédentes, notamment le samedi où la charge atteint 451.7 km.\n\nLe sommeil reste un point à surveiller. Les dernières nuits ont été contrastées, avec des scores variables et des durées de sommeil significativement différentes. La nuit du 17 avril a été particulièrement courte et de mauvaise qualité, marquée par des éveils fréquents et un stress élevé. La tendance générale est à un besoin de sommeil plus important (8.2h) que le temps réellement passé à dormir (5.2h).\n\nMalgré ces variations, vous affichez des performances intéressantes. Votre VO2max de 58 est un bon indicateur de votre capacité cardiovasculaire. Vos temps aux 10 km (4:58) et 5 km (4:35) sont à considérer comme des objectifs à maintenir ou à améliorer. La puissance maximale enregistrée (608W) suggère un potentiel de performance en course à pied.\n\nIl est important de noter que les lieux de Villenave-d'Ornon et Castelló d'Empúries apparaissent comme des lieux de pratique privilégiés, avec une concentration d'activités. Cela pourrait indiquer des itinéraires ou des environnements qui vous motivent particulièrement.  L'activité la plus fréquente se déroule à Villenave-d'Ornon, ce qui est intéressant à explorer davantage. Il est conseillé de continuer à privilégier ces lieux.",
+  "coachSignals": {
+    "alert": "FC repos élevé (49) et sommeil fragmenté (5.2h) suggèrent un stress potentiellement élevé.",
+    "advice": "Privilégiez une séance de récupération active courte et douce pour favoriser la relaxation.",
+    "tomorrowWorkout": "Envisagez une sortie longue à Villenave-d'Ornon pour maintenir votre volume et votre charge.",
+    "fatigueRisk": "moderate",
+    "focus": "Récupération et sommeil de qualité"
+  },
+  "totalDuration": 13927200200,
+  "loadDuration": 9249981700,
+  "evalCount": 372,
+  "evalDuration": 3708632700
+}

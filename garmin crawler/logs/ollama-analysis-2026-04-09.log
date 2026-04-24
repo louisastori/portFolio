@@ -1,0 +1,51 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260409011502
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 53620
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-04-09T01:15:02
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+Ollama API not ready, starting local server...
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-04-08T23-00-04-785Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "Risque de fatigue élevé en raison de la charge d'activité récente et du sommeil irrégulier.",
+    "advice": "Privilégiez une récupération active avec une course légère et de l'étirement.",
+    "tomorrowWorkout": "Envisagez une course de récupération de 60-75 minutes à allure facile pour favoriser la récupéra
+tion.",
+    "fatigueRisk": "moderate",
+    "focus": "équilibre"
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-08T23-00-04-785Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-08T23-00-04-785Z\\ollama-analys
+is.json",
+  "preview": "Votre bilan sportif présente un profil intéressant avec une activité régulière, principalement axée sur la
+ course à pied et le trail, et une tendance à privilégier les sorties longues. La charge récente est notable, avec"
+}
+Nightly Ollama analysis completed: 2026-04-09T01:15:36
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260409011536
+**********************

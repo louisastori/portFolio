@@ -1,0 +1,49 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260414011503
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 2512
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-04-14T01:15:03
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-04-13T23-00-05-219Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "Risque de fatigue élevé en raison de la charge d'entraînement intense et des nuits de sommeil perturbées."
+,
+    "advice": "Privilégiez une séance de récupération active avec un focus sur la mobilité et la gestion du stress.",
+    "tomorrowWorkout": "Envisagez une course à pied de 60-75 minutes à allure modérée pour favoriser la récupération et
+l'adaptation.",
+    "fatigueRisk": "high",
+    "focus": "Stress élevé et qualité de sommeil insuffisante."
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-13T23-00-05-219Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-13T23-00-05-219Z\\ollama-analys
+is.json",
+  "preview": "Votre bilan Garmin présente une activité physique soutenue, avec une progression notable sur les dernières
+ semaines. La charge totale, combinant les activités récentes et le historique, indique un engagement régulier. Su"
+}
+Nightly Ollama analysis completed: 2026-04-14T01:15:19
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260414011519
+**********************

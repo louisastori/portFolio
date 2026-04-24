@@ -1,0 +1,51 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260422011502
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 26828
+PSVersion: 5.1.26100.8115
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8115
+BuildVersion: 10.0.26100.8115
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-04-22T01:15:02
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+Ollama API not ready, starting local server...
+PS>Erreur de terminaison (Invoke-WebRequest) : « Le délai de l’opération a expiré. »
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-04-21T23-00-04-364Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "FC repos élevé (49) et sommeil fragmenté (5.2h) suggèrent un stress potentiellement élevé.",
+    "advice": "Privilégiez une séance de récupération active courte et douce pour favoriser la relaxation.",
+    "tomorrowWorkout": "Envisagez une sortie longue à Villenave-d'Ornon pour maintenir votre volume et votre charge.",
+    "fatigueRisk": "moderate",
+    "focus": "Récupération et sommeil de qualité"
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-21T23-00-04-364Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-21T23-00-04-364Z\\ollama-analys
+is.json",
+  "preview": "Votre bilan Garmin révèle une activité physique régulière, avec une charge globale significative. Les 84 a
+ctivités enregistrées, couvrant 441.2 km, témoignent d'un engagement constant. La charge récente, avec ses 67.8 km"
+}
+Nightly Ollama analysis completed: 2026-04-22T01:15:36
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260422011536
+**********************

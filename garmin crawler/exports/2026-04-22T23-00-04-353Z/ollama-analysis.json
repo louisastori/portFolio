@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-22T23-00-04-353Z",
+  "generatedAt": "2026-04-22T23:15:37.491Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4700,
+  "analysisText": "Votre bilan Garmin présente un tableau contrasté. Sur les 28 derniers jours, vous avez accumulé un volume d'activité conséquent avec 427 km, ce qui témoigne d'une bonne fréquence d'entraînement. Cependant, la charge récente, avec 846 km en 7 jours et 3837 kcal en 28 jours, suggère une période d'entraînement intense, potentiellement avec une charge de travail plus élevée que la moyenne.\n\nLe sommeil est un point à surveiller. Vos scores de sommeil moyens sont en dessous de 70, et la durée moyenne est de seulement 4.9 heures, bien en dessous des 8.5 heures de besoin de sommeil déclaré. L'analyse des nuits révèle des variations importantes, certaines étant très courtes et de mauvaise qualité, avec des épisodes de stress nocturne et des perturbations. Il serait bénéfique d'améliorer votre hygiène de sommeil, en particulier en optimisant vos routines du soir et en veillant à un environnement propice au repos.\n\nVos points forts résident dans votre endurance et votre capacité à maintenir un rythme soutenu. Les lieux forts identifiés, notamment Villenave-d'Ornon, témoignent d'une familiarité et d'une performance optimisée dans cet environnement. Votre VO2max, estimé à 58, indique un bon niveau d'endurance cardiovasculaire.\n\nIl est important de noter que votre activité récente est majoritairement axée sur le running, avec une forte proportion d'activités en intérieur. La charge de travail est également élevée, ce qui peut entraîner une fatigue accrue. Il serait judicieux de diversifier vos entraînements, en intégrant des séances de récupération active et en explorant d'autres types d'activités. L'observation de la charge de travail du samedi, avec plus de 15 activités et une charge importante, peut servir de point de vigilance pour ne pas surcharger vos journées d'entraînement.",
+  "coachSignals": {
+    "alert": "Risque de fatigue élevé en raison de l'activité intense récente et du sommeil irrégulier.",
+    "advice": "Privilégiez une séance de récupération active courte et douce pour favoriser la récupération musculaire.",
+    "tomorrowWorkout": "Envisagez une course à pied de 8-10 km pour maintenir la forme et améliorer votre endurance.",
+    "fatigueRisk": "high",
+    "focus": "Récupération et gestion du stress"
+  },
+  "totalDuration": 15088515000,
+  "loadDuration": 9164212000,
+  "evalCount": 414,
+  "evalDuration": 4966379000
+}

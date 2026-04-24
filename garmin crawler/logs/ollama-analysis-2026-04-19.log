@@ -1,0 +1,52 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260419011503
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 32536
+PSVersion: 5.1.26100.8115
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8115
+BuildVersion: 10.0.26100.8115
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-04-19T01:15:03
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+Ollama API not ready, starting local server...
+PS>Erreur de terminaison (Invoke-WebRequest) : « Le délai de l’opération a expiré. »
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-04-18T23-00-04-166Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "FC repos élevé (50) et sommeil fragmenté (4.7h) suggèrent un risque de fatigue.",
+    "advice": "Privilégiez une séance de récupération active avec du treadmill running pour améliorer la qualité du somm
+eil.",
+    "tomorrowWorkout": "Envisagez une course à pied de 8-10 km pour maintenir la forme et travailler l'allure.",
+    "fatigueRisk": "moderate",
+    "focus": "Récupération et sommeil optimal"
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-18T23-00-04-166Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-18T23-00-04-166Z\\ollama-analys
+is.json",
+  "preview": "Votre bilan sportif récent présente un tableau contrasté. Sur une période de 28 jours, vous avez accumulé
+un volume important avec 587.8 km et 3074 mètres de dénivelé positif, ce qui témoigne d'une activité régulière et "
+}
+Nightly Ollama analysis completed: 2026-04-19T01:15:38
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260419011538
+**********************

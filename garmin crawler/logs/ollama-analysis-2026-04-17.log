@@ -1,0 +1,51 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260417011502
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 10324
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-04-17T01:15:02
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+Ollama API not ready, starting local server...
+PS>Erreur de terminaison (Invoke-WebRequest) : « Le délai de l’opération a expiré. »
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-04-16T23-00-04-387Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "Risque de fatigue élevé suite à une charge d'entraînement intense.",
+    "advice": "Privilégiez une séance de récupération active avec une courte course à pied.",
+    "tomorrowWorkout": "Envisagez une sortie longue à rythme modéré pour explorer Villenave-d'Ornon.",
+    "fatigueRisk": "high",
+    "focus": "Récupération et gestion du stress."
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-16T23-00-04-387Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-16T23-00-04-387Z\\ollama-analys
+is.json",
+  "preview": "Votre bilan Garmin présente une activité physique régulière avec une charge globale significative. Sur les
+ 80 activités enregistrées, 39% sont réalisées en extérieur, indiquant une préférence pour les sorties. La charge "
+}
+Nightly Ollama analysis completed: 2026-04-17T01:15:38
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260417011538
+**********************

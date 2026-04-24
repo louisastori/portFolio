@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-19T23-00-04-494Z",
+  "generatedAt": "2026-04-19T23:15:26.058Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4569,
+  "analysisText": "Compte-rendu de forme – 2026-04-20\n\nL’analyse de votre activité récente révèle une charge assez élevée, principalement concentrée sur les samedis et l’après-midi. Sur les 28 derniers jours, vous avez accumulé 587.8 km avec un dénivelé important de 3074 mètres, ce qui indique un volume d’entraînement conséquent. La charge totale de 4135 est notable et mérite d’être prise en compte pour la gestion de la récupération.\n\nVotre sommeil est un point à surveiller. Les nuits récentes montrent des scores moyens autour de 57, avec une durée moyenne de 3.3 heures, ce qui est inférieur à vos besoins de sommeil estimés à 8.2 heures. Le HRV (fréquence cardiaque variant) est variable, notamment une chute notable la nuit du 17-04-2026, suggérant potentiellement un stress ou une perturbation pendant le sommeil. La tension musculaire est également un facteur à considérer, avec un stress nocturne moyen de 12.\n\nLes points forts de votre entraînement résident dans votre capacité à maintenir une bonne endurance, comme en témoignent vos performances sur les longues distances, notamment les sorties à Villenave-d'Ornon. Votre VO2max de 58 est un indicateur de bonne capacité cardiovasculaire. Les données de puissance maximales (608W) et de vitesse maximale (72.9 km/h) sont également positives, confirmant une bonne base de performance.\n\nIl est important de noter que vos activités récentes sont majoritairement axées sur le running, avec une forte concentration sur les sorties à Villenave-d'Ornon. L'aspect \"indoor\" est moins présent, avec 51% de vos activités réalisées en extérieur. Il serait bénéfique de diversifier vos activités pour éviter une surcharge et optimiser votre développement global. La nuit du 17-04-2026, malgré un score de récupération élevé, la nature discontinue de la nuit et le stress élevé suggèrent une nuit de récupération moins optimale qu'à l'accoutumée.",
+  "coachSignals": {
+    "alert": "FC repos élevé (50) et sommeil insuffisant (4.9h) suggèrent un besoin de repos accru.",
+    "advice": "Privilégiez une séance de récupération active courte (30-45 min) avec du treadmill running pour améliorer la qualité du sommeil.",
+    "tomorrowWorkout": "Envisagez une course à pied de 60-75 minutes pour renforcer votre endurance et améliorer votre VO2max.",
+    "fatigueRisk": "moderate",
+    "focus": "Récupération et sommeil, indicateurs positifs (body battery +76, score 82)."
+  },
+  "totalDuration": 17792546000,
+  "loadDuration": 11813665600,
+  "evalCount": 464,
+  "evalDuration": 4941817400
+}

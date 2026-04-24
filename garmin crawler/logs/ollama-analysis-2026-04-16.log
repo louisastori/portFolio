@@ -1,0 +1,52 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260416011505
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 52600
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-04-16T01:15:05
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+Ollama API not ready, starting local server...
+PS>Erreur de terminaison (Invoke-WebRequest) : « Le délai de l’opération a expiré. »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Le délai de l’opération a expiré. »
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-04-15T23-00-11-944Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "Fatigue accrue due à une charge élevée et des nuits de sommeil irrégulières.",
+    "advice": "Privilégiez des séances de récupération active courtes et fréquentes pour réduire la fatigue.",
+    "tomorrowWorkout": "Considérez une sortie longue à allure modérée (60-70 min) pour renforcer votre endurance.",
+    "fatigueRisk": "high",
+    "focus": "Récupération et gestion du stress nocturne."
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-15T23-00-11-944Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-15T23-00-11-944Z\\ollama-analys
+is.json",
+  "preview": "Votre bilan Garmin révèle une activité physique régulière, mais avec des variations notables. Sur les 80 a
+ctivités enregistrées au cours des 28 derniers jours, la charge globale est de 573.3 km, répartie sur un temps d'e"
+}
+Nightly Ollama analysis completed: 2026-04-16T01:21:57
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260416012157
+**********************

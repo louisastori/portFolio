@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-12T23-00-05-105Z",
+  "generatedAt": "2026-04-12T23:15:49.104Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4735,
+  "analysisText": "Votre bilan Garmin révèle une activité physique régulière, mais avec des variations notables. Sur les 77 activités enregistrées, la majorité (environ 40%) se déroule en extérieur, ce qui témoigne d'une préférence pour les sorties. La charge récente, avec 8 activités sur les 7 derniers jours et 138 km parcourus, indique un niveau d'engagement constant.\n\nLa récupération est un point à surveiller. Les nuits récentes présentent des profils contrastés. La nuit du 8 avril a été particulièrement positive avec un score de sommeil élevé et un retour \"POSITIVE_LONG_AND_RECOVERING\", suggérant une récupération optimale. Cependant, les nuits du 9, 10 et 11 avril ont montré des scores plus faibles, des durées de sommeil réduites et un stress nocturne présent, notamment le 11 avril avec un retour \"NEGATIVE_SHORT_AND_POOR_STRUCTURE\". Il semble donc que des facteurs comme le timing du coucher puissent impacter la qualité de votre sommeil.\n\nVos points forts résident clairement dans la région de Villenave-d'Ornon, où vous avez accumulé un volume important d'activité (13 activités, 645 km, 30.9 h). Castelló d'Empúries est également un lieu de prédilection.  Votre VO2max est bon (58), et vous affichez des performances intéressantes sur les 10 km (4:58/km).  La puissance maximale enregistrée (608 W) est un indicateur de votre potentiel.\n\nIl est important de noter que la charge la plus intense se concentre sur le samedi, avec un volume conséquent de 427 km et une charge de 2125.  L'après-midi est également une période d'activité soutenue.  L'activité la plus longue a eu lieu le 12 avril avec 94 km sur route à Villenave-d'Ornon.  Votre entraînement est majoritairement axé sur le running, avec une proportion importante d'activités en intérieur (47) et sur des terrains variés (route, trail).  Il serait intéressant d'explorer davantage les sorties en extérieur, notamment en montagne, pour stimuler votre condition physique.",
+  "coachSignals": {
+    "alert": "Fatigue élevée due à une activité intense le samedi et une charge élevée.",
+    "advice": "Privilégiez la récupération active et réduisez le stress.",
+    "tomorrowWorkout": "Envisagez une course à allure modérée de 60-75 minutes pour favoriser la récupération.",
+    "fatigueRisk": "high",
+    "focus": "Stress élevé, besoin de déconnexion."
+  },
+  "totalDuration": 35749118600,
+  "loadDuration": 13821641100,
+  "evalCount": 486,
+  "evalDuration": 19635498200
+}

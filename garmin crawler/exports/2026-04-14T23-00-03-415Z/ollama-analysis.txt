@@ -1,0 +1,9 @@
+Votre bilan Garmin révèle une activité physique régulière, mais avec des variations notables. La charge récente, principalement axée sur le vélo et la course à pied, est relativement élevée, avec un total de 144 km sur les 7 derniers jours et 573 km sur les 28 derniers jours. Cette charge est soutenue par des sessions de plus de 60 minutes, notamment le 14 avril avec une course de 12.2 km.
+
+Le sommeil reste un point à surveiller. Les scores moyens sont corrects autour de 52, mais la structure du sommeil est souvent défavorisée, avec des périodes de sommeil léger ou des réveils fréquents, comme observé les nuits du 10, 11 et 12 avril. Le besoin de sommeil de 9 heures est régulièrement sous-estimé, et les données montrent une tendance à des nuits courtes et fragmentées. L'insight NEGATIVE_LATE_BED_TIME du 11 avril est particulièrement pertinent à considérer.
+
+Les points forts de votre activité résident dans votre capacité à maintenir une charge élevée, notamment dans le lieu de Villenave-d'Ornon où vous avez réalisé plusieurs sorties significatives. Votre VO2max est bon, ce qui indique une bonne capacité cardiovasculaire. Les valeurs de puissance et de cadence sont également intéressantes, suggérant une technique de course et de vélo efficace.
+
+Cependant, il est important de noter que la récupération est insuffisante. La FC repos est légèrement élevée (51), et le body battery au réveil est souvent en baisse. Les données de HRV sont variables, et le stress nocturne est présent. Il serait bénéfique d'améliorer la qualité de votre sommeil et d'optimiser votre récupération, notamment en augmentant la durée de vos nuits et en réduisant le stress.
+
+En résumé, votre niveau est globalement bon, mais une attention particulière doit être portée à la qualité de votre sommeil et à l'optimisation de votre récupération pour éviter la surcharge et améliorer vos performances.

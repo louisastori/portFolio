@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-15T23-00-11-944Z",
+  "generatedAt": "2026-04-15T23:21:57.257Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4623,
+  "analysisText": "Votre bilan Garmin révèle une activité physique régulière, mais avec des variations notables. Sur les 80 activités enregistrées au cours des 28 derniers jours, la charge globale est de 573.3 km, répartie sur un temps d'environ 37 heures.  L'activité en extérieur représente 39% de votre temps, avec une progression de 1089.4 km sur les 31 activités enregistrées en extérieur.  Votre charge récente, avec 8 activités sur 7 jours, est plus faible, atteignant 150.3 km.\n\nLe sommeil est un point à surveiller. Les scores moyens de qualité de sommeil sont relativement faibles, autour de 46, et la durée moyenne est de 3.2 heures.  Les nuits récentes montrent des disparités importantes, avec des périodes de sommeil profondes limitées et des réveils fréquents.  L'insight \"NEGATIVE_LATE_BED_TIME\" indique un moment de coucher tardif, ce qui peut impacter la qualité du sommeil.  Votre besoin de sommeil est estimé à 8.7 heures, ce qui suggère un potentiel d'amélioration de votre hygiène de sommeil.\n\nVotre corps semble bien récupérer, avec une FC de repos stable autour de 51 et un niveau de stress relativement bas.  Cependant, la récupération moyenne est de 5.3 heures, ce qui pourrait être optimisé en fonction de vos besoins individuels.  L'activité la plus intense a été enregistrée le 27 mars, avec une charge de 535, mais il est important de veiller à une répartition équilibrée de vos activités pour favoriser la récupération.\n\nLes lieux forts de vos activités sont Villenave-d'Ornon et Castelló d'Empúries, où vous avez accumulé des kilomètres significatifs.  Votre VO2max est de 58, ce qui témoigne d'une bonne capacité cardiovasculaire.  Il est intéressant de noter que votre vitesse maximale est de 72.9 km/h, enregistrée sur Castelló d'Empúries.  Il est conseillé de maintenir ces efforts tout en progressant progressivement.",
+  "coachSignals": {
+    "alert": "Fatigue accrue due à une charge élevée et des nuits de sommeil irrégulières.",
+    "advice": "Privilégiez des séances de récupération active courtes et fréquentes pour réduire la fatigue.",
+    "tomorrowWorkout": "Considérez une sortie longue à allure modérée (60-70 min) pour renforcer votre endurance.",
+    "fatigueRisk": "high",
+    "focus": "Récupération et gestion du stress nocturne."
+  },
+  "totalDuration": 227583441800,
+  "loadDuration": 22032733900,
+  "evalCount": 462,
+  "evalDuration": 63261551700
+}

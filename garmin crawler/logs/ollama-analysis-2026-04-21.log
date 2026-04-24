@@ -1,0 +1,52 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260421011502
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 2716
+PSVersion: 5.1.26100.8115
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8115
+BuildVersion: 10.0.26100.8115
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-04-21T01:15:02
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+PS>Erreur de terminaison (Invoke-WebRequest) : « Impossible de se connecter au serveur distant »
+Ollama API not ready, starting local server...
+PS>Erreur de terminaison (Invoke-WebRequest) : « Le délai de l’opération a expiré. »
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-04-20T23-00-03-974Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "Risque de fatigue élevé suite à une charge d'entraînement soutenue ces dernières semaines.",
+    "advice": "Privilégiez une séance de récupération active avec un focus sur la mobilité et le renforcement musculaire
+ léger.",
+    "tomorrowWorkout": "Intégrez une course à pied de 8-10 km avec des intervalles pour améliorer votre VO2max.",
+    "fatigueRisk": "moderate",
+    "focus": "Récupération et mobilité"
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-20T23-00-03-974Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-20T23-00-03-974Z\\ollama-analys
+is.json",
+  "preview": "Le bilan actuel indique une activité physique régulière, avec une charge globale respectable. Sur les 7 de
+rniers jours, l’effort s’est maintenu avec 67.8 km parcourus, ce qui est un bon indicateur de progression. La char"
+}
+Nightly Ollama analysis completed: 2026-04-21T01:15:40
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260421011540
+**********************

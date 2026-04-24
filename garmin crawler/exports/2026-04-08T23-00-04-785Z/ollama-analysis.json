@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-04-08T23-00-04-785Z",
+  "generatedAt": "2026-04-08T23:15:36.689Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4720,
+  "analysisText": "Votre bilan sportif présente un profil intéressant avec une activité régulière, principalement axée sur la course à pied et le trail, et une tendance à privilégier les sorties longues. La charge récente est notable, avec un total de 64.9 km et 5.9 heures d'activité, ce qui indique un engagement conséquent.\n\nLes données de sommeil sont un point d’attention. Les scores moyens autour de 63, avec des durées moyennes de 5.7 heures, suggèrent un besoin de sommeil plus important. Les nuits récentes ont été contrastées : une nuit particulièrement bonne (score 78, 6.7h) suivie de nuits plus courtes et de qualité inférieure, avec des épisodes d'éveil nocturnes et un stress significatif.  Il serait intéressant d'analyser les facteurs influençant ces variations.\n\nVotre niveau de forme physique est bon, avec une VO2max de 58 et des vitesses maximales notables. Cependant, la puissance maximale enregistrée (608 W) pourrait être optimisée. Les données de récupération sont également importantes. Les FC de repos autour de 51 sont stables, et la body battery est généralement positive, ce qui témoigne d’une bonne gestion de l’énergie.\n\nLes lieux de vos sorties sont diversifiés, avec une forte concentration sur Gertwiller, ce qui pourrait indiquer une zone de confort ou un lieu de préparation. Les sorties longues, comme celle de 15 km à Gertwiller, sont un élément clé de votre programme.  Il est important de continuer à varier les types d'activités pour éviter la monotonie et stimuler différents aspects de votre condition physique.\n\nEn résumé, votre entraînement est bien structuré, mais une attention particulière devrait être portée sur l'amélioration de la qualité de votre sommeil et une exploration plus poussée des données de récupération pour optimiser votre performance et prévenir les risques de surcharge.",
+  "coachSignals": {
+    "alert": "Risque de fatigue élevé en raison de la charge d'activité récente et du sommeil irrégulier.",
+    "advice": "Privilégiez une récupération active avec une course légère et de l'étirement.",
+    "tomorrowWorkout": "Envisagez une course de récupération de 60-75 minutes à allure facile pour favoriser la récupération.",
+    "fatigueRisk": "moderate",
+    "focus": "équilibre"
+  },
+  "totalDuration": 17019055400,
+  "loadDuration": 11700654000,
+  "evalCount": 403,
+  "evalDuration": 4231121400
+}

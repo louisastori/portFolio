@@ -1,0 +1,52 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260411011502
+Nom d'utilisateur : ORDI-LOUIS\louis
+Utilisateur runAs :  ORDI-LOUIS\louis
+Nom de la configuration : 
+Ordinateur : ORDI-LOUIS (Microsoft Windows NT 10.0.26200.0)
+Application hôte : powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\louis\Desktop\buildProject\garmin crawler\run-nightly-ollama-analysis.ps1
+ID de processus : 79460
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Nightly Ollama analysis start: 2026-04-11T01:15:02
+
+> garmin-crawler@1.0.0 analyze
+> node ollama-analyze.js
+
+{
+  "ok": true,
+  "exportName": "2026-04-10T23-00-05-129Z",
+  "model": "gemma3:4b",
+  "autoSelectedModel": true,
+  "coachSignals": {
+    "alert": "Risque de fatigue élevé en raison de l'augmentation des activités et des longues distances parcourues.",
+    "advice": "Privilégiez une séance de récupération active avec un footing léger pour faciliter la récupération.",
+    "tomorrowWorkout": "Envisagez une sortie longue à rythme modéré pour continuer à construire votre endurance.",
+    "fatigueRisk": "high",
+    "focus": "Récupération et sommeil de qualité"
+  },
+  "textPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-10T23-00-05-129Z\\ollama-analys
+is.txt",
+  "jsonPath": "C:\\Users\\louis\\Desktop\\buildProject\\garmin crawler\\exports\\2026-04-10T23-00-05-129Z\\ollama-analys
+is.json",
+  "preview": "Compte-rendu de forme du jour – Analyse Garmin (2026-04-11)\n\nVotre activité récente présente un tableau
+contrasté. Sur les 7 derniers jours, vous avez accumulé un volume respectable avec 60.4 km et 5.5 heures d'activité,"
+}
+npm notice
+npm notice New major version of npm available! 10.9.4 -> 11.12.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.12.1
+npm notice To update run: npm install -g npm@11.12.1
+npm notice
+Nightly Ollama analysis completed: 2026-04-11T01:15:19
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260411011519
+**********************
