@@ -8,6 +8,7 @@ const { getDashboardSnapshot, invalidateDashboardCache } = require("./services/d
 const { getAiLabStatus } = require("./services/aiLab");
 const { setLightBrightness, setLightColor, toggleLightPower } = require("./services/lights");
 const { chatWithOllama, getOllamaStatus } = require("./services/ollamaChat");
+const { getRssDigest } = require("./services/rssFeeds");
 const { getSleepSunSnapshot } = require("./services/sleepSun");
 
 const serveStatic = async (pathname, res) => {
@@ -110,6 +111,15 @@ const requestListener = async (req, res) => {
     if (req.method === "GET" && pathname === "/api/ai-lab/status") {
       const status = await getAiLabStatus(config);
       sendJson(res, 200, status);
+      return;
+    }
+
+    const rssMatch = pathname.match(/^\/api\/rss\/([^/]+)$/);
+    if (req.method === "GET" && rssMatch) {
+      const digest = await getRssDigest(config, decodeURIComponent(rssMatch[1]), {
+        forceLive: searchParams.get("live") === "1",
+      });
+      sendJson(res, 200, digest);
       return;
     }
 

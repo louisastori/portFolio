@@ -113,6 +113,12 @@ const config = {
     timeoutMs: toNumber(firstDefined("AI_LAB_TIMEOUT_MS"), 3_500),
     h2oBaseUrl: withNoTrailingSlash(firstDefined("H2O_BASE_URL")) || "http://127.0.0.1:54321",
   },
+  rss: {
+    timeoutMs: toNumber(firstDefined("RSS_TIMEOUT_MS"), 15_000),
+    cacheTtlMs: toNumber(firstDefined("RSS_CACHE_TTL_MS"), 20 * 60_000),
+    perFeedLimit: toNumber(firstDefined("RSS_PER_FEED_LIMIT"), 6),
+    maxItems: toNumber(firstDefined("RSS_MAX_ITEMS"), 24),
+  },
 };
 
 module.exports = {

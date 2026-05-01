@@ -14,12 +14,28 @@ const QUICK_PROMPTS = [
   "Prepare la maison pour une soiree calme.",
 ];
 
+const RSS_PAGE_CONFIG = {
+  podcasts: {
+    group: "podcasts",
+    eyebrow: "Ecoute",
+    empty: "Aucun episode RSS disponible pour le moment.",
+  },
+  dev: {
+    group: "dev",
+    eyebrow: "Lecture",
+    empty: "Aucun article RSS disponible pour le moment.",
+  },
+};
+
 const state = {
   page: document.body.dataset.page || "home",
   dashboard: null,
   sleepSun: null,
   aiLabStatus: null,
   ollamaStatus: null,
+  rssDigests: {},
+  rssErrors: {},
+  rssLoading: {},
   fetchError: "",
   assistantMessages: loadAssistantMessages(),
   assistantSending: false,
@@ -162,6 +178,23 @@ function formatDateTime(value) {
   }).format(date);
 }
 
+function formatRssDate(value) {
+  if (!value) {
+    return "date inconnue";
+  }
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "date inconnue";
+  }
+
+  return new Intl.DateTimeFormat("fr-FR", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(date);
+}
+
 function formatCalendarDate(value) {
   if (!value) {
     return "";
@@ -234,15 +267,34 @@ function truncateText(value, maxLength) {
   return text.length > maxLength ? `${text.slice(0, Math.max(0, maxLength - 1)).trimEnd()}...` : text;
 }
 
+function currentRssGroup() {
+  const pageConfig = RSS_PAGE_CONFIG[state.page];
+  return pageConfig ? pageConfig.group : "";
+}
+
 function apiGet(path) {
   return fetch(path, {
     headers: { Accept: "application/json" },
   }).then(async (response) => {
     const raw = await response.text();
-    if (!response.ok) {
-      throw new Error(raw || `HTTP ${response.status}`);
+    let parsed = null;
+    if (raw) {
+      try {
+        parsed = JSON.parse(raw);
+      } catch (_error) {
+        parsed = null;
+      }
     }
-    return raw ? JSON.parse(raw) : null;
+
+    if (!response.ok) {
+      const error = new Error(
+        (parsed && (parsed.message || parsed.error)) || raw || `HTTP ${response.status}`
+      );
+      error.statusCode = response.status;
+      error.payload = parsed;
+      throw error;
+    }
+    return parsed;
   });
 }
 
@@ -1408,6 +1460,112 @@ function renderBedroomPage() {
     .join("");
 }
 
+function renderRssPage() {
+  const pageConfig = RSS_PAGE_CONFIG[state.page];
+  const hero = document.getElementById("rssHero");
+  const stats = document.getElementById("rssStats");
+  const sources = document.getElementById("rssSources");
+  const items = document.getElementById("rssItems");
+
+  if (!pageConfig || !hero || !stats || !sources || !items) {
+    return;
+  }
+
+  const group = pageConfig.group;
+  const digest = state.rssDigests[group];
+  const loading = Boolean(state.rssLoading[group]);
+  const error = state.rssErrors[group] || "";
+  const feedList = digest && Array.isArray(digest.feeds) ? digest.feeds : [];
+  const itemList = digest && Array.isArray(digest.items) ? digest.items : [];
+  const okFeeds = feedList.filter((feed) => feed.ok).length;
+
+  hero.innerHTML = `
+    <p class="eyebrow">${escapeHtml(pageConfig.eyebrow)}</p>
+    <h2 class="display-title">${escapeHtml(digest ? digest.title : "Flux RSS")}</h2>
+    <p class="soft-copy">${escapeHtml(
+      error || (digest ? digest.description : loading ? "Chargement des flux en cours." : "Flux prets a etre charges.")
+    )}</p>
+  `;
+
+  stats.innerHTML = [
+    {
+      kicker: "Sources",
+      value: digest ? `${okFeeds}/${feedList.length}` : "--",
+      note: loading ? "synchronisation" : "flux actifs",
+    },
+    {
+      kicker: "Elements",
+      value: digest ? `${itemList.length}` : "--",
+      note: state.page === "podcasts" ? "episodes recents" : "articles recents",
+    },
+    {
+      kicker: "Derniere lecture",
+      value: digest ? formatDateTime(digest.generatedAt) : "--",
+      note: digest ? `cache ${Math.round((digest.cacheTtlMs || 0) / 60000)} min` : "non charge",
+    },
+  ]
+    .map(
+      (card) => `
+        <article class="summary-card">
+          <span class="summary-card-kicker">${escapeHtml(card.kicker)}</span>
+          <strong class="summary-card-value">${escapeHtml(card.value)}</strong>
+          <p class="summary-card-note">${escapeHtml(card.note)}</p>
+        </article>
+      `
+    )
+    .join("");
+
+  sources.innerHTML = feedList.length
+    ? feedList
+        .map(
+          (feed) => `
+            <a class="stack-card summary-card-link rss-source-card" href="${escapeHtml(feed.homepage || feed.url)}" target="_blank" rel="noreferrer">
+              <span class="stack-kicker">${escapeHtml(feed.category || "RSS")}</span>
+              <h3 class="stack-title">${escapeHtml(feed.title)}</h3>
+              <p class="stack-note">${feed.ok ? `${feed.itemCount} elements lus` : escapeHtml(feed.message || "Flux indisponible")}</p>
+            </a>
+          `
+        )
+        .join("")
+    : `<div class="empty-state">${loading ? "Chargement des sources RSS." : "Sources RSS non chargees."}</div>`;
+
+  if (error) {
+    items.innerHTML = `<div class="empty-state">${escapeHtml(error)}</div>`;
+    return;
+  }
+
+  if (!itemList.length) {
+    items.innerHTML = `<div class="empty-state">${loading ? "Chargement des elements RSS." : pageConfig.empty}</div>`;
+    return;
+  }
+
+  items.innerHTML = itemList
+    .map(
+      (item) => `
+        <article class="rss-card">
+          <div class="rss-card-meta">
+            <span>${escapeHtml(item.feedTitle || "RSS")}</span>
+            <span>${escapeHtml(formatRssDate(item.publishedAt))}</span>
+          </div>
+          <h3 class="rss-card-title">
+            <a href="${escapeHtml(item.link)}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a>
+          </h3>
+          <p class="rss-card-copy">${escapeHtml(item.summary || "Resume indisponible.")}</p>
+          <div class="rss-card-actions">
+            <span class="tiny-pill">${escapeHtml(item.category || "RSS")}</span>
+            ${
+              item.audioUrl
+                ? `<a class="text-link" href="${escapeHtml(item.audioUrl)}" target="_blank" rel="noreferrer">Audio</a>`
+                : ""
+            }
+            <a class="text-link" href="${escapeHtml(item.link)}" target="_blank" rel="noreferrer">Ouvrir</a>
+          </div>
+        </article>
+      `
+    )
+    .join("");
+}
+
 function renderPage() {
   renderFrame();
   renderHomePage();
@@ -1416,6 +1574,7 @@ function renderPage() {
   renderAssistantPage();
   renderAutomationsPage();
   renderBedroomPage();
+  renderRssPage();
 }
 
 function setPreferencesFromInputs() {
@@ -1523,6 +1682,34 @@ async function loadData(forceLive = false) {
   } finally {
     scheduleRefresh(state.fetchError ? 15_000 : undefined);
     renderPage();
+  }
+}
+
+async function loadRssDigest(group, forceLive = false) {
+  if (!group) {
+    return;
+  }
+
+  state.rssLoading[group] = true;
+  state.rssErrors[group] = "";
+  renderRssPage();
+
+  try {
+    const path = forceLive ? `/api/rss/${encodeURIComponent(group)}?live=1` : `/api/rss/${encodeURIComponent(group)}`;
+    state.rssDigests[group] = await apiGet(path);
+  } catch (error) {
+    const routeMissing =
+      error &&
+      error.statusCode === 404 &&
+      /route not found|notfound/i.test(`${error.message || ""} ${error.payload && error.payload.error ? error.payload.error : ""}`);
+    state.rssErrors[group] = routeMissing
+      ? "API RSS indisponible sur ce serveur. Redemarrez le hub ou deployeez la derniere version."
+      : error && error.message
+        ? error.message
+        : "Flux RSS indisponibles.";
+  } finally {
+    state.rssLoading[group] = false;
+    renderRssPage();
   }
 }
 
@@ -1642,6 +1829,13 @@ function bindCommonEvents() {
 
   document.querySelectorAll("[data-action='refresh']").forEach((button) => {
     button.addEventListener("click", () => {
+      const rssGroup = currentRssGroup();
+      if (rssGroup) {
+        loadRssDigest(rssGroup, true)
+          .catch(() => {})
+          .finally(() => loadData(false).catch(() => {}));
+        return;
+      }
       loadData(true).catch(() => {});
     });
   });
@@ -1818,4 +2012,11 @@ function startClock() {
 bindCommonEvents();
 startClock();
 renderPage();
-loadData(true).catch(() => {});
+const initialRssGroup = currentRssGroup();
+if (initialRssGroup) {
+  loadRssDigest(initialRssGroup, true)
+    .catch(() => {})
+    .finally(() => loadData(false).catch(() => {}));
+} else {
+  loadData(true).catch(() => {});
+}

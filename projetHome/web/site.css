@@ -94,6 +94,7 @@ textarea {
   position: sticky;
   top: 20px;
   height: calc(100vh - 40px);
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -519,12 +520,19 @@ textarea {
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
+.rss-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px;
+}
+
 .summary-card,
 .metric-card,
 .stack-card,
 .timeline-card,
 .light-card,
 .activity-card,
+.rss-card,
 .pref-card,
 .calendar-card,
 .assistant-summary-card,
@@ -544,6 +552,7 @@ textarea {
 .assistant-summary-card,
 .pref-card,
 .activity-card,
+.rss-card,
 .light-card {
   display: grid;
   gap: 8px;
@@ -598,6 +607,54 @@ textarea {
   color: var(--ink-soft);
   opacity: 0.72;
   line-height: 1.55;
+}
+
+.rss-card {
+  align-content: start;
+  min-height: 260px;
+}
+
+.rss-card-meta,
+.rss-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.rss-card-meta {
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.rss-card-title {
+  margin: 0;
+  font-family: "Fraunces", "Times New Roman", serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.rss-card-title a {
+  text-decoration: none;
+}
+
+.rss-card-copy {
+  margin: 0;
+  color: var(--ink-soft);
+  opacity: 0.78;
+  line-height: 1.6;
+}
+
+.rss-card-actions {
+  margin-top: auto;
+}
+
+.rss-source-card {
+  min-height: 132px;
 }
 
 .section-heading h2 {
@@ -1170,6 +1227,7 @@ textarea {
   .timeline-grid,
   .control-grid,
   .activity-grid,
+  .rss-grid,
   .preferences-grid,
   .chip-grid {
     grid-template-columns: 1fr;
