@@ -5,8 +5,9 @@ const path = require("node:path");
 const { config } = require("./config");
 const { contentTypeForPath, createError, readJsonBody, sendJson, sendText } = require("./http");
 const { getDashboardSnapshot, invalidateDashboardCache } = require("./services/dashboard");
+const { getAiLabStatus } = require("./services/aiLab");
 const { setLightBrightness, setLightColor, toggleLightPower } = require("./services/lights");
-const { chatWithOllama } = require("./services/ollamaChat");
+const { chatWithOllama, getOllamaStatus } = require("./services/ollamaChat");
 const { getSleepSunSnapshot } = require("./services/sleepSun");
 
 const serveStatic = async (pathname, res) => {
@@ -97,6 +98,18 @@ const requestListener = async (req, res) => {
         date: searchParams.get("date"),
       });
       sendJson(res, 200, snapshot);
+      return;
+    }
+
+    if (req.method === "GET" && pathname === "/api/ollama/status") {
+      const status = await getOllamaStatus(config);
+      sendJson(res, 200, status);
+      return;
+    }
+
+    if (req.method === "GET" && pathname === "/api/ai-lab/status") {
+      const status = await getAiLabStatus(config);
+      sendJson(res, 200, status);
       return;
     }
 

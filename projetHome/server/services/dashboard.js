@@ -14,6 +14,16 @@ const warningWithScope = (scope, message) => ({
   message,
 });
 
+const OPTIONAL_WARNING_SCOPES = new Set(["fitness", "nutrition"]);
+
+const pushWarning = (warnings, scope, message) => {
+  if (OPTIONAL_WARNING_SCOPES.has(scope)) {
+    return;
+  }
+
+  warnings.push(warningWithScope(scope, message));
+};
+
 const getDashboardSnapshot = async ({ forceLive = false } = {}) => {
   if (!forceLive && cache.value && Date.now() < cache.expiresAt) {
     return cache.value;
@@ -40,26 +50,26 @@ const getDashboardSnapshot = async ({ forceLive = false } = {}) => {
   if (fitnessResult.status === "fulfilled") {
     snapshot.fitness = fitnessResult.value;
   } else {
-    warnings.push(warningWithScope("fitness", fitnessResult.reason.message || "Fitness API unavailable."));
+    pushWarning(warnings, "fitness", fitnessResult.reason.message || "Fitness API unavailable.");
   }
 
   if (nutritionResult.status === "fulfilled") {
     snapshot.nutrition = nutritionResult.value;
   } else {
-    warnings.push(warningWithScope("nutrition", nutritionResult.reason.message || "Nutrition API unavailable."));
+    pushWarning(warnings, "nutrition", nutritionResult.reason.message || "Nutrition API unavailable.");
   }
 
   if (sportResult.status === "fulfilled") {
     snapshot.sport = sportResult.value;
   } else {
-    warnings.push(warningWithScope("sport", sportResult.reason.message || "Sport summary unavailable."));
+    pushWarning(warnings, "sport", sportResult.reason.message || "Sport summary unavailable.");
   }
 
   if (lightsResult.status === "fulfilled") {
     snapshot.lights = lightsResult.value.lights;
-    lightsResult.value.warnings.forEach((message) => warnings.push(warningWithScope("lights", message)));
+    lightsResult.value.warnings.forEach((message) => pushWarning(warnings, "lights", message));
   } else {
-    warnings.push(warningWithScope("lights", lightsResult.reason.message || "Lights API unavailable."));
+    pushWarning(warnings, "lights", lightsResult.reason.message || "Lights API unavailable.");
   }
 
   cache = {

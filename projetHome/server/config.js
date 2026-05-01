@@ -109,6 +109,10 @@ const config = {
     model: firstDefined("OLLAMA_MODEL"),
     timeoutMs: toNumber(firstDefined("OLLAMA_TIMEOUT_MS"), 45_000),
   },
+  aiLab: {
+    timeoutMs: toNumber(firstDefined("AI_LAB_TIMEOUT_MS"), 3_500),
+    h2oBaseUrl: withNoTrailingSlash(firstDefined("H2O_BASE_URL")) || "http://127.0.0.1:54321",
+  },
 };
 
 module.exports = {

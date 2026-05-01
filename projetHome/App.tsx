@@ -29,6 +29,15 @@ const formatNumber = (value: number): string => {
 };
 
 const warningWithScope = (scope: AppWarning['scope'], message: string): AppWarning => ({ scope, message });
+const OPTIONAL_WARNING_SCOPES = new Set<AppWarning['scope']>(['fitness', 'nutrition']);
+
+const pushWarning = (list: AppWarning[], scope: AppWarning['scope'], message: string) => {
+  if (OPTIONAL_WARNING_SCOPES.has(scope)) {
+    return;
+  }
+
+  list.push(warningWithScope(scope, message));
+};
 
 export default function App() {
   const { width } = useWindowDimensions();
@@ -66,20 +75,20 @@ export default function App() {
     if (fitnessResult.status === 'fulfilled') {
       setFitness(fitnessResult.value);
     } else {
-      nextWarnings.push(warningWithScope('fitness', fitnessResult.reason?.message ?? 'Fitness API unavailable.'));
+      pushWarning(nextWarnings, 'fitness', fitnessResult.reason?.message ?? 'Fitness API unavailable.');
     }
 
     if (nutritionResult.status === 'fulfilled') {
       setNutrition(nutritionResult.value);
     } else {
-      nextWarnings.push(warningWithScope('nutrition', nutritionResult.reason?.message ?? 'Nutrition API unavailable.'));
+      pushWarning(nextWarnings, 'nutrition', nutritionResult.reason?.message ?? 'Nutrition API unavailable.');
     }
 
     if (lightsResult.status === 'fulfilled') {
       setLights(lightsResult.value.lights);
-      lightsResult.value.warnings.forEach((message) => nextWarnings.push(warningWithScope('lights', message)));
+      lightsResult.value.warnings.forEach((message) => pushWarning(nextWarnings, 'lights', message));
     } else {
-      nextWarnings.push(warningWithScope('lights', lightsResult.reason?.message ?? 'Lights API unavailable.'));
+      pushWarning(nextWarnings, 'lights', lightsResult.reason?.message ?? 'Lights API unavailable.');
     }
 
     setWarnings(nextWarnings);

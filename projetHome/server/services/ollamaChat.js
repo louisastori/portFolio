@@ -35,6 +35,33 @@ const withTimeout = async (callback, timeoutMs) => {
   }
 };
 
+const fetchOllamaJson = async ({ baseUrl, path, timeoutMs }) => {
+  return withTimeout(
+    async (signal) => {
+      const response = await fetch(`${baseUrl}${path}`, {
+        method: "GET",
+        signal,
+      });
+
+      const rawBody = await response.text();
+      if (!response.ok) {
+        throw createError(response.status, `Ollama ${path} HTTP ${response.status}: ${rawBody.slice(0, 220)}`);
+      }
+
+      if (!rawBody) {
+        return {};
+      }
+
+      try {
+        return JSON.parse(rawBody);
+      } catch (_error) {
+        throw createError(502, `Ollama ${path} returned invalid JSON.`);
+      }
+    },
+    timeoutMs
+  );
+};
+
 const fetchAvailableModels = async (baseUrl, timeoutMs) => {
   if (
     modelCache.baseUrl === baseUrl &&
@@ -45,26 +72,11 @@ const fetchAvailableModels = async (baseUrl, timeoutMs) => {
     return modelCache.availableModels.slice();
   }
 
-  const payload = await withTimeout(
-    async (signal) => {
-      const response = await fetch(`${baseUrl}/api/tags`, {
-        method: "GET",
-        signal,
-      });
-
-      const rawBody = await response.text();
-      if (!response.ok) {
-        throw createError(response.status, `Ollama tags HTTP ${response.status}: ${rawBody.slice(0, 220)}`);
-      }
-
-      try {
-        return JSON.parse(rawBody);
-      } catch (_error) {
-        throw createError(502, "Ollama tags returned invalid JSON.");
-      }
-    },
-    timeoutMs
-  );
+  const payload = await fetchOllamaJson({
+    baseUrl,
+    path: "/api/tags",
+    timeoutMs,
+  });
 
   const availableModels = Array.isArray(payload && payload.models)
     ? payload.models
@@ -79,6 +91,89 @@ const fetchAvailableModels = async (baseUrl, timeoutMs) => {
   };
 
   return availableModels.slice();
+};
+
+const getOllamaStatus = async (config) => {
+  const baseUrl = config && config.ollama && config.ollama.baseUrl;
+  const requestedModel = config && config.ollama ? config.ollama.model : "";
+  const timeoutMs = (config && config.ollama && config.ollama.timeoutMs) || 45_000;
+
+  if (!baseUrl) {
+    return {
+      ok: false,
+      available: false,
+      baseUrl: "",
+      configuredModel: requestedModel || null,
+      model: null,
+      autoSelected: false,
+      version: null,
+      availableModels: [],
+      availableModelCount: 0,
+      loadedModels: [],
+      loadedModelCount: 0,
+      message: "OLLAMA_BASE_URL is missing.",
+    };
+  }
+
+  try {
+    const [versionPayload, psPayload, modelState] = await Promise.all([
+      fetchOllamaJson({
+        baseUrl,
+        path: "/api/version",
+        timeoutMs,
+      }),
+      fetchOllamaJson({
+        baseUrl,
+        path: "/api/ps",
+        timeoutMs,
+      }),
+      resolveModel({
+        baseUrl,
+        requestedModel,
+        timeoutMs,
+      }),
+    ]);
+
+    const loadedModels = Array.isArray(psPayload && psPayload.models)
+      ? psPayload.models
+          .map((model) => ({
+            name: String((model && model.name) || "").trim(),
+            expiresAt: model && model.expires_at ? model.expires_at : null,
+            contextLength: Number(model && model.context_length) || 0,
+          }))
+          .filter((model) => model.name)
+      : [];
+
+    return {
+      ok: true,
+      available: true,
+      baseUrl,
+      configuredModel: requestedModel || null,
+      model: modelState.model,
+      autoSelected: modelState.autoSelected,
+      version: versionPayload && versionPayload.version ? String(versionPayload.version) : null,
+      availableModels: modelState.availableModels,
+      availableModelCount: modelState.availableModels.length,
+      loadedModels,
+      loadedModelCount: loadedModels.length,
+      message: "",
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      available: false,
+      baseUrl,
+      configuredModel: requestedModel || null,
+      model: null,
+      autoSelected: false,
+      version: null,
+      availableModels: [],
+      availableModelCount: 0,
+      loadedModels: [],
+      loadedModelCount: 0,
+      message: error && error.message ? error.message : "Ollama unavailable.",
+    };
+  }
 };
 
 const resolveModel = async ({ baseUrl, requestedModel, timeoutMs }) => {
@@ -382,4 +477,5 @@ const chatWithOllama = async (config, { messages }) => {
 
 module.exports = {
   chatWithOllama,
+  getOllamaStatus,
 };

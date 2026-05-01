@@ -8,6 +8,7 @@ Organisation :
 - `specs/garmin-crawler/spec.md` : comportement attendu du crawler Garmin
 - `specs/portfolio/spec.md` : comportement attendu du portfolio public
 - `specs/projet-home-hub/spec.md` : comportement attendu du hub local pour tablette
+- `changes/` : propositions et listes de taches pour les evolutions futures
 
 Les specs de `specs/` decrivent l'etat courant voulu de chaque projet.
 

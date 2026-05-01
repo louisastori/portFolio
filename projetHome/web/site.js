@@ -18,6 +18,8 @@ const state = {
   page: document.body.dataset.page || "home",
   dashboard: null,
   sleepSun: null,
+  aiLabStatus: null,
+  ollamaStatus: null,
   fetchError: "",
   assistantMessages: loadAssistantMessages(),
   assistantSending: false,
@@ -278,8 +280,56 @@ function getLights() {
   return state.dashboard && Array.isArray(state.dashboard.lights) ? state.dashboard.lights : [];
 }
 
+function normalizedLightName(light) {
+  return String((light && light.name) || "").trim();
+}
+
+function normalizedLightKey(light) {
+  return normalizedLightName(light).toLowerCase();
+}
+
+function isHiddenMaisonLight(light) {
+  return normalizedLightKey(light) === "en bas";
+}
+
+function isLouisPairLight(light) {
+  const key = normalizedLightKey(light);
+  return key === "gauche louis" || key === "droite louis";
+}
+
+function parseLightIds(value) {
+  return String(value || "")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
 function getWarnings() {
   return state.dashboard && Array.isArray(state.dashboard.warnings) ? state.dashboard.warnings : [];
+}
+
+function getOllamaStatus() {
+  return state.ollamaStatus && typeof state.ollamaStatus === "object" ? state.ollamaStatus : null;
+}
+
+function getAiLabStatusData() {
+  return state.aiLabStatus && typeof state.aiLabStatus === "object" ? state.aiLabStatus : null;
+}
+
+function buildAiLabUrl(service) {
+  if (!service || typeof service !== "object") {
+    return "#";
+  }
+
+  const launchPath = String(service.launchPath || "/");
+  if (service.id === "ollama") {
+    return launchPath;
+  }
+
+  const protocol = window.location.protocol === "https:" ? "https:" : "http:";
+  const hostname = window.location.hostname || "127.0.0.1";
+  const normalizedPath = launchPath.startsWith("/") ? launchPath : `/${launchPath}`;
+  return `${protocol}//${hostname}:${Number(service.port || 0)}${normalizedPath}`;
 }
 
 function lightsOnCount() {
@@ -349,9 +399,15 @@ function renderFrame() {
   if (syncStatus) {
     const warnings = getWarnings();
     const generatedAt = state.dashboard && state.dashboard.generatedAt ? formatDateTime(state.dashboard.generatedAt) : "n/a";
+    const ollama = getOllamaStatus();
+    const ollamaLabel = ollama
+      ? ollama.available
+        ? `Ollama actif${ollama.model ? ` (${ollama.model})` : ""}`
+        : "Ollama indisponible"
+      : "Ollama ...";
     syncStatus.textContent = warnings.length
-      ? `${warnings.length} warning${warnings.length > 1 ? "s" : ""} - ${generatedAt}`
-      : `Hub stable - ${generatedAt}`;
+      ? `${warnings.length} warning${warnings.length > 1 ? "s" : ""} - ${ollamaLabel} - ${generatedAt}`
+      : `Hub stable - ${ollamaLabel} - ${generatedAt}`;
   }
 
   const globalBanner = document.getElementById("globalBanner");
@@ -678,7 +734,81 @@ function renderMaisonPage() {
     return;
   }
 
-  lightsContainer.innerHTML = lights
+  const visibleLights = lights.filter((light) => !isHiddenMaisonLight(light));
+  const louisPairLights = visibleLights.filter(isLouisPairLight);
+  const pairColorSource = louisPairLights.find((light) => light.supportsColor && light.colorHex);
+  const louisPairCard =
+    louisPairLights.length >= 2
+      ? (() => {
+          const provider = louisPairLights[0].provider;
+          const uiId = `${provider}:louis-pair`;
+          const allOn = louisPairLights.every((light) => light.isOn);
+          const onCount = louisPairLights.filter((light) => light.isOn).length;
+          const brightness = Math.round(
+            louisPairLights.reduce((total, light) => total + Number(light.brightness || 0), 0) / louisPairLights.length
+          );
+          const statusLabel =
+            onCount === 0 ? "Off" : onCount === louisPairLights.length ? "On" : `${onCount}/${louisPairLights.length}`;
+
+          return `
+            <article class="light-card" data-ui-id="${escapeHtml(uiId)}">
+              <div class="light-head">
+                <div>
+                  <p class="light-name">Gauche + droite</p>
+                  <p class="light-meta">Hue duo</p>
+                </div>
+                <button
+                  class="toggle-chip ${allOn ? "is-on" : ""}"
+                  type="button"
+                  data-light-group-toggle="${escapeHtml(uiId)}"
+                  data-provider="${escapeHtml(provider)}"
+                  data-light-ids="${escapeHtml(louisPairLights.map((light) => light.providerLightId).join(","))}"
+                  data-next-on="${allOn ? "false" : "true"}"
+                >
+                  ${escapeHtml(statusLabel)}
+                </button>
+              </div>
+              <p class="light-note">Controle en une fois les deux lampes Louis.</p>
+              <div class="range-wrap">
+                <div class="range-head">
+                  <span>Brightness</span>
+                  <strong data-brightness-label="${escapeHtml(uiId)}">${formatNumber(brightness, 0)}%</strong>
+                </div>
+                <input
+                  class="slider"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="${clamp(brightness, 0, 100)}"
+                  data-light-group-brightness="${escapeHtml(uiId)}"
+                  data-provider="${escapeHtml(provider)}"
+                  data-light-ids="${escapeHtml(louisPairLights.map((light) => light.providerLightId).join(","))}"
+                />
+              </div>
+              ${
+                louisPairLights.every((light) => light.supportsColor)
+                  ? `
+                    <div class="light-row">
+                      <span class="light-note">Color tuning</span>
+                      <input
+                        class="color-input"
+                        type="color"
+                        value="${escapeHtml((pairColorSource && pairColorSource.colorHex) || "#ffffff")}"
+                        data-light-group-color="${escapeHtml(uiId)}"
+                        data-provider="${escapeHtml(provider)}"
+                        data-light-ids="${escapeHtml(louisPairLights.map((light) => light.providerLightId).join(","))}"
+                      />
+                    </div>
+                  `
+                  : ""
+              }
+            </article>
+          `;
+        })()
+      : "";
+
+  const lightCards = visibleLights
     .map((light) => {
       const uiId = `${light.provider}:${light.providerLightId}`;
       return `
@@ -737,6 +867,8 @@ function renderMaisonPage() {
       `;
     })
     .join("");
+
+  lightsContainer.innerHTML = `${louisPairCard}${lightCards}`;
 }
 
 function sparkline(values, color) {
@@ -961,22 +1093,42 @@ function renderSportPage() {
 
 function renderAssistantPage() {
   const summary = document.getElementById("assistantSummary");
+  const aiLabGrid = document.getElementById("aiLabGrid");
   const prompts = document.getElementById("assistantQuickPrompts");
   const log = document.getElementById("assistantMessages");
   const context = document.getElementById("assistantContext");
   const lead = document.getElementById("assistantLead");
   const toggle = document.getElementById("assistantAutoSpeakToggle");
 
-  if (!summary || !prompts || !log || !context || !lead || !toggle) {
+  if (!summary || !aiLabGrid || !prompts || !log || !context || !lead || !toggle) {
     return;
   }
 
   const sport = getSport();
   const sleepSun = state.sleepSun;
+  const aiLab = getAiLabStatusData();
   const coachSignals = sport && sport.aiAnalysis && sport.aiAnalysis.coachSignals ? sport.aiAnalysis.coachSignals : null;
+  const ollama = getOllamaStatus();
+  const aiLabServices = aiLab && Array.isArray(aiLab.services) ? aiLab.services : [];
   const messages = state.assistantMessages.length
     ? state.assistantMessages
     : [{ role: "assistant", content: DEFAULT_ASSISTANT_GREETING }];
+  const aiLabValue = aiLab ? `${formatNumber(aiLab.availableCount || 0, 0)}/${formatNumber(aiLab.totalCount || 0, 0)} actifs` : "verification...";
+  const aiLabNote = aiLabServices.length
+    ? `${aiLabServices.map((service) => service.title).join(" + ")} disponibles dans le hub.`
+    : "Les services IA locaux seront listes ici.";
+  const ollamaValue = ollama
+    ? ollama.available
+      ? "actif"
+      : "indisponible"
+    : "verification...";
+  const ollamaNote = ollama
+    ? ollama.available
+      ? `${ollama.model || "modele auto"}${ollama.version ? ` - v${ollama.version}` : ""}${
+          ollama.loadedModelCount ? ` - ${ollama.loadedModelCount} charge` : ""
+        }`
+      : ollama.message || "Le moteur local ne repond pas."
+    : "Lecture du moteur local en cours.";
 
   lead.textContent = state.preferences.restModeActive
     ? "Ultra-dark mode active. Minimal distractions for the evening flow."
@@ -988,6 +1140,8 @@ function renderAssistantPage() {
     { kicker: "Brief", value: coachSignals ? coachSignals.advice : "Le brief local apparaitra ici.", note: coachSignals ? `Focus ${coachSignals.focus}` : "Le resume AI est facultatif." },
     { kicker: "Sommeil", value: sleepSun && sleepSun.bedtimeForSunrise ? `Coucher ${sleepSun.bedtimeForSunrise.label}` : "n/a", note: sleepSun && sleepSun.wake ? sleepSun.wake.note : "Plan sommeil indisponible." },
     { kicker: "Maison", value: `${lightsOnCount()}/${getLights().length || 0} zones on`, note: state.preferences.silentMode ? "mode silencieux actif" : "notifications maison normales" },
+    { kicker: "Ollama", value: ollamaValue, note: ollamaNote },
+    { kicker: "AI Lab", value: aiLabValue, note: aiLabNote },
   ]
     .map(
       (card) => `
@@ -999,6 +1153,32 @@ function renderAssistantPage() {
       `
     )
     .join("");
+
+  aiLabGrid.innerHTML = aiLabServices.length
+    ? aiLabServices
+        .map(
+          (service) => `
+            <article class="assistant-summary-card">
+              <div class="light-row">
+                <div>
+                  <span class="summary-card-kicker">${escapeHtml(service.title)}</span>
+                  <p class="summary-card-note">${escapeHtml(service.description)}</p>
+                </div>
+                <span class="${service.available ? "tiny-pill" : "warning-pill"}">${service.available ? "actif" : "off"}</span>
+              </div>
+              <p class="stack-note">${
+                service.available
+                  ? escapeHtml(`Toujours on - port ${service.port}`)
+                  : escapeHtml(service.message || "Service indisponible.")
+              }</p>
+              <div class="button-row">
+                <a class="ghost-button" href="${escapeHtml(buildAiLabUrl(service))}" target="_blank" rel="noreferrer">Ouvrir</a>
+              </div>
+            </article>
+          `
+        )
+        .join("")
+    : '<p class="empty-state">Aucun service IA local disponible pour le moment.</p>';
 
   prompts.innerHTML = QUICK_PROMPTS.map(
     (prompt) => `<button class="prompt-button" type="button" data-prompt="${escapeHtml(prompt)}">${escapeHtml(prompt)}</button>`
@@ -1297,9 +1477,11 @@ async function loadData(forceLive = false) {
   try {
     state.fetchError = "";
     const dashboardPath = forceLive ? "/api/dashboard?live=1" : "/api/dashboard";
-    const [dashboardResult, sleepSunResult] = await Promise.allSettled([
+    const [dashboardResult, sleepSunResult, ollamaStatusResult, aiLabStatusResult] = await Promise.allSettled([
       apiGet(dashboardPath),
       apiGet("/api/sleep-sun"),
+      apiGet("/api/ollama/status"),
+      apiGet("/api/ai-lab/status"),
     ]);
 
     if (dashboardResult.status === "fulfilled") {
@@ -1310,6 +1492,30 @@ async function loadData(forceLive = false) {
 
     if (sleepSunResult.status === "fulfilled") {
       state.sleepSun = sleepSunResult.value;
+    }
+
+    if (ollamaStatusResult.status === "fulfilled") {
+      state.ollamaStatus = ollamaStatusResult.value;
+    } else {
+      state.ollamaStatus = {
+        ok: false,
+        available: false,
+        message:
+          ollamaStatusResult.reason && ollamaStatusResult.reason.message
+            ? ollamaStatusResult.reason.message
+            : "Ollama indisponible.",
+      };
+    }
+
+    if (aiLabStatusResult.status === "fulfilled") {
+      state.aiLabStatus = aiLabStatusResult.value;
+    } else {
+      state.aiLabStatus = {
+        ok: false,
+        services: [],
+        availableCount: 0,
+        totalCount: 0,
+      };
     }
 
   } catch (error) {
@@ -1336,6 +1542,24 @@ async function setLightColor(provider, lightId, color) {
   await apiPost(`/api/lights/${encodeURIComponent(provider)}/${encodeURIComponent(lightId)}/color`, {
     color,
   });
+}
+
+async function toggleLightGroup(provider, lightIds, nextOn) {
+  for (const lightId of lightIds) {
+    await toggleLight(provider, lightId, nextOn);
+  }
+}
+
+async function setLightGroupBrightness(provider, lightIds, brightness) {
+  for (const lightId of lightIds) {
+    await setLightBrightness(provider, lightId, brightness);
+  }
+}
+
+async function setLightGroupColor(provider, lightIds, color) {
+  for (const lightId of lightIds) {
+    await setLightColor(provider, lightId, color);
+  }
 }
 
 async function applyScene(sceneKey) {
@@ -1430,6 +1654,21 @@ function bindCommonEvents() {
   const houseLights = document.getElementById("houseLights");
   if (houseLights) {
     houseLights.addEventListener("click", (event) => {
+      const groupToggle = event.target.closest("[data-light-group-toggle]");
+      if (groupToggle) {
+        toggleLightGroup(
+          groupToggle.dataset.provider,
+          parseLightIds(groupToggle.dataset.lightIds),
+          groupToggle.dataset.nextOn === "true"
+        )
+          .then(() => loadData(true))
+          .catch((error) => {
+            state.fetchError = error.message || "Impossible de changer le groupe de lumieres.";
+            renderFrame();
+          });
+        return;
+      }
+
       const toggle = event.target.closest("[data-light-toggle]");
       if (!toggle) return;
       toggleLight(toggle.dataset.provider, toggle.dataset.lightId, toggle.dataset.nextOn === "true")
@@ -1441,6 +1680,13 @@ function bindCommonEvents() {
     });
 
     houseLights.addEventListener("input", (event) => {
+      const groupSlider = event.target.closest("[data-light-group-brightness]");
+      if (groupSlider) {
+        const label = document.querySelector(`[data-brightness-label="${groupSlider.dataset.lightGroupBrightness}"]`);
+        if (label) label.textContent = `${groupSlider.value}%`;
+        return;
+      }
+
       const slider = event.target.closest("[data-light-brightness]");
       if (!slider) return;
       const label = document.querySelector(`[data-brightness-label="${slider.dataset.lightBrightness}"]`);
@@ -1448,12 +1694,38 @@ function bindCommonEvents() {
     });
 
     houseLights.addEventListener("change", (event) => {
+      const groupSlider = event.target.closest("[data-light-group-brightness]");
+      if (groupSlider) {
+        setLightGroupBrightness(
+          groupSlider.dataset.provider,
+          parseLightIds(groupSlider.dataset.lightIds),
+          Number(groupSlider.value)
+        )
+          .then(() => loadData(true))
+          .catch((error) => {
+            state.fetchError = error.message || "Impossible de regler la luminosite du groupe.";
+            renderFrame();
+          });
+        return;
+      }
+
       const slider = event.target.closest("[data-light-brightness]");
       if (slider) {
         setLightBrightness(slider.dataset.provider, slider.dataset.lightId, Number(slider.value))
           .then(() => loadData(true))
           .catch((error) => {
             state.fetchError = error.message || "Impossible de regler la luminosite.";
+            renderFrame();
+        });
+        return;
+      }
+
+      const groupColor = event.target.closest("[data-light-group-color]");
+      if (groupColor) {
+        setLightGroupColor(groupColor.dataset.provider, parseLightIds(groupColor.dataset.lightIds), groupColor.value)
+          .then(() => loadData(true))
+          .catch((error) => {
+            state.fetchError = error.message || "Impossible de changer la couleur du groupe.";
             renderFrame();
           });
         return;

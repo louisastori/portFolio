@@ -986,7 +986,7 @@ const renderFitness = () => {
   const fitness = state.dashboard && state.dashboard.fitness;
 
   if (!fitness) {
-    elements.fitnessTitle.textContent = "Service non disponible";
+    elements.fitnessTitle.textContent = "Fitness";
     elements.fitnessKpis.innerHTML = '<p class="empty-state">Aucune donnee fitness disponible.</p>';
     elements.fitnessActivities.innerHTML = "";
     return;

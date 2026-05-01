@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-04-24T13:42:12.131Z",
+  "generatedAt": "2026-04-24T13:44:55.625Z",
   "source": {
-    "latestActivityExport": "2026-04-24T13-30-58-055Z",
-    "latestDailyExport": "2026-04-24T13-30-58-055Z",
-    "latestSleepExport": "2026-04-24T13-30-58-055Z",
+    "latestActivityExport": "2026-04-24T13-38-44-734Z",
+    "latestDailyExport": "2026-04-24T13-38-44-734Z",
+    "latestSleepExport": "2026-04-24T13-38-44-734Z",
     "latestActivityDate": "2026-04-23",
-    "activityCount": 87,
-    "dailyCount": 48,
-    "sleepCount": 48
+    "activityCount": 84,
+    "dailyCount": 35,
+    "sleepCount": 35
   },
   "overview": {
-    "totalActivities": 87,
-    "totalRunningActivities": 70,
+    "totalActivities": 84,
+    "totalRunningActivities": 69,
     "totalRideActivities": 14
   },
   "recent7": {
@@ -21,13 +21,13 @@
     "activityCount": 7
   },
   "recent28": {
-    "distanceKm": 659,
-    "durationHours": 39.1,
+    "distanceKm": 637.2,
+    "durationHours": 36.7,
     "elevationM": 3445,
-    "activityCount": 28
+    "activityCount": 25
   },
   "longestRun": {
-    "exportName": "2026-04-24T13-30-58-055Z",
+    "exportName": "2026-03-31T22-00-02-148Z",
     "activityId": 22088421048,
     "name": "Villenave-d'Ornon - Course à pied",
     "typeKey": "running",
@@ -53,7 +53,7 @@
     "steps": 21672
   },
   "longestRide": {
-    "exportName": "2026-04-24T13-30-58-055Z",
+    "exportName": "2026-04-24T13-38-44-734Z",
     "activityId": 22630524066,
     "name": "Villenave-d'Ornon Cyclisme sur route",
     "typeKey": "road_biking",
@@ -239,9 +239,9 @@
     {
       "key": "treadmill_running",
       "label": "Tapis",
-      "count": 48,
-      "distanceKm": 361.3,
-      "durationHours": 37.3,
+      "count": 47,
+      "distanceKm": 346.8,
+      "durationHours": 36,
       "elevationM": 0
     },
     {
@@ -279,17 +279,9 @@
     {
       "key": "virtual_run",
       "label": "virtual_run",
-      "count": 2,
-      "distanceKm": 12.9,
-      "durationHours": 1.2,
-      "elevationM": 0
-    },
-    {
-      "key": "e_sport",
-      "label": "e_sport",
       "count": 1,
-      "distanceKm": 0,
-      "durationHours": 0.4,
+      "distanceKm": 5.6,
+      "durationHours": 0.5,
       "elevationM": 0
     }
   ],
@@ -324,10 +316,10 @@
     },
     {
       "weekKey": "2026-W14",
-      "distanceKm": 60.8,
-      "durationHours": 6.3,
+      "distanceKm": 39,
+      "durationHours": 3.9,
       "elevationM": 401,
-      "activityCount": 8
+      "activityCount": 5
     },
     {
       "weekKey": "2026-W15",
@@ -353,7 +345,7 @@
   ],
   "dailyHistory": [
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "date": "2026-04-18",
       "steps": 26367,
       "restingHeartRate": 45,
@@ -367,7 +359,7 @@
       "floorsAscended": 37
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "date": "2026-04-19",
       "steps": 3087,
       "restingHeartRate": 52,
@@ -381,7 +373,7 @@
       "floorsAscended": 10
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "date": "2026-04-20",
       "steps": 16147,
       "restingHeartRate": 47,
@@ -395,7 +387,7 @@
       "floorsAscended": 32
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "date": "2026-04-21",
       "steps": 11954,
       "restingHeartRate": 49,
@@ -409,7 +401,7 @@
       "floorsAscended": 15
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "date": "2026-04-22",
       "steps": 20782,
       "restingHeartRate": 49,
@@ -423,7 +415,7 @@
       "floorsAscended": 31
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "date": "2026-04-23",
       "steps": 1814,
       "restingHeartRate": 52,
@@ -437,7 +429,7 @@
       "floorsAscended": 16
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "date": "2026-04-24",
       "steps": 3194,
       "restingHeartRate": 52,
@@ -453,7 +445,7 @@
   ],
   "recentActivities": [
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "activityId": 22632637017,
       "name": "Carcans Cyclisme sur route",
       "typeKey": "road_biking",
@@ -479,7 +471,7 @@
       "steps": 0
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "activityId": 22630524066,
       "name": "Villenave-d'Ornon Cyclisme sur route",
       "typeKey": "road_biking",
@@ -505,7 +497,7 @@
       "steps": 0
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "activityId": 22618464616,
       "name": "Villenave-d'Ornon - Base",
       "typeKey": "running",
@@ -531,7 +523,7 @@
       "steps": 5894
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "activityId": 22597046839,
       "name": "Villenave-d'Ornon - Base",
       "typeKey": "running",
@@ -557,7 +549,7 @@
       "steps": 10448
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "activityId": 22574622076,
       "name": "Villenave-d'Ornon - Longue course",
       "typeKey": "running",
@@ -583,7 +575,7 @@
       "steps": 13810
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "activityId": 22567867976,
       "name": "Longue course",
       "typeKey": "treadmill_running",
@@ -609,7 +601,7 @@
       "steps": 7076
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "activityId": 22560506956,
       "name": "Seuil",
       "typeKey": "treadmill_running",
@@ -635,7 +627,7 @@
       "steps": 2808
     },
     {
-      "exportName": "2026-04-24T13-30-58-055Z",
+      "exportName": "2026-04-24T13-38-44-734Z",
       "activityId": 22538099880,
       "name": "Base",
       "typeKey": "treadmill_running",
