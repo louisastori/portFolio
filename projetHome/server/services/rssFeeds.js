@@ -3,7 +3,7 @@ const { XMLParser } = require("fast-xml-parser");
 const RSS_GROUPS = {
   podcasts: {
     title: "Podcasts histoire et voyage",
-    description: "Episodes recents autour de l'histoire, du voyage et des recits d'ailleurs.",
+    description: "Épisodes récents autour de l'histoire, du voyage et des récits d'ailleurs.",
     feeds: [
       {
         id: "cours-histoire",
@@ -37,7 +37,7 @@ const RSS_GROUPS = {
   },
   dev: {
     title: "Lecture dev et IA",
-    description: "Articles recents sur le developpement, la documentation web et les nouvelles IA.",
+    description: "Articles récents sur le développement, la documentation web et les nouvelles IA.",
     feeds: [
       {
         id: "mdn-blog",

@@ -5,20 +5,20 @@ const STORAGE_KEYS = {
 
 const MAX_ASSISTANT_MESSAGES = 12;
 const DEFAULT_ASSISTANT_GREETING =
-  "Je peux commenter ta forme, ton sommeil, ta routine du soir et piloter tes lumieres locales.";
+  "Je peux commenter ta forme, ton sommeil, ta routine du soir et piloter tes lumières locales.";
 
 const QUICK_PROMPTS = [
-  "Comment est ma forme aujourd hui ?",
+  "Comment est ma forme aujourd'hui ?",
   "Que me conseilles-tu ce soir pour mieux dormir ?",
-  "Resume ma charge sportive sur 7 jours.",
-  "Prepare la maison pour une soiree calme.",
+  "Résume ma charge sportive sur 7 jours.",
+  "Prépare la maison pour une soirée calme.",
 ];
 
 const RSS_PAGE_CONFIG = {
   podcasts: {
     group: "podcasts",
-    eyebrow: "Ecoute",
-    empty: "Aucun episode RSS disponible pour le moment.",
+    eyebrow: "Écoute",
+    empty: "Aucun épisode RSS disponible pour le moment.",
   },
   dev: {
     group: "dev",
@@ -1483,7 +1483,7 @@ function renderRssPage() {
     <p class="eyebrow">${escapeHtml(pageConfig.eyebrow)}</p>
     <h2 class="display-title">${escapeHtml(digest ? digest.title : "Flux RSS")}</h2>
     <p class="soft-copy">${escapeHtml(
-      error || (digest ? digest.description : loading ? "Chargement des flux en cours." : "Flux prets a etre charges.")
+      error || (digest ? digest.description : loading ? "Chargement des flux en cours." : "Flux prêts à être chargés.")
     )}</p>
   `;
 
@@ -1494,14 +1494,14 @@ function renderRssPage() {
       note: loading ? "synchronisation" : "flux actifs",
     },
     {
-      kicker: "Elements",
+      kicker: "Éléments",
       value: digest ? `${itemList.length}` : "--",
-      note: state.page === "podcasts" ? "episodes recents" : "articles recents",
+      note: state.page === "podcasts" ? "épisodes récents" : "articles récents",
     },
     {
-      kicker: "Derniere lecture",
+      kicker: "Dernière lecture",
       value: digest ? formatDateTime(digest.generatedAt) : "--",
-      note: digest ? `cache ${Math.round((digest.cacheTtlMs || 0) / 60000)} min` : "non charge",
+      note: digest ? `cache ${Math.round((digest.cacheTtlMs || 0) / 60000)} min` : "non chargé",
     },
   ]
     .map(
@@ -1522,12 +1522,12 @@ function renderRssPage() {
             <a class="stack-card summary-card-link rss-source-card" href="${escapeHtml(feed.homepage || feed.url)}" target="_blank" rel="noreferrer">
               <span class="stack-kicker">${escapeHtml(feed.category || "RSS")}</span>
               <h3 class="stack-title">${escapeHtml(feed.title)}</h3>
-              <p class="stack-note">${feed.ok ? `${feed.itemCount} elements lus` : escapeHtml(feed.message || "Flux indisponible")}</p>
+              <p class="stack-note">${feed.ok ? `${feed.itemCount} éléments lus` : escapeHtml(feed.message || "Flux indisponible")}</p>
             </a>
           `
         )
         .join("")
-    : `<div class="empty-state">${loading ? "Chargement des sources RSS." : "Sources RSS non chargees."}</div>`;
+    : `<div class="empty-state">${loading ? "Chargement des sources RSS." : "Sources RSS non chargées."}</div>`;
 
   if (error) {
     items.innerHTML = `<div class="empty-state">${escapeHtml(error)}</div>`;
@@ -1535,7 +1535,7 @@ function renderRssPage() {
   }
 
   if (!itemList.length) {
-    items.innerHTML = `<div class="empty-state">${loading ? "Chargement des elements RSS." : pageConfig.empty}</div>`;
+    items.innerHTML = `<div class="empty-state">${loading ? "Chargement des éléments RSS." : pageConfig.empty}</div>`;
     return;
   }
 
@@ -1550,7 +1550,7 @@ function renderRssPage() {
           <h3 class="rss-card-title">
             <a href="${escapeHtml(item.link)}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a>
           </h3>
-          <p class="rss-card-copy">${escapeHtml(item.summary || "Resume indisponible.")}</p>
+          <p class="rss-card-copy">${escapeHtml(item.summary || "Résumé indisponible.")}</p>
           <div class="rss-card-actions">
             <span class="tiny-pill">${escapeHtml(item.category || "RSS")}</span>
             ${
