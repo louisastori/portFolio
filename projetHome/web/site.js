@@ -1,9 +1,14 @@
-const STORAGE_KEYS = {
+﻿const STORAGE_KEYS = {
   assistant: "projethome:assistant:v2",
+  podcasts: "projethome:podcasts:v1",
   preferences: "projethome:preferences:v2",
+  ui: "projethome:ui:v1",
 };
 
 const MAX_ASSISTANT_MESSAGES = 12;
+const MAX_PODCAST_HISTORY = 12;
+const RSS_INITIAL_VISIBLE = 500;
+const RSS_LOAD_STEP = 100;
 const DEFAULT_ASSISTANT_GREETING =
   "Je peux commenter ta forme, ton sommeil, ta routine du soir et piloter tes lumières locales.";
 
@@ -36,14 +41,35 @@ const state = {
   rssDigests: {},
   rssErrors: {},
   rssLoading: {},
+  uiMemory: loadUiMemory(),
+  rssDurationFilter: "all",
+  rssPlaybackFilter: "all",
+  rssThemeFilter: "all",
+  rssEraFilter: "all",
+  rssCountryFilter: "all",
+  rssSearch: "",
+  rssSort: "recent",
+  rssVisibleLimit: RSS_INITIAL_VISIBLE,
   fetchError: "",
   assistantMessages: loadAssistantMessages(),
   assistantSending: false,
+  podcastMemory: loadPodcastMemory(),
+  podcastHistoryLoaded: false,
+  podcastPersistTimer: null,
   preferences: loadPreferences(),
   refreshTimer: null,
   clockTimer: null,
   overlayTimer: null,
 };
+
+state.rssSearch = state.uiMemory.rssSearch;
+state.rssDurationFilter = state.uiMemory.rssDurationFilter;
+state.rssPlaybackFilter = state.uiMemory.rssPlaybackFilter;
+state.rssThemeFilter = state.uiMemory.rssThemeFilter;
+state.rssEraFilter = state.uiMemory.rssEraFilter;
+state.rssCountryFilter = state.uiMemory.rssCountryFilter;
+state.rssSort = state.uiMemory.rssSort;
+state.rssVisibleLimit = state.uiMemory.rssVisibleLimit;
 
 const scenePresets = {
   calm: { label: "Soiree calme", on: true, brightness: 24, color: "#c36b35" },
@@ -95,6 +121,211 @@ function persistAssistantMessages() {
     window.localStorage.setItem(STORAGE_KEYS.assistant, JSON.stringify(state.assistantMessages));
   } catch (_error) {
     // Ignore storage failures on locked-down devices.
+  }
+}
+
+function sanitizeUiMemory(memory) {
+  const durationFilter = ["all", "short", "medium", "long", "deep", "unknown"].includes(memory && memory.rssDurationFilter)
+    ? memory.rssDurationFilter
+    : "all";
+  const legacyPlaybackFilter = ["listened", "unlistened"].includes(memory && memory.rssSort) ? memory.rssSort : "";
+  const rssPlaybackFilter = ["all", "in-progress", "started", "finished", "listened", "unlistened"].includes(
+    memory && memory.rssPlaybackFilter
+  )
+    ? memory.rssPlaybackFilter
+    : legacyPlaybackFilter || "all";
+  const rssThemeFilter = ["all", "histoire", "voyage"].includes(memory && memory.rssThemeFilter)
+    ? memory.rssThemeFilter
+    : "all";
+  const rssEraFilter = [
+    "all",
+    "antiquite",
+    "moyen-age",
+    "renaissance",
+    "moderne",
+    "revolution-empire",
+    "xix",
+    "xx",
+    "contemporain",
+  ].includes(memory && memory.rssEraFilter)
+    ? memory.rssEraFilter
+    : "all";
+  const rssCountryFilter = [
+    "all",
+    "france",
+    "europe",
+    "italie",
+    "espagne",
+    "royaume-uni",
+    "allemagne",
+    "usa",
+    "canada",
+    "japon",
+    "inde",
+    "chine",
+    "afrique",
+    "amerique-latine",
+    "moyen-orient",
+  ].includes(memory && memory.rssCountryFilter)
+    ? memory.rssCountryFilter
+    : "all";
+  const rssSort = ["recent", "shortest", "longest"].includes(memory && memory.rssSort)
+    ? memory.rssSort
+    : "recent";
+  const rssVisibleLimit = clamp(Number(memory && memory.rssVisibleLimit ? memory.rssVisibleLimit : RSS_INITIAL_VISIBLE), RSS_INITIAL_VISIBLE, 500);
+
+  return {
+    rssSearch: String((memory && memory.rssSearch) || "").slice(0, 160),
+    rssDurationFilter: durationFilter,
+    rssPlaybackFilter,
+    rssThemeFilter,
+    rssEraFilter,
+    rssCountryFilter,
+    rssSort,
+    rssVisibleLimit,
+  };
+}
+
+function loadUiMemory() {
+  try {
+    return sanitizeUiMemory(JSON.parse(window.localStorage.getItem(STORAGE_KEYS.ui) || "null"));
+  } catch (_error) {
+    return sanitizeUiMemory(null);
+  }
+}
+
+function persistUiMemory() {
+  state.uiMemory = sanitizeUiMemory({
+    rssSearch: state.rssSearch,
+    rssDurationFilter: state.rssDurationFilter,
+    rssPlaybackFilter: state.rssPlaybackFilter,
+    rssThemeFilter: state.rssThemeFilter,
+    rssEraFilter: state.rssEraFilter,
+    rssCountryFilter: state.rssCountryFilter,
+    rssSort: state.rssSort,
+    rssVisibleLimit: state.rssVisibleLimit,
+  });
+
+  try {
+    window.localStorage.setItem(STORAGE_KEYS.ui, JSON.stringify(state.uiMemory));
+  } catch (_error) {
+    // Ignore storage failures on locked-down devices.
+  }
+}
+
+function resetRssVisibleLimit() {
+  state.rssVisibleLimit = RSS_INITIAL_VISIBLE;
+}
+
+function resetRssControls() {
+  state.rssSearch = "";
+  state.rssDurationFilter = "all";
+  state.rssPlaybackFilter = "all";
+  state.rssThemeFilter = "all";
+  state.rssEraFilter = "all";
+  state.rssCountryFilter = "all";
+  state.rssSort = "recent";
+  resetRssVisibleLimit();
+  persistUiMemory();
+}
+
+function loadPodcastMemory() {
+  try {
+    return sanitizePodcastMemory(JSON.parse(window.localStorage.getItem(STORAGE_KEYS.podcasts) || "null"));
+  } catch (_error) {
+    return sanitizePodcastMemory(null);
+  }
+}
+
+function persistPodcastMemory(options = {}) {
+  const syncServer = options.syncServer !== false;
+  try {
+    window.localStorage.setItem(STORAGE_KEYS.podcasts, JSON.stringify(state.podcastMemory));
+  } catch (_error) {
+    // Ignore storage failures on locked-down devices.
+  }
+
+  if (!syncServer) {
+    return;
+  }
+
+  window.clearTimeout(state.podcastPersistTimer);
+  state.podcastPersistTimer = window.setTimeout(() => {
+    apiPost("/api/podcasts/history", state.podcastMemory).catch(() => {});
+  }, 700);
+}
+
+function sanitizePodcastHistoryItem(item) {
+  if (!item || typeof item !== "object") {
+    return null;
+  }
+
+  const id = String(item.id || "").trim().slice(0, 400);
+  const audioUrl = String(item.audioUrl || "").trim().slice(0, 1600);
+  const title = String(item.title || "").trim().slice(0, 180);
+  if (!id || !audioUrl || !title) {
+    return null;
+  }
+
+  return {
+    id,
+    title,
+    audioUrl,
+    link: String(item.link || "").trim().slice(0, 1600),
+    feedTitle: String(item.feedTitle || "").trim().slice(0, 120),
+    category: String(item.category || "").trim().slice(0, 80),
+    publishedAt: String(item.publishedAt || "").trim().slice(0, 80),
+    position: clamp(Number(item.position || 0), 0, 24 * 60 * 60),
+    durationSeconds: clamp(Number(item.durationSeconds || 0), 0, 24 * 60 * 60),
+    updatedAt: String(item.updatedAt || new Date().toISOString()).trim().slice(0, 80),
+  };
+}
+
+function sanitizePodcastMemory(memory) {
+  const history = Array.isArray(memory && memory.history)
+    ? memory.history.map(sanitizePodcastHistoryItem).filter(Boolean).slice(0, MAX_PODCAST_HISTORY)
+    : [];
+  const currentId = String((memory && memory.currentId) || (history[0] && history[0].id) || "").trim();
+
+  return {
+    currentId,
+    history,
+  };
+}
+
+async function loadPodcastHistoryFromServer() {
+  const localMemory = sanitizePodcastMemory(state.podcastMemory);
+
+  try {
+    const serverMemory = sanitizePodcastMemory(await apiGet("/api/podcasts/history"));
+    if (!serverMemory.history.length && localMemory.history.length) {
+      state.podcastMemory = localMemory;
+      persistPodcastMemory();
+    } else {
+      state.podcastMemory = serverMemory;
+      persistPodcastMemory({ syncServer: false });
+    }
+    state.podcastHistoryLoaded = true;
+    renderPage();
+  } catch (_error) {
+    state.podcastMemory = localMemory;
+    state.podcastHistoryLoaded = true;
+    renderPage();
+  }
+}
+
+async function clearPodcastHistoryOnServer() {
+  state.podcastMemory = sanitizePodcastMemory(null);
+  persistPodcastMemory({ syncServer: false });
+  try {
+    const cleared = await fetch("/api/podcasts/history", { method: "DELETE", headers: { Accept: "application/json" } });
+    if (cleared.ok) {
+      const payload = await cleared.json();
+      state.podcastMemory = sanitizePodcastMemory(payload);
+      persistPodcastMemory({ syncServer: false });
+    }
+  } catch (_error) {
+    // Keep local cleared state if the server is temporarily unavailable.
   }
 }
 
@@ -158,6 +389,19 @@ function formatDurationHours(value) {
   }
 
   return `${value.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} h`;
+}
+
+function formatPlaybackTime(value) {
+  const totalSeconds = Math.max(0, Math.floor(Number(value || 0)));
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  if (hours) {
+    return `${hours}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }
+
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }
 
 function formatDateTime(value) {
@@ -265,6 +509,206 @@ function truncateText(value, maxLength) {
     return "";
   }
   return text.length > maxLength ? `${text.slice(0, Math.max(0, maxLength - 1)).trimEnd()}...` : text;
+}
+
+function normalizeSearchText(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+function itemMatchesRssSearch(item, query) {
+  const normalizedQuery = normalizeSearchText(query);
+  if (!normalizedQuery) {
+    return true;
+  }
+
+  const searchable = normalizeSearchText(
+    [item.title, item.summary, item.feedTitle, item.category, item.publishedAt].filter(Boolean).join(" ")
+  );
+  return normalizedQuery
+    .split(/\s+/)
+    .filter(Boolean)
+    .every((token) => searchable.includes(token));
+}
+
+function parsePodcastDurationSeconds(value) {
+  const raw = String(value || "").trim();
+  if (!raw) {
+    return null;
+  }
+
+  const isoMatch = raw.match(/^P(?:T)?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/i);
+  if (isoMatch) {
+    const hours = Number(isoMatch[1] || 0);
+    const minutes = Number(isoMatch[2] || 0);
+    const seconds = Number(isoMatch[3] || 0);
+    return hours * 3600 + minutes * 60 + seconds;
+  }
+
+  if (/^\d+$/.test(raw)) {
+    return Number(raw);
+  }
+
+  const parts = raw.split(":").map((part) => Number(part));
+  if (parts.length >= 2 && parts.length <= 3 && parts.every(Number.isFinite)) {
+    return parts.reduce((total, part) => total * 60 + part, 0);
+  }
+
+  return null;
+}
+
+function itemMatchesDurationFilter(item, filter) {
+  if (!filter || filter === "all") {
+    return true;
+  }
+
+  const duration = parsePodcastDurationSeconds(item && item.duration);
+  if (filter === "unknown") {
+    return !Number.isFinite(duration);
+  }
+  if (!Number.isFinite(duration)) {
+    return false;
+  }
+
+  if (filter === "short") return duration < 15 * 60;
+  if (filter === "medium") return duration >= 15 * 60 && duration < 30 * 60;
+  if (filter === "long") return duration >= 30 * 60 && duration < 60 * 60;
+  if (filter === "deep") return duration >= 60 * 60;
+  return true;
+}
+
+function formatPodcastDuration(value) {
+  const duration = parsePodcastDurationSeconds(value);
+  return Number.isFinite(duration) ? formatPlaybackTime(duration) : "";
+}
+
+function itemHasBeenListened(item) {
+  return Boolean(item && getPodcastMemoryItem(item.id));
+}
+
+function getRssFacetText(item) {
+  return normalizeSearchText([item.title, item.summary, item.feedTitle, item.category].filter(Boolean).join(" "));
+}
+
+function textHasAny(text, keywords) {
+  return keywords.some((keyword) => text.includes(keyword));
+}
+
+function getRssItemTheme(item) {
+  const text = getRssFacetText(item);
+  if (textHasAny(text, ["voyage", "balade", "expat", "route", "wanderlust", "voyageur", "aventure", "velo"])) {
+    return "voyage";
+  }
+  if (textHasAny(text, ["histoire", "historique", "mediev", "empire", "revolution", "guerre", "roi", "reine"])) {
+    return "histoire";
+  }
+  return "";
+}
+
+function getRssItemEras(item) {
+  const text = getRssFacetText(item);
+  const eras = [];
+  if (textHasAny(text, ["antiquite", "antique", "rome", "romain", "grece", "grec", "egypte", "pharaon"])) eras.push("antiquite");
+  if (textHasAny(text, ["moyen age", "moyen-age", "mediev", "medieval", "chevalier", "croisade", "viking"])) eras.push("moyen-age");
+  if (textHasAny(text, ["renaissance", "leonard de vinci", "medicis", "xvie", "16e", "xvi "])) eras.push("renaissance");
+  if (textHasAny(text, ["epoque moderne", "louis xiv", "louis xv", "louis xvi", "versailles", "xviie", "xviiie", "17e", "18e"])) eras.push("moderne");
+  if (textHasAny(text, ["revolution", "napoleon", "bonaparte", "empire", "waterloo"])) eras.push("revolution-empire");
+  if (textHasAny(text, ["xixe", "19e", "victorien", "industrialisation", "commune de paris"])) eras.push("xix");
+  if (textHasAny(text, ["xxe", "20e", "premiere guerre", "seconde guerre", "guerre mondiale", "resistance", "guerre froide"])) eras.push("xx");
+  if (textHasAny(text, ["contemporain", "aujourd'hui", "moderne", "21e", "xxie", "actuel"])) eras.push("contemporain");
+  return eras;
+}
+
+function getRssItemCountries(item) {
+  const text = getRssFacetText(item);
+  const countries = [];
+  if (textHasAny(text, ["france", "francais", "paris", "bretagne", "normandie", "provence", "corse"])) countries.push("france");
+  if (textHasAny(text, ["europe", "europeen", "union europeenne", "balkans", "scandinavie"])) countries.push("europe");
+  if (textHasAny(text, ["italie", "italien", "rome", "venise", "florence", "sicile"])) countries.push("italie");
+  if (textHasAny(text, ["espagne", "espagnol", "barcelone", "madrid", "andalousie"])) countries.push("espagne");
+  if (textHasAny(text, ["royaume uni", "royaume-uni", "angleterre", "anglais", "londres", "ecosse", "irlande"])) countries.push("royaume-uni");
+  if (textHasAny(text, ["allemagne", "allemand", "berlin", "baviere"])) countries.push("allemagne");
+  if (textHasAny(text, ["etats unis", "etats-unis", "amerique", "usa", "new york", "californie"])) countries.push("usa");
+  if (textHasAny(text, ["canada", "quebec", "montreal"])) countries.push("canada");
+  if (textHasAny(text, ["japon", "tokyo", "kyoto", "japonais"])) countries.push("japon");
+  if (textHasAny(text, ["inde", "indien", "rajasthan", "delhi"])) countries.push("inde");
+  if (textHasAny(text, ["chine", "chinois", "pekin", "shanghai"])) countries.push("chine");
+  if (textHasAny(text, ["afrique", "maroc", "senegal", "egypte", "kenya", "tanzanie", "algerie", "tunisie"])) countries.push("afrique");
+  if (textHasAny(text, ["amerique latine", "amerique-latine", "mexique", "bresil", "argentine", "perou", "chili", "colombie"])) countries.push("amerique-latine");
+  if (textHasAny(text, ["moyen orient", "moyen-orient", "turquie", "iran", "israel", "liban", "jordanie"])) countries.push("moyen-orient");
+  return countries;
+}
+
+function itemMatchesPlaybackFilter(item, filter) {
+  if (!filter || filter === "all") {
+    return true;
+  }
+
+  const stored = item && getPodcastMemoryItem(item.id);
+  const position = stored ? Number(stored.position || 0) : 0;
+  const duration = stored ? Number(stored.durationSeconds || 0) : 0;
+  const started = Boolean(stored);
+  const inProgress = started && position > 5 && (!duration || position < duration - 10);
+  const finished = started && duration > 0 && position <= 5;
+
+  if (filter === "in-progress") return inProgress;
+  if (filter === "started" || filter === "listened") return started;
+  if (filter === "finished") return finished;
+  if (filter === "unlistened") return !started;
+  return true;
+}
+
+function itemMatchesThemeFilters(item) {
+  if (state.rssThemeFilter !== "all" && getRssItemTheme(item) !== state.rssThemeFilter) {
+    return false;
+  }
+  if (state.rssEraFilter !== "all" && !getRssItemEras(item).includes(state.rssEraFilter)) {
+    return false;
+  }
+  if (state.rssCountryFilter !== "all" && !getRssItemCountries(item).includes(state.rssCountryFilter)) {
+    return false;
+  }
+  return true;
+}
+
+function sortRssItems(items, sortKey) {
+  const sorted = [...items];
+  if (sortKey === "shortest" || sortKey === "longest") {
+    return sorted.sort((left, right) => {
+      const leftDuration = parsePodcastDurationSeconds(left.duration);
+      const rightDuration = parsePodcastDurationSeconds(right.duration);
+      const leftKnown = Number.isFinite(leftDuration);
+      const rightKnown = Number.isFinite(rightDuration);
+      if (!leftKnown && !rightKnown) return 0;
+      if (!leftKnown) return 1;
+      if (!rightKnown) return -1;
+      const leftValue = leftDuration;
+      const rightValue = rightDuration;
+      return sortKey === "shortest" ? leftValue - rightValue : rightValue - leftValue;
+    });
+  }
+
+  return sorted.sort((left, right) => {
+    const leftTime = left.publishedAt ? new Date(left.publishedAt).getTime() : 0;
+    const rightTime = right.publishedAt ? new Date(right.publishedAt).getTime() : 0;
+    return rightTime - leftTime;
+  });
+}
+
+function getVisibleRssItems(itemList) {
+  const filtered = itemList.filter((item) => {
+    const matchesBase =
+      itemMatchesRssSearch(item, state.rssSearch) &&
+      itemMatchesDurationFilter(item, state.rssDurationFilter) &&
+      itemMatchesPlaybackFilter(item, state.rssPlaybackFilter) &&
+      itemMatchesThemeFilters(item);
+    return matchesBase;
+  });
+
+  return sortRssItems(filtered, state.rssSort);
 }
 
 function currentRssGroup() {
@@ -602,7 +1046,7 @@ function renderHomePage() {
     highlightCards.push({
       kicker: "Derniere activite",
       title: topActivity.name,
-      note: `${formatNumber(topActivity.distanceKm)} km • ${formatDurationHours(topActivity.durationHours)} • charge ${formatNumber(topActivity.trainingLoad, 0)}`,
+      note: `${formatNumber(topActivity.distanceKm)} km - ${formatDurationHours(topActivity.durationHours)} - charge ${formatNumber(topActivity.trainingLoad, 0)}`,
       type: "",
     });
   }
@@ -1060,7 +1504,7 @@ function renderSportPage() {
             <span class="calendar-intensity" data-level="${level}"></span>
           </div>
           <strong class="calendar-day-number">${escapeHtml(formatCalendarDate(entry.date))}</strong>
-          <p class="calendar-note">${formatNumber(entry.activityCount || 0, 0)} act. • ${formatNumber(entry.trainingLoad || 0, 0)} load</p>
+          <p class="calendar-note">${formatNumber(entry.activityCount || 0, 0)} act. - ${formatNumber(entry.trainingLoad || 0, 0)} load</p>
         </article>
       `;
     })
@@ -1069,7 +1513,7 @@ function renderSportPage() {
   const achievementsCards = [
     { kicker: "Consistent strike", title: `${formatNumber(recent7.activityCount || 0, 0)} sessions recentes`, note: `${formatNumber(recent7.distanceKm || 0)} km et ${formatDurationHours(recent7.durationHours || 0)} sur 7 jours.` },
     { kicker: "Weekend engine", title: weekPattern ? weekPattern.label : "Pattern libre", note: weekPattern ? `${formatNumber(weekPattern.distanceKm || 0)} km cumules ce jour type.` : "Pattern hebdomadaire non charge." },
-    { kicker: "Recovery window", title: `${formatNumber(recovery.sleepHoursAvg || 0)} h`, note: `stress moyen ${formatNumber(recovery.stressAvg || 0, 0)} • FC repos ${formatNumber(recovery.restingHeartRateAvg || 0, 0)} bpm` },
+    { kicker: "Recovery window", title: `${formatNumber(recovery.sleepHoursAvg || 0)} h`, note: `stress moyen ${formatNumber(recovery.stressAvg || 0, 0)} - FC repos ${formatNumber(recovery.restingHeartRateAvg || 0, 0)} bpm` },
   ];
 
   achievements.innerHTML = achievementsCards
@@ -1093,7 +1537,7 @@ function renderSportPage() {
             <article class="stack-card">
               <span class="stack-kicker">${escapeHtml(record.label)}</span>
               <h3 class="stack-title">${escapeHtml(record.value)}</h3>
-              <p class="stack-note">${escapeHtml(record.note)} • ${escapeHtml(record.date)}</p>
+              <p class="stack-note">${escapeHtml(record.note)} - ${escapeHtml(record.date)}</p>
             </article>
           `
         )
@@ -1460,6 +1904,226 @@ function renderBedroomPage() {
     .join("");
 }
 
+function getPodcastItemFromDigest(group, itemId) {
+  const digest = state.rssDigests[group];
+  const itemList = digest && Array.isArray(digest.items) ? digest.items : [];
+  return itemList.find((item) => item && item.id === itemId) || null;
+}
+
+function normalizePodcastItem(item, overrides = {}) {
+  return sanitizePodcastHistoryItem({
+    id: item && item.id,
+    title: item && item.title,
+    audioUrl: item && item.audioUrl,
+    link: item && item.link,
+    feedTitle: item && item.feedTitle,
+    category: item && item.category,
+    publishedAt: item && item.publishedAt,
+    position: overrides.position,
+    durationSeconds: overrides.durationSeconds,
+    updatedAt: overrides.updatedAt || new Date().toISOString(),
+  });
+}
+
+function getPodcastMemoryItem(itemId) {
+  return state.podcastMemory.history.find((item) => item.id === itemId) || null;
+}
+
+function getCurrentPodcastItem(group) {
+  const currentId = state.podcastMemory.currentId;
+  if (!currentId) {
+    return null;
+  }
+
+  return getPodcastItemFromDigest(group, currentId) || getPodcastMemoryItem(currentId);
+}
+
+function upsertPodcastHistory(item, patch = {}) {
+  const existing = getPodcastMemoryItem(item.id);
+  const normalized = sanitizePodcastHistoryItem({
+    ...existing,
+    ...item,
+    ...patch,
+    updatedAt: patch.updatedAt || new Date().toISOString(),
+  });
+
+  if (!normalized) {
+    return null;
+  }
+
+  state.podcastMemory.currentId = normalized.id;
+  state.podcastMemory.history = [
+    normalized,
+    ...state.podcastMemory.history.filter((historyItem) => historyItem.id !== normalized.id),
+  ].slice(0, MAX_PODCAST_HISTORY);
+  persistPodcastMemory();
+  return normalized;
+}
+
+function playPodcastItem(itemId, shouldAutoplay = true) {
+  const group = currentRssGroup();
+  const item = getPodcastItemFromDigest(group, itemId) || getPodcastMemoryItem(itemId);
+  const stored = getPodcastMemoryItem(itemId);
+  const normalized = normalizePodcastItem(item, {
+    position: stored ? stored.position : 0,
+    durationSeconds: stored ? stored.durationSeconds : 0,
+  });
+
+  if (!normalized) {
+    renderPodcastResumeSection();
+    renderPodcastDock(group);
+    syncPodcastAudioElement(group);
+    return;
+  }
+
+  upsertPodcastHistory(normalized);
+  renderRssPage();
+
+  const audio = document.getElementById("podcastAudio");
+  if (shouldAutoplay && audio) {
+    audio.play().catch(() => {});
+  }
+}
+
+function renderPodcastPlayer(group, itemList) {
+  if (state.page !== "podcasts") {
+    return "";
+  }
+
+  const current = getCurrentPodcastItem(group);
+  const currentStored = current ? getPodcastMemoryItem(current.id) : null;
+  const playableCount = itemList.filter((item) => item.audioUrl).length;
+
+  if (!current) {
+    return `
+      <div class="podcast-player is-empty">
+        <div>
+          <p class="podcast-player-label">Lecteur integre</p>
+          <h3>Aucun episode lance</h3>
+          <p class="podcast-player-copy">${playableCount ? "Choisissez Ecouter sur un episode pour lancer le son ici." : "Les episodes charges ne fournissent pas encore de fichier audio."}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="podcast-player" data-current-podcast="${escapeHtml(current.id)}">
+      <div class="podcast-player-head">
+        <div>
+          <p class="podcast-player-label">En lecture</p>
+          <h3>${escapeHtml(current.title)}</h3>
+          <p class="podcast-player-copy">${escapeHtml(current.feedTitle || "Podcast")} - ${escapeHtml(current.category || "RSS")}</p>
+        </div>
+        <span class="tiny-pill">${escapeHtml(
+          currentStored && currentStored.position ? `Reprise ${formatPlaybackTime(currentStored.position)}` : "Nouveau"
+        )}</span>
+      </div>
+      <audio id="podcastAudio" class="podcast-audio" controls preload="metadata" src="${escapeHtml(current.audioUrl)}"></audio>
+      <div class="podcast-player-actions">
+        <button class="text-link is-primary" type="button" data-podcast-pause>Pause</button>
+        <button class="text-link" type="button" data-podcast-restart>Recommencer</button>
+        ${current.link ? `<a class="text-link" href="${escapeHtml(current.link)}" target="_blank" rel="noreferrer">Page episode</a>` : ""}
+        <button class="text-link" type="button" data-podcast-clear>Effacer historique</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderPodcastResumeSection() {
+  const section = document.getElementById("podcastResumeSection");
+  const list = document.getElementById("podcastResumeList");
+  if (state.page !== "podcasts" || !section || !list) {
+    return;
+  }
+
+  const history = state.podcastMemory.history;
+  section.hidden = !history.length;
+  if (!history.length) {
+    list.innerHTML = "";
+    return;
+  }
+
+  list.innerHTML = history
+    .map(
+      (entry) => `
+        <button class="podcast-history-item${entry.id === state.podcastMemory.currentId ? " is-active" : ""}" type="button" data-podcast-play="${escapeHtml(entry.id)}">
+          <span>${escapeHtml(entry.title)}</span>
+          <small>${escapeHtml(entry.feedTitle || "Podcast")} - ${formatPlaybackTime(entry.position || 0)} - serveur</small>
+        </button>
+      `
+    )
+    .join("");
+}
+
+function renderPodcastDock(group) {
+  const dock = document.getElementById("podcastDock");
+  if (state.page !== "podcasts" || !dock) {
+    return;
+  }
+
+  const current = getCurrentPodcastItem(group);
+  if (!current) {
+    dock.hidden = true;
+    dock.innerHTML = "";
+    return;
+  }
+
+  const stored = getPodcastMemoryItem(current.id);
+  dock.hidden = false;
+  dock.innerHTML = `
+    <div class="podcast-dock-meta">
+      <span>En lecture</span>
+      <strong>${escapeHtml(current.title)}</strong>
+      <small>${escapeHtml(current.feedTitle || "Podcast")} - ${formatPlaybackTime(stored ? stored.position : 0)}</small>
+    </div>
+    <div class="podcast-dock-actions">
+      <button class="text-link is-primary" type="button" data-podcast-pause>Pause</button>
+      <button class="text-link" type="button" data-podcast-restart>Recommencer</button>
+    </div>
+  `;
+}
+
+function syncPodcastAudioElement(group) {
+  if (state.page !== "podcasts") {
+    return;
+  }
+
+  const audio = document.getElementById("podcastAudio");
+  const current = getCurrentPodcastItem(group);
+  if (!audio || !current) {
+    return;
+  }
+
+  const stored = getPodcastMemoryItem(current.id);
+  const startPosition = stored ? Number(stored.position || 0) : 0;
+  let restored = false;
+
+  const restorePosition = () => {
+    if (restored || !Number.isFinite(audio.duration)) {
+      return;
+    }
+    if (startPosition > 0 && startPosition < audio.duration - 4) {
+      audio.currentTime = startPosition;
+    }
+    restored = true;
+  };
+
+  audio.addEventListener("loadedmetadata", restorePosition, { once: true });
+  audio.addEventListener("canplay", restorePosition, { once: true });
+  audio.addEventListener("timeupdate", () => {
+    upsertPodcastHistory(current, {
+      position: audio.currentTime,
+      durationSeconds: Number.isFinite(audio.duration) ? audio.duration : stored ? stored.durationSeconds : 0,
+    });
+  });
+  audio.addEventListener("ended", () => {
+    upsertPodcastHistory(current, {
+      position: 0,
+      durationSeconds: Number.isFinite(audio.duration) ? audio.duration : stored ? stored.durationSeconds : 0,
+    });
+  });
+}
+
 function renderRssPage() {
   const pageConfig = RSS_PAGE_CONFIG[state.page];
   const hero = document.getElementById("rssHero");
@@ -1477,7 +2141,62 @@ function renderRssPage() {
   const error = state.rssErrors[group] || "";
   const feedList = digest && Array.isArray(digest.feeds) ? digest.feeds : [];
   const itemList = digest && Array.isArray(digest.items) ? digest.items : [];
+  const filteredItems = getVisibleRssItems(itemList);
+  const visibleItems = filteredItems.slice(0, state.rssVisibleLimit);
+  const cappedByServer = Boolean(
+    digest && digest.limits && Number.isFinite(Number(digest.limits.maxItems)) && itemList.length >= Number(digest.limits.maxItems)
+  );
+  const hasSearch = Boolean(normalizeSearchText(state.rssSearch));
+  const hasDurationFilter = state.rssDurationFilter !== "all";
+  const hasPlaybackFilter = state.rssPlaybackFilter !== "all";
+  const hasThemeFilter = state.rssThemeFilter !== "all" || state.rssEraFilter !== "all" || state.rssCountryFilter !== "all";
+  const hasSortFilter = state.rssSort !== "recent";
   const okFeeds = feedList.filter((feed) => feed.ok).length;
+  const playableItems = itemList.filter((item) => item.audioUrl).length;
+  const listenedItems = state.page === "podcasts" ? state.podcastMemory.history.length : 0;
+  const searchInput = document.getElementById("rssSearchInput");
+  const searchClear = document.getElementById("rssSearchClear");
+  const durationFilter = document.getElementById("rssDurationFilter");
+  const playbackFilter = document.getElementById("rssPlaybackFilter");
+  const themeFilter = document.getElementById("rssThemeFilter");
+  const eraFilter = document.getElementById("rssEraFilter");
+  const countryFilter = document.getElementById("rssCountryFilter");
+  const sortSelect = document.getElementById("rssSortSelect");
+  const loadMoreWrap = document.getElementById("rssLoadMoreWrap");
+  const loadMoreButton = document.getElementById("rssLoadMore");
+
+  if (searchInput && searchInput.value !== state.rssSearch) {
+    searchInput.value = state.rssSearch;
+  }
+  if (searchClear) {
+    searchClear.hidden = !hasSearch && !hasDurationFilter && !hasPlaybackFilter && !hasThemeFilter && !hasSortFilter;
+  }
+  if (durationFilter && durationFilter.value !== state.rssDurationFilter) {
+    durationFilter.value = state.rssDurationFilter;
+  }
+  if (playbackFilter && playbackFilter.value !== state.rssPlaybackFilter) {
+    playbackFilter.value = state.rssPlaybackFilter;
+  }
+  if (themeFilter && themeFilter.value !== state.rssThemeFilter) {
+    themeFilter.value = state.rssThemeFilter;
+  }
+  if (eraFilter && eraFilter.value !== state.rssEraFilter) {
+    eraFilter.value = state.rssEraFilter;
+  }
+  if (countryFilter && countryFilter.value !== state.rssCountryFilter) {
+    countryFilter.value = state.rssCountryFilter;
+  }
+  if (sortSelect && sortSelect.value !== state.rssSort) {
+    sortSelect.value = state.rssSort;
+  }
+  if (loadMoreWrap) {
+    loadMoreWrap.hidden = filteredItems.length <= state.rssVisibleLimit;
+  }
+  if (loadMoreButton) {
+    const remainingItems = Math.max(0, filteredItems.length - state.rssVisibleLimit);
+    const nextItems = Math.min(RSS_LOAD_STEP, remainingItems);
+    loadMoreButton.textContent = `Charger plus (${nextItems} sur ${remainingItems})`;
+  }
 
   hero.innerHTML = `
     <p class="eyebrow">${escapeHtml(pageConfig.eyebrow)}</p>
@@ -1485,6 +2204,7 @@ function renderRssPage() {
     <p class="soft-copy">${escapeHtml(
       error || (digest ? digest.description : loading ? "Chargement des flux en cours." : "Flux prêts à être chargés.")
     )}</p>
+    ${renderPodcastPlayer(group, itemList)}
   `;
 
   stats.innerHTML = [
@@ -1495,13 +2215,17 @@ function renderRssPage() {
     },
     {
       kicker: "Éléments",
-      value: digest ? `${itemList.length}` : "--",
-      note: state.page === "podcasts" ? "épisodes récents" : "articles récents",
+      value: digest ? `${visibleItems.length}/${filteredItems.length}` : "--",
+      note: hasSearch || hasDurationFilter || hasSortFilter ? `${itemList.length} total` : "affichés / disponibles",
     },
     {
-      kicker: "Dernière lecture",
-      value: digest ? formatDateTime(digest.generatedAt) : "--",
-      note: digest ? `cache ${Math.round((digest.cacheTtlMs || 0) / 60000)} min` : "non chargé",
+      kicker: state.page === "podcasts" ? "Audio" : "Dernière lecture",
+      value: state.page === "podcasts" ? `${playableItems}` : digest ? formatDateTime(digest.generatedAt) : "--",
+      note: state.page === "podcasts"
+        ? `${listenedItems} dans l'historique${cappedByServer ? " - limite serveur atteinte" : ""}`
+        : digest
+          ? `cache ${Math.round((digest.cacheTtlMs || 0) / 60000)} min`
+          : "non chargé",
     },
   ]
     .map(
@@ -1531,6 +2255,9 @@ function renderRssPage() {
 
   if (error) {
     items.innerHTML = `<div class="empty-state">${escapeHtml(error)}</div>`;
+    renderPodcastResumeSection();
+    renderPodcastDock(group);
+    syncPodcastAudioElement(group);
     return;
   }
 
@@ -1539,7 +2266,16 @@ function renderRssPage() {
     return;
   }
 
-  items.innerHTML = itemList
+  renderPodcastResumeSection();
+  renderPodcastDock(group);
+
+  if (!filteredItems.length) {
+    items.innerHTML = `<div class="empty-state">Aucun resultat avec ces filtres.</div>`;
+    syncPodcastAudioElement(group);
+    return;
+  }
+
+  items.innerHTML = visibleItems
     .map(
       (item) => `
         <article class="rss-card">
@@ -1554,12 +2290,67 @@ function renderRssPage() {
           <div class="rss-card-actions">
             <span class="tiny-pill">${escapeHtml(item.category || "RSS")}</span>
             ${
+              formatPodcastDuration(item.duration)
+                ? `<span class="tiny-pill">${escapeHtml(formatPodcastDuration(item.duration))}</span>`
+                : state.page === "podcasts"
+                  ? `<span class="tiny-pill">duree inconnue</span>`
+                  : ""
+            }
+            ${
               item.audioUrl
-                ? `<a class="text-link" href="${escapeHtml(item.audioUrl)}" target="_blank" rel="noreferrer">Audio</a>`
+                ? `<button class="text-link is-primary" type="button" data-podcast-play="${escapeHtml(item.id)}">${state.podcastMemory.currentId === item.id ? "Reprendre" : "Ecouter"}</button>`
                 : ""
             }
             <a class="text-link" href="${escapeHtml(item.link)}" target="_blank" rel="noreferrer">Ouvrir</a>
           </div>
+        </article>
+      `
+    )
+    .join("");
+  syncPodcastAudioElement(group);
+}
+
+function renderSettingsPage() {
+  const stats = document.getElementById("settingsStats");
+  if (state.page !== "settings" || !stats) {
+    return;
+  }
+
+  const podcastCount = state.podcastMemory.history.length;
+  const assistantCount = state.assistantMessages.length;
+  const rssActiveFilters = [
+    normalizeSearchText(state.rssSearch) ? "recherche" : "",
+    state.rssDurationFilter !== "all" ? "durée" : "",
+    state.rssPlaybackFilter !== "all" ? "lecture" : "",
+    state.rssThemeFilter !== "all" ? "thème" : "",
+    state.rssEraFilter !== "all" ? "époque" : "",
+    state.rssCountryFilter !== "all" ? "pays" : "",
+    state.rssSort !== "recent" ? "tri" : "",
+  ].filter(Boolean);
+
+  stats.innerHTML = [
+    {
+      kicker: "Podcasts",
+      value: `${podcastCount}`,
+      note: podcastCount ? "historique serveur" : "historique serveur vide",
+    },
+    {
+      kicker: "Assistant",
+      value: `${assistantCount}`,
+      note: assistantCount ? "messages en mémoire" : "conversation vide",
+    },
+    {
+      kicker: "RSS",
+      value: rssActiveFilters.length ? `${rssActiveFilters.length}` : "0",
+      note: rssActiveFilters.length ? rssActiveFilters.join(", ") : "aucun filtre actif",
+    },
+  ]
+    .map(
+      (card) => `
+        <article class="summary-card">
+          <span class="summary-card-kicker">${escapeHtml(card.kicker)}</span>
+          <strong class="summary-card-value">${escapeHtml(card.value)}</strong>
+          <p class="summary-card-note">${escapeHtml(card.note)}</p>
         </article>
       `
     )
@@ -1575,6 +2366,7 @@ function renderPage() {
   renderAutomationsPage();
   renderBedroomPage();
   renderRssPage();
+  renderSettingsPage();
 }
 
 function setPreferencesFromInputs() {
@@ -1840,6 +2632,194 @@ function bindCommonEvents() {
     });
   });
 
+  const rssSearchInput = document.getElementById("rssSearchInput");
+  if (rssSearchInput) {
+    rssSearchInput.addEventListener("input", () => {
+      state.rssSearch = rssSearchInput.value;
+      resetRssVisibleLimit();
+      persistUiMemory();
+      renderRssPage();
+    });
+  }
+
+  const rssSearchClear = document.getElementById("rssSearchClear");
+  if (rssSearchClear) {
+    rssSearchClear.addEventListener("click", () => {
+      resetRssControls();
+      if (rssSearchInput) {
+        rssSearchInput.value = "";
+        rssSearchInput.focus();
+      }
+      const rssDurationFilter = document.getElementById("rssDurationFilter");
+      if (rssDurationFilter) {
+        rssDurationFilter.value = "all";
+      }
+      const rssPlaybackFilter = document.getElementById("rssPlaybackFilter");
+      if (rssPlaybackFilter) {
+        rssPlaybackFilter.value = "all";
+      }
+      const rssThemeFilter = document.getElementById("rssThemeFilter");
+      if (rssThemeFilter) {
+        rssThemeFilter.value = "all";
+      }
+      const rssEraFilter = document.getElementById("rssEraFilter");
+      if (rssEraFilter) {
+        rssEraFilter.value = "all";
+      }
+      const rssCountryFilter = document.getElementById("rssCountryFilter");
+      if (rssCountryFilter) {
+        rssCountryFilter.value = "all";
+      }
+      const rssSortSelect = document.getElementById("rssSortSelect");
+      if (rssSortSelect) {
+        rssSortSelect.value = "recent";
+      }
+      renderRssPage();
+    });
+  }
+
+  const rssDurationFilter = document.getElementById("rssDurationFilter");
+  if (rssDurationFilter) {
+    rssDurationFilter.addEventListener("change", () => {
+      state.rssDurationFilter = rssDurationFilter.value || "all";
+      resetRssVisibleLimit();
+      persistUiMemory();
+      renderRssPage();
+    });
+  }
+
+  const rssPlaybackFilter = document.getElementById("rssPlaybackFilter");
+  if (rssPlaybackFilter) {
+    rssPlaybackFilter.addEventListener("change", () => {
+      state.rssPlaybackFilter = rssPlaybackFilter.value || "all";
+      resetRssVisibleLimit();
+      persistUiMemory();
+      renderRssPage();
+    });
+  }
+
+  const rssThemeFilter = document.getElementById("rssThemeFilter");
+  if (rssThemeFilter) {
+    rssThemeFilter.addEventListener("change", () => {
+      state.rssThemeFilter = rssThemeFilter.value || "all";
+      resetRssVisibleLimit();
+      persistUiMemory();
+      renderRssPage();
+    });
+  }
+
+  const rssEraFilter = document.getElementById("rssEraFilter");
+  if (rssEraFilter) {
+    rssEraFilter.addEventListener("change", () => {
+      state.rssEraFilter = rssEraFilter.value || "all";
+      resetRssVisibleLimit();
+      persistUiMemory();
+      renderRssPage();
+    });
+  }
+
+  const rssCountryFilter = document.getElementById("rssCountryFilter");
+  if (rssCountryFilter) {
+    rssCountryFilter.addEventListener("change", () => {
+      state.rssCountryFilter = rssCountryFilter.value || "all";
+      resetRssVisibleLimit();
+      persistUiMemory();
+      renderRssPage();
+    });
+  }
+
+  const rssSortSelect = document.getElementById("rssSortSelect");
+  if (rssSortSelect) {
+    rssSortSelect.addEventListener("change", () => {
+      state.rssSort = rssSortSelect.value || "recent";
+      resetRssVisibleLimit();
+      persistUiMemory();
+      renderRssPage();
+    });
+  }
+
+  const rssLoadMore = document.getElementById("rssLoadMore");
+  if (rssLoadMore) {
+    rssLoadMore.addEventListener("click", () => {
+      state.rssVisibleLimit += RSS_LOAD_STEP;
+      persistUiMemory();
+      renderRssPage();
+    });
+  }
+
+  document.querySelectorAll("[data-settings-action]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const action = button.dataset.settingsAction;
+
+      if (action === "clear-podcasts" || action === "clear-all") {
+        clearPodcastHistoryOnServer().finally(() => renderPage());
+      }
+
+      if (action === "clear-rss" || action === "clear-all") {
+        resetRssControls();
+      }
+
+      if (action === "clear-assistant" || action === "clear-all") {
+        state.assistantMessages = [];
+        persistAssistantMessages();
+      }
+
+      if (action === "clear-all") {
+        try {
+          window.localStorage.removeItem(STORAGE_KEYS.preferences);
+        } catch (_error) {
+          // Ignore storage failures on locked-down devices.
+        }
+        state.preferences = loadPreferences();
+      }
+
+      if (action !== "clear-podcasts" && action !== "clear-all") {
+        renderPage();
+      }
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const playButton = event.target.closest("[data-podcast-play]");
+    if (playButton) {
+      event.preventDefault();
+      playPodcastItem(playButton.dataset.podcastPlay || "");
+      return;
+    }
+
+    const pauseButton = event.target.closest("[data-podcast-pause]");
+    if (pauseButton) {
+      event.preventDefault();
+      const audio = document.getElementById("podcastAudio");
+      if (audio) {
+        audio.pause();
+      }
+      return;
+    }
+
+    const restartButton = event.target.closest("[data-podcast-restart]");
+    if (restartButton) {
+      event.preventDefault();
+      const group = currentRssGroup();
+      const current = getCurrentPodcastItem(group);
+      const audio = document.getElementById("podcastAudio");
+      if (current) {
+        upsertPodcastHistory(current, { position: 0 });
+      }
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      }
+      return;
+    }
+
+    const clearButton = event.target.closest("[data-podcast-clear]");
+    if (clearButton) {
+      event.preventDefault();
+      clearPodcastHistoryOnServer().finally(() => renderPage());
+    }
+  });
+
   const overlay = document.getElementById("nightOverlay");
   if (overlay) {
     overlay.addEventListener("click", hideNightOverlay);
@@ -2012,6 +2992,7 @@ function startClock() {
 bindCommonEvents();
 startClock();
 renderPage();
+loadPodcastHistoryFromServer().catch(() => {});
 const initialRssGroup = currentRssGroup();
 if (initialRssGroup) {
   loadRssDigest(initialRssGroup, true)
@@ -2020,3 +3001,5 @@ if (initialRssGroup) {
 } else {
   loadData(true).catch(() => {});
 }
+
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/site.css?v=20260501-rss" />
-    <script defer src="/site.js?v=20260501-rss"></script>
+    <link rel="stylesheet" href="/site.css?v=20260506-podcast-filters" />
+    <script defer src="/site.js?v=20260506-podcast-filters"></script>
   </head>
   <body data-page="podcasts">
     <div id="nightOverlay" class="night-overlay" hidden>
@@ -26,6 +26,7 @@
           <a class="nav-link" href="/assistant.html" data-nav="assistant"><span class="nav-link-label">AI</span></a>
           <a class="nav-link" href="/automatisations.html" data-nav="automatisations"><span class="nav-link-label">Flow</span></a>
           <a class="nav-link" href="/chambre.html" data-nav="chambre"><span class="nav-link-label">Sleep</span></a>
+          <a class="nav-link" href="/reglages.html" data-nav="settings"><span class="nav-link-label">Réglages</span></a>
         </nav>
         <div class="rail-footer"><div class="rail-pill">Récits</div><a class="support-link" href="/dev-rss.html">dev ia</a></div>
       </aside>
@@ -55,17 +56,90 @@
             </aside>
           </section>
 
-          <section class="section-block">
-            <div class="section-heading"><div><p class="eyebrow">Sources</p><h2>Flux suivis</h2></div></div>
-            <div id="rssSources" class="stack-grid"></div>
+          <section id="podcastResumeSection" class="section-block podcast-resume-section" hidden>
+            <div class="section-heading"><div><p class="eyebrow">Reprendre</p><h2>Historique recent</h2></div></div>
+            <div id="podcastResumeList" class="podcast-resume-grid"></div>
           </section>
+
+          <details class="section-block rss-sources-panel">
+            <summary class="section-heading rss-sources-summary">
+              <div><p class="eyebrow">Sources</p><h2>Flux suivis</h2></div>
+              <span class="ghost-button rss-sources-toggle">Afficher</span>
+            </summary>
+            <div id="rssSources" class="stack-grid rss-sources-list"></div>
+          </details>
 
           <section class="section-block">
             <div class="section-heading"><div><p class="eyebrow">Épisodes</p><h2>Dernières sorties</h2></div></div>
+            <div class="rss-search">
+              <input id="rssSearchInput" class="rss-search-input" type="search" placeholder="Rechercher un theme, un sujet ou un mot" autocomplete="off" />
+              <select id="rssDurationFilter" class="rss-duration-select" aria-label="Filtrer par duree">
+                <option value="all">Toutes durees</option>
+                <option value="short">Moins de 15 min</option>
+                <option value="medium">15 a 30 min</option>
+                <option value="long">30 a 60 min</option>
+                <option value="deep">Plus de 60 min</option>
+                <option value="unknown">Duree inconnue</option>
+              </select>
+              <select id="rssPlaybackFilter" class="rss-duration-select" aria-label="Filtrer par lecture">
+                <option value="all">Tous statuts</option>
+                <option value="in-progress">En cours</option>
+                <option value="started">Commences</option>
+                <option value="finished">Termines</option>
+                <option value="unlistened">Non ecoutes</option>
+              </select>
+              <select id="rssThemeFilter" class="rss-duration-select" aria-label="Filtrer par theme">
+                <option value="all">Tous themes</option>
+                <option value="histoire">Histoire</option>
+                <option value="voyage">Voyage</option>
+              </select>
+              <select id="rssEraFilter" class="rss-duration-select" aria-label="Filtrer par epoque">
+                <option value="all">Toutes epoques</option>
+                <option value="antiquite">Antiquite</option>
+                <option value="moyen-age">Moyen Age</option>
+                <option value="renaissance">Renaissance</option>
+                <option value="moderne">Epoque moderne</option>
+                <option value="revolution-empire">Revolution / Empire</option>
+                <option value="xix">XIXe siecle</option>
+                <option value="xx">XXe siecle</option>
+                <option value="contemporain">Contemporain</option>
+              </select>
+              <select id="rssCountryFilter" class="rss-duration-select" aria-label="Filtrer par pays">
+                <option value="all">Tous pays</option>
+                <option value="france">France</option>
+                <option value="europe">Europe</option>
+                <option value="italie">Italie</option>
+                <option value="espagne">Espagne</option>
+                <option value="royaume-uni">Royaume-Uni</option>
+                <option value="allemagne">Allemagne</option>
+                <option value="usa">Etats-Unis</option>
+                <option value="canada">Canada</option>
+                <option value="japon">Japon</option>
+                <option value="inde">Inde</option>
+                <option value="chine">Chine</option>
+                <option value="afrique">Afrique</option>
+                <option value="amerique-latine">Amerique latine</option>
+                <option value="moyen-orient">Moyen-Orient</option>
+              </select>
+              <select id="rssSortSelect" class="rss-duration-select" aria-label="Trier les episodes">
+                <option value="recent">Plus recents</option>
+                <option value="shortest">Plus courts</option>
+                <option value="longest">Plus longs</option>
+              </select>
+              <button id="rssSearchClear" class="text-link" type="button">Effacer</button>
+            </div>
             <div id="rssItems" class="rss-grid"></div>
+            <div id="rssLoadMoreWrap" class="rss-load-more" hidden>
+              <button id="rssLoadMore" class="ghost-button" type="button">Charger plus</button>
+            </div>
           </section>
         </main>
       </div>
     </div>
+    <div id="podcastDock" class="podcast-dock" hidden></div>
   </body>
 </html>
+
+
+
+

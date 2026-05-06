@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProjetHome | Réglages</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/site.css?v=20260506-rss500" />
+    <script defer src="/site.js?v=20260506-rss500"></script>
+  </head>
+  <body data-page="settings">
+    <div id="nightOverlay" class="night-overlay" hidden>
+      <div class="night-overlay-card"><p class="night-overlay-kicker">ProjetHome</p><h2 id="nightOverlayTitle" class="night-overlay-title">Rest Mode</h2><p id="nightOverlayCopy" class="night-overlay-copy">Touchez pour revenir au hub.</p></div>
+    </div>
+    <div class="page-frame">
+      <aside class="side-rail">
+        <div class="brand-block"><div class="brand-mark">PH</div><div><div class="brand-name">Night Atelier</div><div class="brand-note">tablet hub</div></div></div>
+        <nav class="rail-nav" aria-label="Pages">
+          <a class="nav-link" href="/" data-nav="home"><span class="nav-link-label">Home</span></a>
+          <a class="nav-link" href="/maison.html" data-nav="maison"><span class="nav-link-label">Maison</span></a>
+          <a class="nav-link" href="/sport.html" data-nav="sport"><span class="nav-link-label">Sport</span></a>
+          <a class="nav-link" href="/podcasts.html" data-nav="podcasts"><span class="nav-link-label">Podcasts</span></a>
+          <a class="nav-link" href="/dev-rss.html" data-nav="dev"><span class="nav-link-label">Dev IA</span></a>
+          <a class="nav-link" href="/assistant.html" data-nav="assistant"><span class="nav-link-label">AI</span></a>
+          <a class="nav-link" href="/automatisations.html" data-nav="automatisations"><span class="nav-link-label">Flow</span></a>
+          <a class="nav-link" href="/chambre.html" data-nav="chambre"><span class="nav-link-label">Sleep</span></a>
+          <a class="nav-link" href="/reglages.html" data-nav="settings"><span class="nav-link-label">Réglages</span></a>
+        </nav>
+        <div class="rail-footer"><div class="rail-pill">Mémoire</div><a class="support-link" href="/podcasts.html">podcasts</a></div>
+      </aside>
+
+      <div class="app-shell">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Réglages</p>
+            <h1>Mémoire locale du hub.</h1>
+            <p class="topbar-lead">Contrôle rapide des préférences, de l'historique podcast et des filtres RSS conservés dans ce navigateur.</p>
+          </div>
+          <div class="topbar-actions">
+            <div class="topbar-button-row"><a class="ghost-button" href="/podcasts.html">Podcasts</a><a class="ghost-button" href="/">Home</a></div>
+            <div id="syncStatus" class="sync-pill">Hub stable</div>
+            <div class="clock-stack"><strong class="clock-time" data-frame="clock">--:--</strong><span class="clock-date" data-frame="date">--</span></div>
+          </div>
+        </header>
+
+        <div id="globalBanner" class="global-banner" hidden></div>
+
+        <main class="page-content">
+          <section class="hero-grid">
+            <article class="feature-panel warm-panel">
+              <p class="eyebrow">État local</p>
+              <h2 class="display-title">Préférences et historique.</h2>
+              <p class="soft-copy">Ces données restent sur l'appareil. Elles servent à reprendre les podcasts, garder les filtres RSS et mémoriser les options d'affichage.</p>
+            </article>
+            <aside class="feature-panel">
+              <p class="eyebrow">Résumé</p>
+              <div id="settingsStats" class="summary-grid"></div>
+            </aside>
+          </section>
+
+          <section class="section-block">
+            <div class="section-heading"><div><p class="eyebrow">Actions</p><h2>Nettoyage ciblé</h2></div></div>
+            <div class="settings-grid">
+              <article class="stack-card">
+                <span class="stack-kicker">Podcasts</span>
+                <h3 class="stack-title">Historique d'écoute</h3>
+                <p class="stack-note">Supprime l'épisode courant, les positions de reprise et la liste Reprendre.</p>
+                <button class="ghost-button" type="button" data-settings-action="clear-podcasts">Effacer podcasts</button>
+              </article>
+              <article class="stack-card">
+                <span class="stack-kicker">RSS</span>
+                <h3 class="stack-title">Filtres et tri</h3>
+                <p class="stack-note">Réinitialise la recherche, la durée, le tri et le nombre d'éléments affichés.</p>
+                <button class="ghost-button" type="button" data-settings-action="clear-rss">Réinitialiser RSS</button>
+              </article>
+              <article class="stack-card">
+                <span class="stack-kicker">Assistant</span>
+                <h3 class="stack-title">Conversation locale</h3>
+                <p class="stack-note">Vide uniquement les derniers messages conservés côté navigateur.</p>
+                <button class="ghost-button" type="button" data-settings-action="clear-assistant">Effacer assistant</button>
+              </article>
+              <article class="stack-card warning-card">
+                <span class="stack-kicker">Global</span>
+                <h3 class="stack-title">Toute la mémoire</h3>
+                <p class="stack-note">Supprime préférences, historique, filtres et conversation locale.</p>
+                <button class="ghost-button" type="button" data-settings-action="clear-all">Tout effacer</button>
+              </article>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+

@@ -8,6 +8,7 @@ const { getDashboardSnapshot, invalidateDashboardCache } = require("./services/d
 const { getAiLabStatus } = require("./services/aiLab");
 const { setLightBrightness, setLightColor, toggleLightPower } = require("./services/lights");
 const { chatWithOllama, getOllamaStatus } = require("./services/ollamaChat");
+const { clearPodcastHistory, readPodcastHistory, writePodcastHistory } = require("./services/podcastHistory");
 const { getRssDigest } = require("./services/rssFeeds");
 const { getSleepSunSnapshot } = require("./services/sleepSun");
 
@@ -31,9 +32,15 @@ const serveStatic = async (pathname, res) => {
 
   const content = await fs.readFile(filePath);
 
+  const contentType = contentTypeForPath(filePath);
+  const shouldAvoidBrowserCache =
+    contentType.startsWith("text/html") ||
+    contentType.startsWith("text/javascript") ||
+    contentType.startsWith("text/css");
+
   res.writeHead(200, {
-    "Cache-Control": targetPath === "/index.html" ? "no-store" : "public, max-age=300",
-    "Content-Type": contentTypeForPath(filePath),
+    "Cache-Control": shouldAvoidBrowserCache ? "no-store" : "public, max-age=300",
+    "Content-Type": contentType,
     "Content-Length": content.byteLength,
   });
   res.end(content);
@@ -111,6 +118,25 @@ const requestListener = async (req, res) => {
     if (req.method === "GET" && pathname === "/api/ai-lab/status") {
       const status = await getAiLabStatus(config);
       sendJson(res, 200, status);
+      return;
+    }
+
+    if (req.method === "GET" && pathname === "/api/podcasts/history") {
+      const history = await readPodcastHistory(config);
+      sendJson(res, 200, history);
+      return;
+    }
+
+    if (req.method === "POST" && pathname === "/api/podcasts/history") {
+      const body = await readJsonBody(req);
+      const history = await writePodcastHistory(config, body);
+      sendJson(res, 200, history);
+      return;
+    }
+
+    if (req.method === "DELETE" && pathname === "/api/podcasts/history") {
+      const history = await clearPodcastHistory(config);
+      sendJson(res, 200, history);
       return;
     }
 

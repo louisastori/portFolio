@@ -1,4 +1,4 @@
-const { XMLParser } = require("fast-xml-parser");
+﻿const { XMLParser } = require("fast-xml-parser");
 
 const RSS_GROUPS = {
   podcasts: {
@@ -32,6 +32,111 @@ const RSS_GROUPS = {
         category: "Recits de voyage",
         homepage: "https://shows.acast.com/french-expat-le-podcast",
         url: "https://feeds.acast.com/public/shows/french-expat-le-podcast",
+      },
+      {
+        id: "au-coeur-histoire",
+        title: "Au Coeur de l'Histoire",
+        category: "Histoire",
+        homepage: "https://www.europe1.fr/emissions/au-coeur-de-l-histoire",
+        url: "https://feeds.audiomeans.fr/feed/7c44ef0d-1d1c-4230-9da1-b2e4f839108c.xml",
+      },
+      {
+        id: "entrez-histoire",
+        title: "Entrez dans l'Histoire",
+        category: "Histoire",
+        homepage: "https://www.rtl.fr/programmes/entrez-dans-l-histoire",
+        url: "https://feeds.audiomeans.fr/feed/971b31f2-42d6-4d41-95ee-1c0554528483.xml",
+      },
+      {
+        id: "choses-savoir-histoire",
+        title: "Choses a Savoir Histoire",
+        category: "Histoire",
+        homepage: "https://www.chosesasavoir.com",
+        url: "https://feeds.acast.com/public/shows/6605920d743327001649c686",
+      },
+      {
+        id: "lhistoire-dans-lhistoire",
+        title: "L'histoire dans l'Histoire",
+        category: "Histoire",
+        homepage: "https://lesartisansdupodcast.fr",
+        url: "https://feeds.podcastics.com/podcastics/podcasts/rss/6852_4baca62995b1f24a1a5606acd84de45a.rss",
+      },
+      {
+        id: "casus-belli",
+        title: "Casus Belli",
+        category: "Histoire",
+        homepage: "https://www.youtube.com/c/CasusBelli-Histoire/videos",
+        url: "https://feeds.podcastics.com/podcastics/podcasts/rss/7576_49b82b00644cb332c4e651d4c10d4e11.rss",
+      },
+      {
+        id: "ecoutes-voyageuses",
+        title: "Ecoutes Voyageuses",
+        category: "Voyage",
+        homepage: "https://www.podcastics.com/podcast/ecoutes-voyageuses/",
+        url: "https://feeds.podcastics.com/podcastics/podcasts/rss/1058_60af8c85fe9ee3aeb3ca9efe7192df8e.rss",
+      },
+      {
+        id: "en-route-voyage",
+        title: "En route vers le voyage",
+        category: "Voyage",
+        homepage: "https://www.podcastics.com/podcast/en-route-vers-le-voyage/",
+        url: "https://feeds.podcastics.com/podcastics/podcasts/rss/12_6611451366cff506d537e2618f0bce5a.rss",
+      },
+      {
+        id: "voyage-sans-ailes",
+        title: "Voyage sans ailes",
+        category: "Voyage",
+        homepage: "https://www.podcastics.com/podcast/voyage-sans-ailes/",
+        url: "https://feeds.podcastics.com/podcastics/podcasts/rss/1077_d213f8a429d343eda29980c7c8bc891f.rss",
+      },
+      {
+        id: "radio-voyageurs",
+        title: "Radio Voyageurs",
+        category: "Voyage",
+        homepage: "https://www.podcastics.com/podcast/radio-voyageurs/",
+        url: "https://feeds.podcastics.com/podcastics/podcasts/rss/11_c66dd0959321d1d6dd837ae4016de44b.rss",
+      },
+      {
+        id: "terres-aventure",
+        title: "Terres d'Aventure",
+        category: "Voyage",
+        homepage: "https://www.podcastics.com/podcast/terres-daventure-le-voyage-a-pied/",
+        url: "https://feeds.podcastics.com/podcastics/podcasts/rss/3991_62d98fd78c35016bbb6cf00d5a193279.rss",
+      },
+      {
+        id: "chemins-histoire",
+        title: "Chemins d'histoire",
+        category: "Histoire",
+        homepage: "https://cheminsdhistoire.fr/",
+        url: "https://feeds.soundcloud.com/users/soundcloud:users:73343895/sounds.rss",
+      },
+      {
+        id: "pepites-histoire",
+        title: "Pepites d'Histoire",
+        category: "Histoire",
+        homepage: "https://www.podcast-histoire.fr/",
+        url: "https://rss.acast.com/perles-dhistoire",
+      },
+      {
+        id: "wanderlust-voyage",
+        title: "Wanderlust le podcast voyage",
+        category: "Voyage",
+        homepage: "https://podcast.ausha.co/wanderlust-lepodcast",
+        url: "https://feed.ausha.co/drGEvTGKY89l",
+      },
+      {
+        id: "cyclo-topo",
+        title: "Cyclo-Topo",
+        category: "Voyage",
+        homepage: "https://podcasts.apple.com/us/podcast/cyclo-topo-voyage-a-velo/id1541462970",
+        url: "https://rss.buzzsprout.com/1500985.rss",
+      },
+      {
+        id: "cafe-voyageurs",
+        title: "Le Cafe des voyageurs",
+        category: "Voyage",
+        homepage: "https://www.atalante.fr",
+        url: "https://anchor.fm/s/101b13c38/podcast/rss",
       },
     ],
   },
@@ -307,6 +412,10 @@ const getRssDigest = async (config, groupId, { forceLive = false } = {}) => {
     description: group.description,
     generatedAt: new Date().toISOString(),
     cacheTtlMs: ttlMs,
+    limits: {
+      perFeed: perFeedLimit,
+      maxItems: config.rss.maxItems,
+    },
     feeds: results.map((result) => result.feed),
     items,
   };
@@ -325,3 +434,4 @@ module.exports = {
   RSS_GROUPS,
   getRssDigest,
 };
+
