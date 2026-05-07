@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "node --watch server/index.js",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "node --test \"test/**/*.test.js\"",
+    "test:e2e": "node test/run-e2e.js",
     "legacy:expo": "expo start",
     "legacy:android": "expo run:android",
     "legacy:ios": "expo run:ios",
@@ -21,6 +24,7 @@
     "react-native": "0.81.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@types/react": "~19.1.0",
     "typescript": "~5.9.2"
   }

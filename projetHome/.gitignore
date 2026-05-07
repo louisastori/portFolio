@@ -6,3 +6,6 @@ ios/
 .env
 .env.docker
 runtime-data/
+runtime-logs/*.log
+test-results/
+playwright-report/
