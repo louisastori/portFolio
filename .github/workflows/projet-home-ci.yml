@@ -1,0 +1,44 @@
+name: ProjetHome CI
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - "projetHome/**"
+      - ".github/workflows/projet-home-ci.yml"
+  pull_request:
+    paths:
+      - "projetHome/**"
+      - ".github/workflows/projet-home-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projetHome
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: projetHome/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run tests
+        run: npm test
