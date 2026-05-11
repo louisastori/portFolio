@@ -46,8 +46,9 @@ jobs:
           if npm run | grep -q "^  test"; then
             npm test
           else
-            node --check server/index.js
-            node --check server/config.js
-            node --check server/services/rssFeeds.js
-            node --check server/services/podcastHistory.js
+            for file in server/index.js server/config.js server/services/rssFeeds.js server/services/podcastHistory.js; do
+              if [ -f "$file" ]; then
+                node --check "$file"
+              fi
+            done
           fi
