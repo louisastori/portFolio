@@ -9,7 +9,8 @@
     "analyze:dry": "node ollama-analyze.js --dry-run",
     "login": "node crawler.js --prepare-login --skip-activity-details --activity-limit 1",
     "chrome:debug": "node crawler.js --prepare-login --skip-activity-details --activity-limit 1",
-    "test": "node --check crawler.js && node --check ollama-analyze.js"
+    "validate:nightly": "node scripts/validate-nightly-output.js",
+    "test": "node --check crawler.js && node --check ollama-analyze.js && node --check scripts/validate-nightly-output.js"
   },
   "keywords": [],
   "author": "",

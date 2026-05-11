@@ -1,5 +1,6 @@
 param(
-  [string]$GitCommand = "git"
+  [string]$GitCommand = "git",
+  [switch]$NoStash
 )
 
 $ErrorActionPreference = "Stop"
@@ -12,14 +13,45 @@ $logPath = Join-Path $logDir ("git-pull-" + (Get-Date -Format "yyyy-MM-dd") + ".
 New-Item -ItemType Directory -Path $logDir -Force | Out-Null
 Start-Transcript -Path $logPath -Append | Out-Null
 
+function Write-AutomationAlert {
+  param([string]$Message)
+
+  Write-Warning $Message
+  try {
+    & msg.exe $env:USERNAME "Garmin nightly automation: $Message" 2>$null
+  } catch {
+    Write-Host "Desktop notification unavailable: $($_.Exception.Message)"
+  }
+}
+
+function Invoke-Git {
+  param([string[]]$Arguments)
+
+  & $GitCommand @Arguments
+  if ($LASTEXITCODE -ne 0) {
+    throw "git $($Arguments -join ' ') failed with exit code $LASTEXITCODE."
+  }
+}
+
 try {
   Write-Host "Nightly git pull start: $(Get-Date -Format s)"
 
   Push-Location $projectRoot
   try {
-    & $GitCommand pull --ff-only
-    if ($LASTEXITCODE -ne 0) {
-      throw "Git pull failed with exit code $LASTEXITCODE."
+    $statusOutput = & $GitCommand status --porcelain
+    if ($statusOutput -and -not $NoStash) {
+      $stashMessage = "nightly pre-pull autosave $(Get-Date -Format s)"
+      Write-Host "Workspace is dirty, saving local changes before pull: $stashMessage"
+      Invoke-Git @("stash", "push", "--include-untracked", "-m", $stashMessage)
+    } elseif ($statusOutput) {
+      Write-AutomationAlert "Workspace is dirty and -NoStash was used; pull may fail."
+    }
+
+    try {
+      Invoke-Git @("pull", "--ff-only")
+    } catch {
+      Write-AutomationAlert $_.Exception.Message
+      throw
     }
   } finally {
     Pop-Location
