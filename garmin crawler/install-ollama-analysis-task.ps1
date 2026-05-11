@@ -1,6 +1,6 @@
 param(
-  [string]$TaskName = "GarminCrawlerOllama0015",
-  [datetime]$RunAt = (Get-Date "00:15")
+  [string]$TaskName = "GarminCrawlerOllama0025",
+  [datetime]$RunAt = (Get-Date "00:25")
 )
 
 $ErrorActionPreference = "Stop"

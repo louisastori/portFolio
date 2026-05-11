@@ -28,10 +28,10 @@ Le but est d'eviter une spec monolithique pour tout le workspace. Chaque spec do
 
 La cadence nocturne de reference du workspace suit cet enchainement :
 
-- `23:45` : pull du workspace pour recuperer les derniers changements avant la collecte
-- `00:00` : lancement du Garmin crawler
-- `00:15` : lancement de l'analyse Ollama sur le dernier export
-- `00:30` : commit des dernieres modifications generees par le cycle nocturne
+- `00:00` : pull du workspace pour recuperer les derniers changements avant la collecte
+- `00:15` : lancement du Garmin crawler
+- `00:25` : lancement de l'analyse Ollama sur le dernier export
+- `00:30` : commit et push des dernieres modifications generees par le cycle nocturne
 
 ## Authoring Conventions
 

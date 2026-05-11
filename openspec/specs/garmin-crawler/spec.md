@@ -116,13 +116,13 @@ Le systeme doit documenter et supporter une sequence nocturne ordonnee pour mett
 #### Scenario: Nightly timeline reference
 Given le workflow nocturne complet est configure sur la machine locale
 When la sequence quotidienne s'execute
-Then un `pull` du workspace doit etre lance a `23:45`
-And le Garmin crawler doit etre lance a `00:00`
-And l'analyse Ollama doit etre lancee a `00:15`
-And un commit des dernieres modifications doit etre lance a `00:30`
+Then un `pull` du workspace doit etre lance a `00:00`
+And le Garmin crawler doit etre lance a `00:15`
+And l'analyse Ollama doit etre lancee a `00:25`
+And un commit puis un push des dernieres modifications doivent etre lances a `00:30`
 
 #### Scenario: Ordered nightly steps
 Given plusieurs etapes automatiques composent la nuit
 When le workflow avance d'une etape a la suivante
 Then chaque etape doit utiliser les sorties de l'etape precedente
-And le commit final ne doit arriver qu'apres la collecte Garmin et l'analyse Ollama
+And le push final ne doit arriver qu'apres la collecte Garmin et l'analyse Ollama
