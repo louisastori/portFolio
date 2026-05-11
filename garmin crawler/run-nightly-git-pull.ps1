@@ -38,11 +38,13 @@ try {
 
   Push-Location $projectRoot
   try {
+    $stashCreated = $false
     $statusOutput = & $GitCommand status --porcelain
     if ($statusOutput -and -not $NoStash) {
       $stashMessage = "nightly pre-pull autosave $(Get-Date -Format s)"
       Write-Host "Workspace is dirty, saving local changes before pull: $stashMessage"
       Invoke-Git @("stash", "push", "--include-untracked", "-m", $stashMessage)
+      $stashCreated = $true
     } elseif ($statusOutput) {
       Write-AutomationAlert "Workspace is dirty and -NoStash was used; pull may fail."
     }
@@ -52,6 +54,15 @@ try {
     } catch {
       Write-AutomationAlert $_.Exception.Message
       throw
+    }
+
+    if ($stashCreated) {
+      try {
+        Invoke-Git @("stash", "pop")
+      } catch {
+        Write-AutomationAlert "Pull succeeded but restoring the pre-pull stash needs attention: $($_.Exception.Message)"
+        throw
+      }
     }
   } finally {
     Pop-Location
