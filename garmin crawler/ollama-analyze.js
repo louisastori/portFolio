@@ -11,7 +11,13 @@ const DEFAULT_TEMPERATURE = Number.isFinite(Number(process.env.OLLAMA_TEMPERATUR
   : 0.4;
 const DEFAULT_NUM_PREDICT = Number.isFinite(Number(process.env.OLLAMA_NUM_PREDICT))
   ? Number(process.env.OLLAMA_NUM_PREDICT)
-  : 700;
+  : 420;
+const OLLAMA_RETRY_COUNT = Number.isFinite(Number(process.env.OLLAMA_RETRY_COUNT))
+  ? Math.max(1, Number.parseInt(process.env.OLLAMA_RETRY_COUNT, 10))
+  : 3;
+const OLLAMA_RETRY_DELAY_MS = Number.isFinite(Number(process.env.OLLAMA_RETRY_DELAY_MS))
+  ? Math.max(0, Number.parseInt(process.env.OLLAMA_RETRY_DELAY_MS, 10))
+  : 5000;
 const PREFERRED_OLLAMA_MODELS = ["gemma3:4b", "phi3:mini", "llama3.2:3b"];
 const ANALYSIS_SYSTEM_PROMPT = [
   "Tu es un coach sportif analytique francophone.",
@@ -367,7 +373,11 @@ const parseCoachSignals = (value) => {
   }
 };
 
-const callOllama = async ({ baseUrl, model, prompt, system }) => {
+const sleep = (ms) => new Promise((resolve) => {
+  setTimeout(resolve, ms);
+});
+
+const callOllamaOnce = async ({ baseUrl, model, prompt, system }) => {
   const response = await fetch(`${baseUrl}/api/generate`, {
     method: "POST",
     headers: {
@@ -402,6 +412,26 @@ const callOllama = async ({ baseUrl, model, prompt, system }) => {
   }
 
   return payload;
+};
+
+const callOllama = async ({ baseUrl, model, prompt, system, label = "generation" }) => {
+  let lastError;
+
+  for (let attempt = 1; attempt <= OLLAMA_RETRY_COUNT; attempt += 1) {
+    try {
+      return await callOllamaOnce({ baseUrl, model, prompt, system });
+    } catch (error) {
+      lastError = error;
+      const message = error && error.message ? error.message : String(error);
+      console.error(`Ollama ${label} attempt ${attempt}/${OLLAMA_RETRY_COUNT} failed: ${message}`);
+
+      if (attempt < OLLAMA_RETRY_COUNT) {
+        await sleep(OLLAMA_RETRY_DELAY_MS);
+      }
+    }
+  }
+
+  throw lastError;
 };
 
 const fetchAvailableModels = async (baseUrl) => {
@@ -564,6 +594,7 @@ const main = async () => {
     model: modelState.model,
     prompt,
     system: ANALYSIS_SYSTEM_PROMPT,
+    label: "analysis",
   });
 
   let coachSignals = null;
@@ -573,6 +604,7 @@ const main = async () => {
       model: modelState.model,
       prompt: coachSignalsPrompt,
       system: COACH_SIGNAL_SYSTEM_PROMPT,
+      label: "coach signals",
     });
     coachSignals = parseCoachSignals(coachSignalsPayload.response);
   } catch (_error) {

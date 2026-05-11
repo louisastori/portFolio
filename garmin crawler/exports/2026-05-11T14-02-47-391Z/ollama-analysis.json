@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-05-11T14-02-47-391Z",
+  "generatedAt": "2026-05-11T14:10:05.231Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4617,
+  "analysisText": "Votre bilan Garmin révèle une activité physique régulière et conséquente, avec une tendance à la charge élevée, notamment le samedi. L’analyse des dernières semaines met en lumière plusieurs points à considérer.\n\nLa charge récente, avec un total de 87.5 km et 7.7 heures d’activité sur les 7 derniers jours, ainsi que 643.8 km et 36.4 heures sur les 28 derniers jours, indique un engagement important. La charge accumulée est notable, et il serait pertinent d’évaluer si cette intensité est durable et compatible avec vos objectifs de récupération. Le volume de 13623 unités de charge est un indicateur important de l'effort global.\n\nLe sommeil est un point sensible. Les analyses nocturnes montrent des variations significatives, avec des scores moyens autour de 67, mais des nuits avec des scores plus faibles (50 et 56) et des durées réduites (5.9h et 4.5h). La présence de multiples éveils, notamment la nuit du 07-05-2026, et la diminution de la phase profonde du sommeil, sont des éléments à surveiller attentivement. Le besoin de sommeil estimé à 8.8 heures suggère que vous pourriez bénéficier d'un repos plus long.\n\nPar ailleurs, la récupération est globalement correcte, avec une FC de repos à 49 et une body battery au réveil souvent élevée. Cependant, les nuits du 09-05-2026 et 10-05-2026, caractérisées par des interruptions et des phases de sommeil peu profondes, indiquent un potentiel d'amélioration de la qualité de votre sommeil. L'insight \"NEGATIVE_DISCONTINUOUS\" et \"NEGATIVE_SHORT_AND_POOR_STRUCTURE\" sur la nuit du 09-05-2026 est un signal d'alerte à ne pas négliger.\n\nEn termes de performance, vos valeurs de VO2max, vitesse maximale et puissance maximale sont bonnes, mais il est important de les maintenir et de les améliorer. Votre point fort est clairement la pratique du running sur tapis roulant, notamment à Villenave-d'Ornon, où vous avez réalisé un grand nombre d'activités. Il serait intéressant d'explorer davantage d'activités en extérieur, en particulier sur route, pour diversifier vos entraînements et optimiser votre condition physique.",
+  "coachSignals": {
+    "alert": "FC repos élevé (49 bpm) et stress élevé (29) suggèrent une surcharge potentielle.",
+    "advice": "Privilégiez une séance de récupération active avec une faible intensité pour réduire le stress.",
+    "tomorrowWorkout": "Envisagez une course de 60-75 minutes à allure modérée pour favoriser la récupération.",
+    "fatigueRisk": "moderate",
+    "focus": "Récupération et sommeil de qualité"
+  },
+  "totalDuration": 137394073661,
+  "loadDuration": 53783268340,
+  "evalCount": 525,
+  "evalDuration": 76868675654
+}

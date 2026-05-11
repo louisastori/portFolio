@@ -1,0 +1,19 @@
+{
+  "exportName": "2026-05-11T14-16-25-798Z",
+  "generatedAt": "2026-05-11T14:26:38.950Z",
+  "model": "gemma3:4b",
+  "baseUrl": "http://127.0.0.1:11434",
+  "promptLength": 4617,
+  "analysisText": "Votre bilan Garmin révèle une activité physique régulière et conséquente, avec une progression notable ces dernières semaines. La charge totale accumulée est significative, témoignant d'un engagement important dans votre programme sportif. On observe une forte proportion d'activités en intérieur (64%), principalement sur tapis roulant, ce qui est un bon point de départ pour structurer vos séances.\n\nVotre sommeil est un point à surveiller attentivement. Les dernières nuits ont montré des variations importantes, avec des scores moyens autour de 67, des durées de sommeil souvent inférieures à vos besoins (8.8h), et des anomalies récurrentes dans la structure du sommeil, notamment des interruptions fréquentes (jusqu'à 47 minutes) et un manque de sommeil paradoxal (REM) significatif lors de la nuit du 07-05-2026.  L'analyse du stress nocturne et du body battery indique un impact possible de vos activités physiques tardives sur votre repos.\n\nMalgré ces variations, certains points forts ressortent. Votre VO2max est solide (59), ce qui indique une bonne capacité cardiovasculaire. Vos performances sur les 10 km (4:58) et sur les efforts de sprint sont à souligner.  Les lieux de vos activités les plus fréquentes, Villenave-d'Ornon et Castelló d'Empúries, semblent être des endroits où vous vous sentez particulièrement à l'aise et où vous atteignez des niveaux d'entraînement élevés.\n\nIl est important de noter que votre charge récente est élevée, avec un pic de 528.7 km le samedi. Cela pourrait indiquer un besoin de mieux équilibrer votre charge et votre récupération.  L'analyse des données de récupération montre que vos FC repos sont relativement bas (49), ce qui pourrait être lié à votre niveau d'activité.  Il serait bénéfique d'optimiser vos périodes de repos pour favoriser la récupération musculaire et cognitive.  L'attention portée à la cadence",
+  "coachSignals": {
+    "alert": "FC repos élevé (49 bpm) et stress 29, suggère une tension potentielle.",
+    "advice": "Privilégiez une activité de récupération active (treadmill) pour réduire le stress et améliorer la qualité du sommeil.",
+    "tomorrowWorkout": "Envisagez une course à pied de 10-12 km pour maintenir l'activité et explorer le secteur de Villenave-d'Ornon.",
+    "fatigueRisk": "moderate",
+    "focus": "Récupération et sommeil de qualité, HRV stable."
+  },
+  "totalDuration": 109469254064,
+  "loadDuration": 54532262700,
+  "evalCount": 420,
+  "evalDuration": 48584849828
+}
